@@ -1,0 +1,88 @@
+<div class="row">
+  <div class="content-wrapper-before gradient-45deg-indigo-purple"></div>
+  <div class="col s12">
+    <div class="container">
+      <div style="padding: 0 !important;" class="section section-data-tables">
+        <div class="card sticky">
+          <div class="card-content">
+            <div class="row">
+              <div class="left">
+                <div class="col " *ngIf="checkPermission('suppliers:create')"> <a [routerLink]="['new']" class="btn-flat mb-1 waves-effect btn-color-crea" [translate]="'Common.Card_buttons.new'">Crea</a> </div>
+                <div class="col "> <a [routerLink]="['/dashboard/import']" class="btn-flat mb-1 waves-effect waves-light btn-color-import" [translate]="'Common.Card_buttons.import'">Import</a> </div>
+              </div>
+              <div class="right" style="width: 30%;">
+
+                <DM-multifilter  #autocomplete historyIdentifier="filtro" [CategoriesFilter]="categoriesFilter" [label]="'filtro'" (Valore)="emitfilter($event)" (EventKeyEnter)="Searchwithfilter($event)"></DM-multifilter>
+              </div>
+                <!--  <ul id='dropdown1' class='dropdown-content'>
+                  <li class="valign-wrapper">Visualizza</li>
+                   <li class="divider"></li>
+                   <li><a href="#!"><i class="material-icons">list</i>Righe</a></li>
+                   <li><a href="#!"><i class="material-icons">filter_none</i>Ordini</a></li>
+                 </ul -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col s12">
+    <div class="container">
+      <div class="section section-data-tables">
+        <!-- DataTables example -->
+        <div class="row">
+          <div class="col s12 m12 l12">
+            <div id="button-trigger" class="card card card-default scrollspy">
+              <div class="card-content">
+                <h4 class="card-title" [translate]="'Suppliers.List.Table.title'">Fornitori</h4>
+                <div class="row">
+                  <div *ngIf="refresh === true && fornitori && fornitori.length > 0" class="col s12">
+                    <table  datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover striped s12 m12 l12">
+                      <thead>
+                      <tr>
+                      </tr>
+                        <tr>
+                          <th [translate]="'Suppliers.List.Table.index'"># Fornitore</th>
+                          <th [translate]="'Suppliers.List.Table.name'">Ragione sociale</th>
+                          <th>Email</th>
+                          <th [translate]="'Suppliers.List.Table.fax'">Fax numero</th>
+                          <th>P. Iva</th>
+                          <th [translate]="'Suppliers.List.Table.actions'">Azioni</th>
+                        </tr>
+                      </thead>
+                      <tbody style="height: 100%">
+                      <tr *ngFor="let f of fornitori" style="height: 100%">
+                        <td>{{f.id}}</td>
+                        <td>{{ f.r_sociale }}</td>
+                        <td>{{f.email}}</td>
+                        <td>{{ f.tel }}</td>
+                        <td>{{ f.piva }}</td>
+                        <td class="azioni center">
+                          <a [routerLink]="['/dashboard/suppliers/', f.id]" title="{{'Common.Tabletooltips.detail' | translate}}">
+                            <i class="material-icons blue-text">find_in_page</i>
+                          </a>
+                          <a (click)="deleteById(f.id)" *ngIf="checkPermission('suppliers:delete')" title="{{'Common.Tabletooltips.remove' | translate}}">
+                            <i class="material-icons paginate_button red-text">delete</i>
+                          </a>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div *ngIf="fornitori && fornitori.length <= 0" class="card-alert card purple lighten-5">
+                    <div class="card-content purple-text">
+                      <p>Nessuna righa inserita</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<DM-btnAdd [titlecrea]= new [titleimport]= importa ></DM-btnAdd>

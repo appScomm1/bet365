@@ -1,0 +1,36 @@
+import { EventEmitter } from '@angular/core';
+import { NgSearchboxComponent } from '../components/ng-searchbox.component';
+import { NgSearchboxAddedFiltersWrapper } from '../components/ng-searchbox-added-filters-wrapper.component';
+import { NgSearchboxAddedFilter } from '../components/ng-searchbox-added-filter.component';
+import { NgSearchboxFilterOperators } from '../components/ng-searchbox-filter-operators.component';
+import { EventHandling } from './event-handling.service';
+import { UtilsService } from './utils.service';
+import { Search, AddedFilter, ModifiedSearch } from '../../../interfaces/search';
+export declare class FilteringService {
+    searchbox: NgSearchboxComponent;
+    addedFilters: AddedFilter[];
+    addedOperators: string[];
+    hasFilters: boolean;
+    event: EventEmitter<ModifiedSearch.ModifiedFilter[]>;
+    params: ModifiedSearch.ModifiedFilter[];
+    ngSearchboxAddedFilters: NgSearchboxAddedFiltersWrapper;
+    Event: EventHandling;
+    utils: UtilsService;
+    constructor(searchbox: NgSearchboxComponent);
+    getPublisher(): EventEmitter<ModifiedSearch.ModifiedFilter[]>;
+    getFilterCount(): number;
+    addOperatorToFilter(operator: Search.Operator, filter: ModifiedSearch.ModifiedFilter, update?: boolean): void;
+    hasOperatorAlready(filter: ModifiedSearch.ModifiedFilter): boolean;
+    getOperators(): string[];
+    getFilters(): AddedFilter[];
+    add(filter: Search.AvailableFilter, selectedFilter?: Search.SelectedFilter): void;
+    removeByComponent(filter: NgSearchboxAddedFilter, options?: Search.RemoveOptions): void;
+    setOperator(filter: ModifiedSearch.ModifiedFilter, op: NgSearchboxFilterOperators): void;
+    getOperatorByFilterIndex(filter: ModifiedSearch.ModifiedFilter): string;
+    remove(filter: AddedFilter, options?: Search.RemoveOptions): void;
+    removeAll(options?: Search.RemoveOptions): void;
+    buildExtendedParameter(filter: ModifiedSearch.ModifiedFilter): ModifiedSearch.ModifiedFilter;
+    buildParameter(filter: ModifiedSearch.ModifiedFilter): ModifiedSearch.ModifiedFilter;
+    update(filter?: ModifiedSearch.ModifiedFilter): void;
+    removeByFilterType(item: string | Search.AvailableFilter): void;
+}

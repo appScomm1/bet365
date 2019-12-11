@@ -1,0 +1,444 @@
+{
+  "Catalog": {
+    "List": {
+      "Table": {
+        "actions": "Azioni",
+        "name": "Nome fornitore"
+      },
+      "path": "Catalogo",
+      "title": "Catalogo"
+    }
+  },
+  "Common": {
+    "Card_buttons": {
+      "View": {
+        "orders": "Ordini",
+        "rows": "Righe",
+        "tooltip": "Vista",
+        "view": "Vista"
+      },
+      "back": "Indietro",
+      "clean": "Pulisci",
+      "import": "Importa",
+      "modify": "Modifica",
+      "new": "Nuovo",
+      "save": "Salva",
+      "save_new": "Salva e nuovo"
+    },
+    "Cardtooltips": {
+      "clean": "Pulisci",
+      "save": "Salva",
+      "save_new": "Salva e nuovo"
+    },
+    "ImportCSV": {
+      "Header": {
+        "cancel": "Cancella",
+        "import": "Importa",
+        "loadfile": "Carica nuovo file",
+        "test": "Test dell'importazione"
+      },
+      "path": "Importa CSV",
+      "title": "Importa CSV"
+    },
+    "Tabletooltips": {
+      "detail": "Dettaglio",
+      "remove": "Elimina"
+    },
+    "here": "qui",
+    "tableRow": {
+      "attachments": "Allegati",
+      "code": "Codice",
+      "deliveryDate": "Data di consegna",
+      "description": "Descrizione",
+      "netTotal": "Totale Netto:",
+      "quantity": "Quantità",
+      "total": "Totale",
+      "unitPrice": "Prezzo unitario"
+    }
+  },
+  "DropZone": {
+    "dragFile": "Trascina un file in questa zona, oppure clicca per selezionarne uno!"
+  },
+  "Orders": {
+    "List": {
+      "Button": {
+        "import": "Importa nuovi ordini",
+        "new": "Crea un nuovo ordine"
+      },
+      "TableOrders": {
+        "Actions": "Azioni",
+        "daysLate": "Giorni di ritardo",
+        "delay": "Ritardo",
+        "handler": "Referente",
+        "issue": "Data emissione",
+        "num": "Numero",
+        "order": "Ordine",
+        "state": "Stato",
+        "supplier": "Fornitore",
+        "type": "Tipo",
+        "update": "Ultimo aggiornamento"
+      },
+      "TableRows": {
+        "Modal": {
+          "attachments": "Allegati",
+          "title": "Dettaglio riga"
+        },
+        "Placeholders": {
+          "attachments": "Allegati",
+          "delay": "Ritardo",
+          "deliveryDate": "Data di consegna",
+          "notes": "Note",
+          "row": "Riga",
+          "state": "Stato",
+          "supplier": "Fornitore"
+        },
+        "actions": "Azioni",
+        "code": "Codice interno",
+        "description": "Descrizione",
+        "number": "Qtà",
+        "order": "Ordine",
+        "price": "Prezzo",
+        "row": "Riga",
+        "supplier": "Fornitore",
+        "supplier_code": "Codice fornitore",
+        "supplier_description": "Descrizione fornitore",
+        "type": "Tipo"
+      },
+      "path": "Ordini",
+      "title": "Ordini"
+    },
+    "Negotiation": {
+      "Details": {
+        "actions": "Azioni",
+        "cancel": "Annulla",
+        "code": "Codice ordine",
+        "date": "Data consegna",
+        "issuingDate": "Data emissione",
+        "print": "Stampa",
+        "supplier": "Fornitore",
+        "title": "Dettaglio ordine"
+      },
+      "History": {
+        "date": "Data",
+        "deliveryDate": "Data consegna",
+        "notes": "Note",
+        "order": "Ordine no.",
+        "price": "Prezzo",
+        "quantity": "Quantità",
+        "status": "Stato",
+        "title": "Storico"
+      },
+      "path": {
+        "negotiation": "Trattativa",
+        "orders": "Ordini"
+      },
+      "title": "Trattativa ordine #1"
+    },
+    "New": {
+      "Card": {
+        "link": "qui",
+        "par": "Form per l'inserimento di nuovi ordini, gli ordini posso essere inseriti in massa da,"
+      },
+      "Paths": {
+        "new": "Nuovo",
+        "order": "Ordini"
+      },
+      "Table": {
+        "title": "Ordini"
+      },
+      "Tabs": {
+        "Ordertab": {
+          "address": "Indirizzo di consegna",
+          "currency": "Valuta",
+          "delivery_terms": "Termini di resa",
+          "issue_date": "Data emissione",
+          "payment_terms": "Termini di pagamento",
+          "suppliers": "Fornitori",
+          "title": "Informazioni ordine"
+        },
+        "Tabinfo": {
+          "handler": "Referente",
+          "packaging": "Imballaggio",
+          "title": "Altre informazioni"
+        },
+        "attachedDocuments": {
+          "Noattachments": "Nessun allegato per questa riga",
+          "actions": "Azioni",
+          "addFile": "Aggiungi file",
+          "fileName": "Nome file",
+          "tabtitle": "Allegati riga",
+          "title": "Documenti allegati"
+        },
+        "orderRows": {
+          "title": "Righe ordine"
+        }
+      },
+      "cancel": "Annulla",
+      "common": {
+        "deliveryTerms": "Termini di consegna",
+        "orderInformation": "Informazioni ordine",
+        "paymentTerms": "Termini di pagamento",
+        "referent": "Referente",
+        "type": "Tipo"
+      },
+      "print": "Stampa",
+      "send": "Invia"
+    },
+    "common": {
+      "currency": "Valuta",
+      "supplier": "Fornitore",
+      "type": "Tipo"
+    },
+    "filter": {
+      "allFields": "Tutti i campi",
+      "code_order": "Codice Ordine",
+      "status": "Stato",
+      "supplier": "Fornitore"
+    }
+  },
+  "Sidebar": {
+    "Actions": {
+      "add": "Aggiungi...",
+      "order": "Ordine di acquisto",
+      "product": "Prodotto",
+      "supplier": "Fornitore",
+      "title": "Azioni veloci"
+    },
+    "Menu": {
+      "catalog": "Catalogo",
+      "orders": "Ordini",
+      "statistics": "Statistiche",
+      "suppliers": "Fornitori",
+      "title": "Menù principale",
+      "users": "Utenti"
+    }
+  },
+  "Suppliers": {
+    "List": {
+      "Button": {
+        "import": "Importa nuovi fornitori",
+        "new": "Crea nuovo fornitore"
+      },
+      "Table": {
+        "actions": "Azioni",
+        "fax": "Fax",
+        "index": "# Fornitore",
+        "name": "Nome fornitore",
+        "title": "Fornitori",
+        "type": "Tipo fornitore"
+      },
+      "path": "Fornitori",
+      "title": "Fornitori"
+    },
+    "New": {
+      "Address": {
+        "address": "Indirizzo",
+        "addresses": "Indirizzi",
+        "city": "Città",
+        "country": "Paese",
+        "description": "Descrizione",
+        "district": "Provincia"
+      },
+      "Bank": {
+        "bank": "Banca",
+        "bank_accounts": "Conti bancari",
+        "n_account": "Numero conto"
+      },
+      "Card": {
+        "link": "qui",
+        "par": "Form di inserimento di un nuovo fornitore, possono anche essere inseriti in massa da,"
+      },
+      "Comunication": {
+        "title": "Comunicazioni"
+      },
+      "Path": {
+        "suppliers": "Fornitori"
+      },
+      "Tabs": {
+        "Suppliertab": {
+          "address": "Indirizzo",
+          "contacts": "Contatti",
+          "currency": "Valuta",
+          "denomination": "Tipo",
+          "email": "Email",
+          "piva": "P.IVA",
+          "supplier": "Denominazione",
+          "tel": "Telefono",
+          "title": "Informazioni fornitore",
+          "website": "Sito web"
+        },
+        "Tabinfo": {
+          "branch": "Settore",
+          "handler": "Referente",
+          "name": "Nome",
+          "select": "Scegli un settore",
+          "surname": "Cognome",
+          "tel": "Telefono",
+          "title": "Altre informazioni"
+        }
+      },
+      "comunications": {
+        "ContactAddress": "Indirizzo del referente",
+        "noNotification": "Nessuna notifica",
+        "specifiedEmailAddress": "Indirizzo email specificato",
+        "supplierMainAddress": "Indirizzo principale del fornitore"
+      },
+      "currency": "Valuta",
+      "orderTerms": {
+        "deliveryTerms": "Termini di consegna",
+        "paymentTerms": "Termini di pagamento",
+        "title": "Termini ordine"
+      },
+      "tabsTitles": {
+        "additionalAddresses": "Indirizzi aggiuntivi",
+        "bankAccounts": "Indirizzi bancari",
+        "comunications": "Comunicazioni",
+        "referentInformation": "Informazioni referente"
+      },
+      "title": "Informazioni fornitore"
+    }
+  },
+  "authentication": {
+    "forgotPassword": {
+      "EmailNotSent": "Email non inviata",
+      "EmailSent": "Email inviata",
+      "SendInProgress": "Invio in corso",
+      "buttonHere": "qui",
+      "confirmPassword": "Conferma password",
+      "continue": "Continua",
+      "notFoundText": "non è stata trovata nei nostri registri,",
+      "notFoundText2": "riprova cliccando",
+      "resetPassword": "Reimposta password",
+      "resetSection": ", qui sotto potrai resettare la password relativa all'account associato alla mail ",
+      "text1": "Inserisci l'indirizzo e-mail associato al tuo account EasySupp poi clicca continua",
+      "text2": "Ti invieremo le istruzioni necessarie per creare una nuova password",
+      "textEMailSent2": " con le istruzioni,",
+      "textEmailSent1": "Ti è stata inviata una mail all'indirizzo ",
+      "textEmailSent3": "se non hai ricevuto la mail riprova cliccando ",
+      "theMail": "La mail",
+      "title": "Password dimenticata?",
+      "welcomeBack": "Bentornato "
+    },
+    "login": {
+      "Keep_me_signed_in": "Mantieni l'accesso",
+      "enter": "Accedi",
+      "forgot_password": "Password dimenticata?",
+      "sign_in": "Esegui l'accesso"
+    }
+  },
+  "breadcrumbs": {
+    "catalog": {
+      "list": "Prodotti",
+      "new": "Nuovo prodotto"
+    },
+    "orders": {
+      "details": "Dettagli prodotto",
+      "list": "Ordini",
+      "new": "Nuovo ordine",
+      "status": {
+        "confirmed": "Confermato",
+        "draft": "Bozza",
+        "inNegotiation": "In trattativa",
+        "opened": "Aperto",
+        "sent": "Inviato"
+      }
+    },
+    "suppliers": {
+      "list": "Fornitori",
+      "new": "Nuovo fornitore"
+    },
+    "users": {
+      "form": "Nuovo utente",
+      "list": "Utenti"
+    }
+  },
+  "catalog": {
+    "common": {
+      "barcode": "Codice a barre",
+      "description": "Descrizione",
+      "leadTime": "Tempi di consegna",
+      "list": "Listino",
+      "minimumOrderQuantity": "Quantità minima ordine",
+      "price": "Costo",
+      "productCode": "Codice prodotto",
+      "selectType": "Seleziona tipo",
+      "supplier": "Fornitore"
+    },
+    "form": {
+      "detail": {
+        "cancel": "Annulla",
+        "formDescription": "Form di visualizzazione di un prodotto",
+        "modify": "Modifica",
+        "productDetail": "Dettagli prodotto"
+      },
+      "new": {
+        "cardIntro": "Form di inserimento di un nuovo prodotto, possono anche essere inseriti in massa da",
+        "formDescription": "Form di modifica di un prodotto",
+        "newProduct": "Nuovo prodotto"
+      }
+    },
+    "list": {
+      "table": {
+        "actions": "Azioni",
+        "barcode": "Codice a barre",
+        "description": "Descrizione",
+        "type": "Tipo"
+      },
+      "title": "Prodotti"
+    }
+  },
+  "datatables": {
+    "oAria": {
+      "sSortAscending": ": attiva per ordinare la colonna in ordine crescente",
+      "sSortDescending": ": attiva per ordinare la colonna in ordine decrescente"
+    },
+    "oPaginate": {
+      "sFirst": "Inizio",
+      "sLast": "Fine",
+      "sNext": "Successivo",
+      "sPrevious": "Precedente"
+    },
+    "sEmptyTable": "Nessun dato presente nella tabella",
+    "sInfo": "Vista da _START_ a _END_ di _TOTAL_ elementi",
+    "sInfoEmpty": "Vista da 0 a 0 di 0 elementi",
+    "sInfoFiltered": "(filtrati da _MAX_ elementi totali)",
+    "sInfoPostFix": "",
+    "sInfoThousands": ".",
+    "sLengthMenu": "Visualizza _MENU_ elementi",
+    "sLoadingRecords": "Caricamento...",
+    "sProcessing": "Elaborazione...",
+    "sSearch": "Cerca:",
+    "sZeroRecords": "La ricerca non ha portato alcun risultato."
+  },
+  "status": {
+    "accepted": "Accettato",
+    "canceled": "Annullato",
+    "edited_buyer": "Modificato dal compratore",
+    "edited_supplier": "Fornitore modificato",
+    "inserted": "Inserito",
+    "proposed_buyer": "Proposta dal compratore",
+    "proposed_supplier": "Proposto fornitore",
+    "received": "Ricevuto",
+    "undefined": "Riga creata"
+  },
+  "users": {
+    "form": {
+      "administrator": "Amministratore",
+      "generality": "Generalità",
+      "group": "Gruppo",
+      "logInData": "Dati accesso",
+      "name": "Nome",
+      "supplier": "Fornitore",
+      "surname": "Cognome"
+    },
+    "list": {
+      "actions": "Azioni",
+      "group": "Gruppo",
+      "name": "Nome",
+      "referentId": "Id referente",
+      "surname": "Cognome",
+      "title": "Lista utenti",
+      "username": "Nome utente"
+    }
+  }
+}

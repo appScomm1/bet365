@@ -1,0 +1,31 @@
+<div class="ng-autocomplete" >
+  <label>{{label}}</label>
+  <ng-autocomplete #ngAutoCompleteStatic
+                   [data]="data"
+                   [initialValue]="value"
+                   [placeHolder]=""
+                   (selected)="submitReactiveForm($event, 'add')"
+                   (inputChanged)="submitReactiveForm($event, 'add')"
+                   (inputCleared)="submitReactiveForm($event, 'delete')"
+                   [searchKeyword]="keyword"
+                   [historyIdentifier]="historyIdentifier"
+                   [historyHeading]="historyHeading"
+                   historyListMaxNumber="3"
+                   [notFoundText] = ""
+                   [itemTemplate]="itemTemplateStatic"
+                   [notFoundTemplate]="notFoundTemplate">
+  </ng-autocomplete>
+
+  <ng-template #itemTemplateStatic let-item>
+    <a [innerHTML]="item.label"></a>
+  </ng-template>
+
+  <ng-template #notFoundTemplate let-notFound>
+    <div class="row">
+      <a (click)="Navigate('')" style="cursor: pointer; padding: 14px 15px !important; color: rgba(0,0,0,.87)">Crea Nuovo</a>
+    </div>
+    <div class="row">
+      <a (click)="Navigate('', searched)" style="cursor: pointer; padding: 14px 15px !important; color: rgba(0,0,0,.87)">Crea: {{searched}}</a>
+    </div>
+  </ng-template>
+</div>

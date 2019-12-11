@@ -1,0 +1,33 @@
+<!-- File name: multifilter.component.html.html -->
+<!-- Author: Daniel Zarioiu -->
+<!-- Copyright (c) 2018 Namirial SPA. All Rights reserved. -->
+<!-- Date: 2019-07-10 >
+<div class="ng-autocomplete" >
+  <label>{{label}}</label>
+  <ng-autocomplete #ngAutoCompleteStatic
+                   [data]="data"
+                   [initialValue]="value"
+                   [placeHolder]="placeholder"
+                   (selected)="submitReactiveForm($event, 'add')"
+                   (inputCleared)="submitReactiveForm($event, 'delete')"
+                   [searchKeyword]="keywordvalue"
+                   [historyIdentifier]="historyIdentifier"
+                   [historyHeading]="historyHeading"
+                   historyListMaxNumber="3"
+                   [itemTemplate]="itemTemplateStatic"
+                   (keyup.enter)="enterpress()">
+  </ng-autocomplete>
+
+  <ng-template #itemTemplateStatic let-item>
+    <a [innerHTML]="item.name +': ' + item.value"></a>
+  </ng-template>
+
+</div-->
+<div *ngIf="CategoriesFilter" #chip DMtag class="chips">
+  <input #textfilter id="filter" Dmdropdown class="dropdown-trigger" (click)="focus()" data-target="dropdown1" (keypress)="openDrop()" [(ngModel)]="filter">
+  <input #tipo type="hidden">
+</div>
+<ul  *ngIf="CategoriesFilter" id='dropdown1' class='dropdown-content'>
+  <li *ngFor="let type of CategoriesFilter"><a (click)="onkeydownenter(type)" >Cerca per {{type}}: {{filter}}</a></li>
+</ul>
+

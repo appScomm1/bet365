@@ -1,0 +1,41 @@
+.breadcrumb{
+  color: grey;
+  }
+
+.selected {
+  color: blue !important;
+
+  &.breadcrumb:after {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    display: inline-block;
+    margin: 0 !important;
+    content: '\E5CC';
+    vertical-align: middle !important;
+    color: blue !important;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+span.breadcrumb:after
+{
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  margin: 0 !important;
+  content: '\E5CC';
+  vertical-align: middle !important;
+  color: grey;
+  -webkit-font-smoothing: antialiased;
+}
+
+.breadcrumb:before
+{
+  content: none;
+}
+span {
+  font-size: 14px;
+}
+
+

@@ -1,0 +1,140 @@
+<div class="row">
+  <div style="margin-bottom: 40px" class="content-wrapper-before gradient-45deg-indigo-purple" id="breadcrumbs-wrapper">
+    <div style="padding: 0px 1.5rem !important;" class="col s12">
+      <div class="card form-actions-header">
+        <div class="card-content overflow">
+          <div class="row">
+
+            <div class="left">
+              <div class="col "> <button [disabled]="isLoaded === false" (click)="importa()" class="btn-flat mb-1 waves-effect btn-color-crea" [translate]="'Common.ImportCSV.Header.import'">Importa</button> </div>
+              <div class="col "> <button [disabled]="isLoaded === false" (click)="ShowModalUpload()" class="btn-flat mb-1 waves-effect waves-light btn-color-import" [translate]="'Common.ImportCSV.Header.loadfile'">Carica nuovo File</button> </div>
+              <div class="col "> <button [disabled]="isLoaded === false"  class="btn-flat mb-1 waves-effect waves-light btn-color-import" [translate]="'Common.ImportCSV.Header.test'">Test dell'importazione</button> </div>
+            </div>
+
+            <div class="right">
+              <div class="col "> <button [disabled]="isLoaded === false" (click)="isLoaded = false;"  class="btn-flat mb-1 waves-effect waves-light btn-color-import" [translate]="'Common.ImportCSV.Header.cancel'">Annulla</button> </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col s12">
+    <div class="container">
+      <div class="section section-data-tables">
+        <!-- DataTables example -->
+        <div class="row">
+          <div class="col s12 m12 l12">
+            <div id="button-trigger" class="card card card-default scrollspy">
+              <div class="card-content">
+                <div class="row">
+                  <div class="col s12">
+                    <div class="card-content">
+                      <div class="row">
+                          <h4 class="left" [translate]="'Orders.New.Tabs.attachedDocuments.tabtitle'">Allegati Riga</h4>
+                          <button  (click)="ShowModalUpload()" class="right waves-effect btn-flat btn-color-crea" [translate]="'Orders.New.Tabs.attachedDocuments.addFile'">Aggiungi File</button>
+                        </div>
+                        <table *ngIf="file && file.length > 0" class="row-border mt-2 hover striped s12 m12 l12">
+                          <thead>
+                          <tr>
+                            <th style="max-width: 150px !important;" [translate]="'Orders.New.Tabs.attachedDocuments.fileName'">Nome File</th>
+                            <th [translate]="'Orders.New.Tabs.attachedDocuments.actions'">Azioni</th>
+                          </tr>
+
+                          <tbody *ngFor="let f of file; let i=index">
+                          <tr>
+                            <td>{{f.name}}
+                              <a (click)="f.ShowDescription = !f.ShowDescription; Showdescription()" class="actions" >
+                                <i class="tiny material-icons blue-text">message</i>
+                              </a>
+                              <br>
+                              <small>Creata da Francesco Zampetti il 19/08/2019</small>
+                            </td>
+                            <td>
+                              <a DmTooltip class="mr-3 tooltiped"  data-tooltip="Anteprima" attr.title="{{'Common.Tabletooltips.remove' | translate}}" (click)="discardFile(i)">
+                                <i class=" material-icons ">search</i>
+                              </a>
+                              <a DmTooltip class="mr-3 tooltiped" data-tooltip="Modifica" (click)="ShowModalUpload(f.name)">
+                                <i class="material-icons blue-text">edit</i>
+                              </a>
+                              <a DmTooltip class="mr-3 tooltiped"  data-tooltip="Storico revisioni"  (click)="ShowAllegati('revisioni')" >
+                                <i  class="material-icons blue-text">restore</i>
+                              </a>
+                              <a DmTooltip class="mr-3 tooltiped"  data-tooltip="Download file">
+                                <i class="material-icons blue-text">cloud_download</i>
+                              </a>
+                              <a DmTooltip class="mr-3 tooltiped"  data-tooltip="Carica revisione" (click)="ShowModalUpload(f.name)" >
+                                <i  class="material-icons blue-text">cloud_upload</i>
+                              </a>
+                              <a DmTooltip attr.title="{{'Common.Tabletooltips.remove' | translate}}"  data-tooltip="Elimina allegato" (click)="discardFile(i)">
+                                <i class="material-icons red-text">delete</i>
+                              </a>
+                            </td>
+                          </tr>
+                          <tr *ngIf="f.ShowDescription === true">
+                            <td colspan="2">
+                              <div class="mt-5 input-field col s12">
+                                <textarea disabled id="textareaDescription" [(ngModel)]="commentoRev" class="materialize-textarea"></textarea>
+                                <label class="active" for="textareaDescription">Annotazione</label>
+                              </div>
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                        <div *ngIf="file && file.length <= 0" class="card-alert card purple lighten-5">
+                            <div class="card-content purple-text">
+                              <p [translate]="'Orders.New.Tabs.attachedDocuments.Noattachments'">Nessun allegato per questa righa</p>
+                            </div>
+                          </div>
+                </div>
+                  </div>
+                </div>
+                <!--  angolo destro tabella-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div DMmodal id="ModalUpAllegati" class="modal  modal-fixed-footer">
+  <div class="modal-content">
+    <h4 class="mb-4">Allega file</h4>
+    <div class="row">
+      <ngx-dropzone #dropzone id="input-file-now-custom-2 col s12" class="custom-dropzone"
+                    (change)="onFilesAdded($event, 'add')"
+                    [multiple]="true">
+        <ngx-dropzone-label>Clicca o trascina i file qui per caricarli</ngx-dropzone-label>
+        <ngx-dropzone-preview *ngFor="let f of file" [file]="f"
+                             [removable]="true"
+                             (removed)="onRemove(f)">
+          <ngx-dropzone-label>{{f.name}}({{f.type}})</ngx-dropzone-label>
+        </ngx-dropzone-preview>
+      </ngx-dropzone>
+      <div class="mt-5 input-field col s12">
+        <input *ngIf="filename.length > 0" disabled  id="filename" [(ngModel)]="filename" class="materialize-textarea">
+        <label  *ngIf="filename.length > 0" class="active" for="filename">Nome</label>
+      </div>
+      <div class="mt-5 input-field col s12">
+        <textarea [disabled]="file.length > 1" id="textarea2" [(ngModel)]="commentoRev" class="materialize-textarea"></textarea>
+        <label for="textarea2">Annotazione</label>
+      </div>
+      <label>
+        <input type="checkbox" (click)="checkRevisione = !checkRevisione" [checked]="checkRevisione"/>
+        <span style="line-height: 35px !important;">Se esiste già un file, usa automaticamente il controllo delle versioni</span>
+      </label>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="row">
+      <div class="right">
+        <button class="modal-close waves-effect waves-green btn-flat ">Chiudi</button>
+        <button (click)="SaveFile(); dropzone.reset()" class="modal-close waves-effect waves-green btn-flat ">Salva</button>
+      </div>
+    </div>
+  </div>
+</div>

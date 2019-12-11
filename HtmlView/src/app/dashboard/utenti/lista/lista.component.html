@@ -1,0 +1,93 @@
+<div class="row">
+  <div class="content-wrapper-before gradient-45deg-indigo-purple"></div>
+  <div class="col s12">
+    <div class="container">
+      <div style="padding: 0 !important;" class="section section-data-tables">
+        <div class="card sticky">
+          <div class="card-content">
+            <div class="row">
+              <div class="left">
+                <div class="col " *ngIf="checkPermission('users:create')"> <a [routerLink]="['new']" class="btn-flat mb-1 waves-effect btn-color-crea" [translate]="'Common.Card_buttons.new'">Crea</a> </div>
+                <div class="col "> <a [routerLink]="['/dashboard/import']" class="btn-flat mb-1 waves-effect waves-light btn-color-import" [translate]="'Common.Card_buttons.import'">Import</a> </div>
+              </div>
+              <div class="right">
+                <div class="col s2">
+                  <!--
+                  <DM-dropdown [classe]="'waves-effect black-text col s6'" [icon]="true" [dataTarget]="'dropsettings'" [iconText]="'more_vert'" >
+
+                    <ng-container list>
+                      <ul id="dropsettings" class="dropdown-content" >
+
+                      </ul>
+                    </ng-container>
+                  </DM-dropdown>
+                  -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col s12">
+    <div class="container">
+      <div class="section section-data-tables">
+        <!-- DataTables example -->
+        <div class="row">
+          <div class="col s12 m12 l12">
+            <div id="button-trigger" class="card card card-default scrollspy">
+              <div class="card-content">
+                <h4 class="card-title" [translate]="'users.list.title'">Utenti</h4>
+                <div class="row">
+                  <div *ngIf="refresh === true && users.length > 0" class="col s12 m12 l12">
+                    <table id="dataTables" datatable [dtOptions]="dtOptions" class="s12 m12 l12 responsive hover row-border nowrap">
+                      <thead>
+                      <tr>
+                        <th >#</th>
+                        <th [translate]="'users.list.name'">Nome</th>
+                        <th [translate]="'users.list.surname'">Cognome</th>
+                        <th>Email</th>
+                        <th [translate]="'users.list.username'">Username</th>
+                        <th [translate]="'users.list.group'">Group</th>
+                        <th [translate]="'users.list.referentId'">Id Referente</th>
+                        <th data-priority="1" [translate]="'users.list.actions'">Azioni</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let utente of users">
+                        <td>{{ utente.id }}</td>
+                        <td>{{ utente.first_name }}</td>
+                        <td>{{ utente.last_name }}</td>
+                        <td>{{ utente.email}}</td>
+                        <td>{{ utente.username}}</td>
+                        <td>{{ utente.group}}</td>
+                        <td>{{ utente.contractId}}</td>
+                        <td class="azioni center">
+                            <a [routerLink]="['/dashboard/users/', utente.id]" title="{{'Common.Tabletooltips.detail' | translate}}">
+                              <i class="material-icons blue-text">edit</i>
+                            </a>
+                            <a (click)="deleteUser(utente.id)" *ngIf="checkPermission('users:delete')" title="{{'Common.Tabletooltips.remove' | translate}}">
+                              <i class="material-icons red-text">delete</i>
+                            </a>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    </div>
+                    <div *ngIf="refresh === true && users && users.length <= 0" class="card-alert card purple lighten-5">
+                      <div class="card-content purple-text">
+                        <p>Nessuna righa inserita</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<DM-btnAdd [titlecrea]="'new'" [titleimport]="'importa'" ></DM-btnAdd>

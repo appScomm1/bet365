@@ -1,0 +1,438 @@
+{
+  "Catalog": {
+    "List": {
+      "Table": {
+        "actions": "Actions",
+        "name": "Supplier name"
+      },
+      "path": "Catalog",
+      "title": "Catalog"
+    }
+  },
+  "Common": {
+    "Card_buttons": {
+      "View": {
+        "orders": "Orders",
+        "rows": "Rows",
+        "tooltip": "View",
+        "view": "View"
+      },
+      "back": "Back",
+      "clean": "Clean",
+      "import": "Import",
+      "modify": "Modify",
+      "new": "New",
+      "save": "Save",
+      "save_new": "Save and new"
+    },
+    "Cardtooltips": {
+      "clean": "Clean",
+      "save": "Save",
+      "save_new": "Save and new"
+    },
+    "ImportCSV": {
+      "Header": {
+        "cancel": "Cancel",
+        "import": "Import",
+        "loadfile": "Load new file",
+        "test": "Import test"
+      },
+      "path": "Import CSV",
+      "title": "Import CSV"
+    },
+    "Tabletooltips": {
+      "detail": "Detail",
+      "remove": "Remove"
+    },
+    "here": "here",
+    "tableRow": {
+      "attachments": "Attachments",
+      "code": "Code",
+      "deliveryDate": "Delivery date",
+      "description": "Description",
+      "netTotal": "Net total:",
+      "quantity": "Quantity",
+      "total": "Total",
+      "unitPrice": "Unit price"
+    }
+  },
+  "DropZone": {
+    "dragFile": "Drag a file in this area or click to select one!"
+  },
+  "Orders": {
+    "List": {
+      "Button": {
+        "import": "Import new orders",
+        "new": "Create new order"
+      },
+      "TableOrders": {
+        "Actions": "Actions",
+        "daysLate": "Days Late",
+        "delay": "Delay",
+        "handler": "Handler",
+        "issue": "Issue date",
+        "num": "Number",
+        "order": "Order",
+        "state": "State",
+        "supplier": "Supplier",
+        "type": "Type",
+        "update": "Last update"
+      },
+      "TableRows": {
+        "Modal": {
+          "attachments": "Attachments",
+          "title": "Row detail"
+        },
+        "Placeholders": {
+          "attachments": "Attachments",
+          "delay": "Delay",
+          "deliveryDate": "Delivery date",
+          "notes": "Notes",
+          "row": "Row",
+          "state": "State",
+          "supplier": "Supplier"
+        },
+        "actions": "Actions",
+        "code": "Internal code",
+        "description": "Description",
+        "number": "Num",
+        "order": "Order",
+        "price": "Price",
+        "row": "Row",
+        "supplier": "Supplier",
+        "supplier_code": "Supplier code",
+        "supplier_description": "Supplier description",
+        "type": "Type"
+      },
+      "path": "Orders",
+      "title": "Orders"
+    },
+    "Negotiation": {
+      "Details": {
+        "actions": "Actions",
+        "cancel": "Cancel",
+        "code": "Order code",
+        "date": "Delivery date",
+        "issuingDate": "Issuing date",
+        "print": "Print",
+        "supplier": "Supplier",
+        "title": "Order detail"
+      },
+      "History": {
+        "date": "Date",
+        "deliveryDate": "Delivery date",
+        "notes": "Notes",
+        "order": "Order num.",
+        "price": "Price",
+        "quantity": "Quantity",
+        "status": "Status",
+        "title": "Order history"
+      },
+      "path": {
+        "negotiation": "Negotiation",
+        "orders": "Orders"
+      },
+      "title": "Negotiation order #1"
+    },
+    "New": {
+      "Card": {
+        "link": "here",
+        "par": "Insert form for new orders, you can also multi insert new orders from,"
+      },
+      "Paths": {
+        "new": "New",
+        "order": "Orders"
+      },
+      "Table": {
+        "title": "Orders"
+      },
+      "Tabs": {
+        "Ordertab": {
+          "address": "Delivery address",
+          "currency": "Currency",
+          "delivery_terms": "Delivery terms",
+          "issue_date": "Issue date",
+          "payment_terms": "Payments terms",
+          "suppliers": "Suppliers",
+          "title": "Order informations"
+        },
+        "Tabinfo": {
+          "handler": "Handler",
+          "packaging": "packaging",
+          "title": "Other informations"
+        },
+        "attachedDocuments": {
+          "Noattachments": "No attachments for this row",
+          "actions": "Actions",
+          "addFile": "add File",
+          "fileName": "File name",
+          "tabtitle": "Row attachment",
+          "title": "Attached documents"
+        },
+        "orderRows": {
+          "title": "Order rows"
+        }
+      },
+      "cancel": "Cancel",
+      "common": {
+        "deliveryTerms": "Delivery terms",
+        "orderInformation": "Order information",
+        "paymentTerms": "Payment terms",
+        "referent": "Referent",
+        "type": "Type"
+      },
+      "print": "Print",
+      "send": "Send"
+    },
+    "common": {
+      "currency": "Currency",
+      "supplier": "Supplier",
+      "type": "Type"
+    }
+  },
+  "Sidebar": {
+    "Actions": {
+      "add": "Add...",
+      "order": "Purchase order",
+      "product": "Product",
+      "supplier": "Supplier",
+      "title": "Fast actions"
+    },
+    "Menu": {
+      "catalog": "Catalog",
+      "orders": "Orders",
+      "statistics": "Statistics",
+      "suppliers": "Suppliers",
+      "title": "Main menù",
+      "users": "Users"
+    }
+  },
+  "Suppliers": {
+    "List": {
+      "Button": {
+        "import": "Import new suppliers",
+        "new": "Create new supplier"
+      },
+      "Table": {
+        "actions": "Actions",
+        "fax": "Fax number",
+        "index": "# Supplier",
+        "name": "Supplier name",
+        "title": "Suppliers",
+        "type": "Supplier type"
+      },
+      "path": "Suppliers",
+      "title": "Suppliers"
+    },
+    "New": {
+      "Address": {
+        "address": "Address",
+        "addresses": "Addresses",
+        "city": "City",
+        "country": "Country",
+        "description": "Description",
+        "district": "District"
+      },
+      "Bank": {
+        "bank": "Bank",
+        "bank_accounts": "Bank accounts",
+        "n_account": "Account number"
+      },
+      "Card": {
+        "link": "here",
+        "par": "Insert form of a new supplier, you can multi insert new suppliers from,"
+      },
+      "Comunication": {
+        "title": "Comunications"
+      },
+      "Path": {
+        "suppliers": "Suppliers"
+      },
+      "Tabs": {
+        "Suppliertab": {
+          "address": "Address",
+          "contacts": "Contacts",
+          "currency": "Currency",
+          "denomination": "Type",
+          "email": "Email",
+          "piva": "VAT",
+          "supplier": "Denomination",
+          "tel": "Phone number",
+          "title": "Supplier informations",
+          "website": "Website"
+        },
+        "Tabinfo": {
+          "branch": "Branch",
+          "handler": "Handler",
+          "name": "Name",
+          "select": "Choose a branch",
+          "surname": "Last name",
+          "tel": "Phone number",
+          "title": "Other informations"
+        }
+      },
+      "comunications": {
+        "ContactAddress": "Contact address",
+        "noNotification": "No notification",
+        "specifiedEmailAddress": "Specified email address",
+        "supplierMainAddress": "Supplier's main address"
+      },
+      "currency": "Currency",
+      "orderTerms": {
+        "deliveryTerms": "Delivery terms",
+        "paymentTerms": "Payment terms",
+        "title": "Order terms"
+      },
+      "tabsTitles": {
+        "additionalAddresses": "Additional addresses",
+        "bankAccounts": "Bank accounts",
+        "comunications": "Communication",
+        "referentInformation": "Referent information"
+      },
+      "title": "Supplier information"
+    }
+  },
+  "authentication": {
+    "forgotPassword": {
+      "EmailNotSent": "Email not sent",
+      "EmailSent": "Email sent",
+      "SendInProgress": "Sending in progress",
+      "buttonHere": "here",
+      "confirmPassword": "Confirm password",
+      "continue": "Continue",
+      "notFoundText": "was not found in our records,",
+      "notFoundText2": "please try again by clicking",
+      "resetPassword": "Reset password",
+      "resetSection": ", below you can reset the account password associated with the email ",
+      "text1": "Enter the email address associated with your EasySupp account then click continue ",
+      "text2": " We will send you the necessary instructions to create a new password",
+      "textEMailSent2": " with the instructions,",
+      "textEmailSent1": "We have sent you an email to",
+      "textEmailSent3": "if you have not received the e-mail try again by clicking ",
+      "theMail": "The mail",
+      "title": "Password assistance",
+      "welcomeBack": "Welcome back "
+    },
+    "login": {
+      "Keep_me_signed_in": "Keep me signed in",
+      "enter": "Sign-in",
+      "forgot_password": "Forgot your password?",
+      "sign_in": "Sign-in"
+    }
+  },
+  "breadcrumbs": {
+    "catalog": {
+      "list": "Products",
+      "new": "New product"
+    },
+    "orders": {
+      "details": "Product details",
+      "list": "Orders",
+      "new": "New order",
+      "status": {
+        "confirmed": "Confirmed",
+        "draft": "Draft",
+        "inNegotiation": "In negotiation",
+        "opened": "Opened",
+        "sent": "Sent"
+      }
+    },
+    "suppliers": {
+      "list": "Suppliers",
+      "new": "New supplier"
+    },
+    "users": {
+      "form": "New user",
+      "list": "Users"
+    }
+  },
+  "catalog": {
+    "common": {
+      "barcode": "Barcode",
+      "description": "Description",
+      "leadTime": "LeadTime",
+      "list": "List",
+      "minimumOrderQuantity": "Minimum order quantity",
+      "price": "Cost",
+      "productCode": "Product code",
+      "selectType": "Select type",
+      "supplier": "Supplier"
+    },
+    "form": {
+      "detail": {
+        "cancel": "Cancel",
+        "formDescription": "Display form for a product",
+        "modify": "Modify",
+        "productDetail": "Product details"
+      },
+      "new": {
+        "cardIntro": "Insert form of a new product, you can multi insert new suppliers from,",
+        "formDescription": "Product modification form",
+        "newProduct": "New product"
+      }
+    },
+    "list": {
+      "table": {
+        "actions": "Actions",
+        "barcode": "Barcode",
+        "description": "Description",
+        "type": "Type"
+      },
+      "title": "Products"
+    }
+  },
+  "datatables": {
+    "oAria": {
+      "sSortAscending": ": activate to sort column ascending",
+      "sSortDescending": ": activate to sort column descending"
+    },
+    "oPaginate": {
+      "sFirst": "First",
+      "sLast": "Last",
+      "sNext": "Next",
+      "sPrevious": "Previous"
+    },
+    "sEmptyTable": "No data available in table",
+    "sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
+    "sInfoEmpty": "Showing 0 to 0 of 0 entries",
+    "sInfoFiltered": "(filtered from _MAX_ total entries)",
+    "sInfoPostFix": "",
+    "sInfoThousands": ",",
+    "sLengthMenu": "Show _MENU_ entries",
+    "sLoadingRecords": "Loading...",
+    "sProcessing": "Processing...",
+    "sSearch": "Search:",
+    "sZeroRecords": "No matching records found"
+  },
+  "status": {
+    "accepted": "Accepted",
+    "canceled": "Canceled",
+    "edited_buyer": "Edited buyer",
+    "edited_supplier": "Edited supplier",
+    "inserted": "Inserted",
+    "proposed_buyer": "Proposed by the buyer",
+    "proposed_supplier": "Proposed supplier",
+    "received": "Received",
+    "undefined": "Row created"
+  },
+  "users": {
+    "form": {
+      "administrator": "Administrator",
+      "generality": "Generality",
+      "group": "Group",
+      "logInData": "Log in data",
+      "name": "Name",
+      "supplier": "Supplier",
+      "surname": "Surname"
+    },
+    "list": {
+      "actions": "Actions",
+      "group": "Group",
+      "name": "Name",
+      "referentId": "Referent id",
+      "surname": "Surname",
+      "title": "Users list",
+      "username": "Username"
+    }
+  }
+}

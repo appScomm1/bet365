@@ -1,0 +1,833 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f304192e-5550-4b31-ab8a-cd9647b8734b" name="Default Changelist" comment="" />
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/dist/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="dm-19sup01-w" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/dashboard/fornitori/form/form.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="7512">
+              <caret line="313" column="54" selection-start-line="313" selection-start-column="54" selection-end-line="313" selection-end-column="54" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/app/dashboard/fornitori/form/form.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="444" column="10" selection-start-line="444" selection-start-column="10" selection-end-line="444" selection-end-column="10" />
+              <folding>
+                <element signature="e#0#101#0" expanded="true" />
+                <element signature="n#!!block;n#ngOnInit#0;n#FormComponent#0" />
+                <element signature="n#!!block;n#validateFormControl#0;n#FormComponent#0" />
+                <element signature="n#!!block;n#ActivateLabel#0;n#FormComponent#0" />
+                <element signature="n#!!block;n#ngAfterViewInit#0;n#FormComponent#0" />
+                <element signature="n#!!block;n#initForms#0;n#FormComponent#0" />
+                <element signature="n#!!block;n#checklength#0;n#FormComponent#0" />
+                <element signature="n#!!block;n#AnnullaModifche#0;n#FormComponent#0" />
+                <element signature="n#!!block;n#clean#0;n#FormComponent#0" />
+                <element signature="n#!!block;n#addIndirizzo#0;n#FormComponent#0" />
+                <element signature="n#!!block;n#UpdateIndirizzo#0;n#FormComponent#0" />
+                <element signature="n#!!block;n#getListAddres#0;n#FormComponent#0" />
+                <element signature="n#!!block;n#addConto#0;n#FormComponent#0" />
+                <element signature="n#!!block;n#deleteConto#0;n#FormComponent#0" />
+                <element signature="n#!!block;n#UpdateConto#0;n#FormComponent#0" />
+                <element signature="n#!!block;n#getListBank#0;n#FormComponent#0" />
+                <element signature="n#!!block;n#Termini#0;n#FormComponent#0" />
+                <element signature="n#!!block;n#buttonActivation#0;n#FormComponent#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>tablerow</find>
+      <find>data</find>
+      <find>x</find>
+      <find>close</find>
+      <find>disable</find>
+      <find>class=&quot;x&quot;</find>
+      <find>totNetto</find>
+      <find>(change)=&quot;OnChange()&quot; (ngModelChange)=&quot;funzioneDiPut()&quot;</find>
+      <find>[ngModelOptions]=&quot;{updateOn: 'blur'}&quot;</find>
+      <find>totaleParz</find>
+      <find>console</find>
+      <find>data.righe</find>
+      <find>deleteOrdine</find>
+      <find>referente</find>
+      <find>ordini</find>
+      <find>check</find>
+      <find>listalistino</find>
+      <find>tag</find>
+      <find>altreinfo</find>
+      <find>compila tutti i cam</find>
+      <find>fornitori</find>
+      <find>currencies</find>
+      <find>currency</find>
+      <find>alert</find>
+      <find>conti bancari</find>
+      <find>listaconti</find>
+      <find>modifica</find>
+      <find>indirizzi</find>
+      <find>save</find>
+      <find>conti</find>
+    </findStrings>
+    <dirStrings>
+      <dir>C:\Users\Ludovico Ciarloni\Desktop\DIgimark\dm-19sup01-w</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/app/shared/models/db_tables/azienda-lista.model.ts" />
+        <option value="$PROJECT_DIR$/src/app/shared/models/db_tables/.address.model.ts" />
+        <option value="$PROJECT_DIR$/src/app/shared/models/db_tables/listini-lista.model.ts" />
+        <option value="$PROJECT_DIR$/src/app/shared/models/db_tables/ordini-righe.model.ts" />
+        <option value="$PROJECT_DIR$/src/app/shared/models/db_tables/ordini-righe-lista.model.ts" />
+        <option value="$PROJECT_DIR$/src/app/shared/models/db_tables/ordini-riga-cronologia.model.ts" />
+        <option value="$PROJECT_DIR$/src/app/shared/models/db_tables/.conti-bancari.model.ts" />
+        <option value="$PROJECT_DIR$/src/app/shared/models/db_tables/DDLs-termini-consegna.model.ts" />
+        <option value="$PROJECT_DIR$/src/app/shared/models/db_tables/DDLs-valute.model.ts" />
+        <option value="$PROJECT_DIR$/src/app/shared/models/db_tables/listini-creazione.model.ts" />
+        <option value="$PROJECT_DIR$/src/app/shared/models/db_tables/ordini-creazione.model.ts" />
+        <option value="$PROJECT_DIR$/src/app/auth/reset_password/reset_password.component.spec.ts" />
+        <option value="$PROJECT_DIR$/src/app/app-routing.module.ts" />
+        <option value="$PROJECT_DIR$/src/app/dashboard/fornitori/lista/lista.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/auth/login/login.service.ts" />
+        <option value="$PROJECT_DIR$/src/app/auth/login/login.component.html" />
+        <option value="$PROJECT_DIR$/src/app/auth/auth.module.ts" />
+        <option value="$PROJECT_DIR$/src/app/auth/reset_password/reset_password.component.html" />
+        <option value="$PROJECT_DIR$/src/app/app.module.ts" />
+        <option value="$PROJECT_DIR$/src/app/auth/reset_password/reset_password.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/dashboard/listino/form/prova.html" />
+        <option value="$PROJECT_DIR$/../prova.html" />
+        <option value="$PROJECT_DIR$/src/app/auth/login/login.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/dashboard/listino/listino.module.ts" />
+        <option value="$PROJECT_DIR$/src/app/api.interceptor.ts" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/src/app/shared/models/db_tables/.suppliers-price-list.model.ts" />
+        <option value="$PROJECT_DIR$/src/app/dashboard/listino/listino.service.ts" />
+        <option value="$PROJECT_DIR$/src/app/shared/utility.service.ts" />
+        <option value="$PROJECT_DIR$/src/app/dashboard/ordini/form/form.component.html" />
+        <option value="$PROJECT_DIR$/src/styles.scss" />
+        <option value="$PROJECT_DIR$/src/app/shared/autocomplete/autocomplete.component.html" />
+        <option value="$PROJECT_DIR$/src/environments/environment.ts" />
+        <option value="$PROJECT_DIR$/src/app/shared/autocomplete/autocomplete.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/dashboard/ordini/ordini.service.ts" />
+        <option value="$PROJECT_DIR$/src/app/shared/directive/select.directive.ts" />
+        <option value="$PROJECT_DIR$/src/app/shared/directive/dropzone/dropzone.directive.ts" />
+        <option value="$PROJECT_DIR$/src/app/dashboard/ordini/ordini.module.ts" />
+        <option value="$PROJECT_DIR$/src/app/dashboard/ordini/lista/lista.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/dashboard/ordini/lista/lista.component.html" />
+        <option value="$PROJECT_DIR$/src/app/shared/models/db_tables/ordini-lista.model.ts" />
+        <option value="$PROJECT_DIR$/src/app/dashboard/ordini/dettaglio/dettaglio.component.html" />
+        <option value="$PROJECT_DIR$/src/app/dashboard/fornitori/lista/lista.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/shared/tableRow/tablerow.component.html" />
+        <option value="$PROJECT_DIR$/src/app/shared/tableRow/tablerow.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/dashboard/ordini/form/form.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/dashboard/listino/form/form.component.html" />
+        <option value="$PROJECT_DIR$/src/app/dashboard/fornitori/form/form.component.html" />
+        <option value="$PROJECT_DIR$/src/app/dashboard/listino/form/form.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/dashboard/ordini/dettaglio/dettaglio.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/dashboard/fornitori/form/form.component.ts" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="170" />
+    <option name="y" value="91" />
+    <option name="width" value="1026" />
+    <option name="height" value="546" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="dm-19sup01-w" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dm-19sup01-w" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dm-19sup01-w" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dm-19sup01-w" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dm-19sup01-w" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dm-19sup01-w" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dm-19sup01-w" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dm-19sup01-w" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dm-19sup01-w" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dm-19sup01-w" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
+              <item name="fornitori" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dm-19sup01-w" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dm-19sup01-w" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
+              <item name="fornitori" type="462c0819:PsiDirectoryNode" />
+              <item name="form" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="editor.config.ad.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../prova.html" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs.protractor.protractor_package" value="$PROJECT_DIR$/node_modules/protractor" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="MTConfigurable" />
+    <property name="ts.external.directory.path" value="C:\Users\Ludovico Ciarloni\Desktop\DIgimark\dm-19sup01-w\node_modules\typescript\lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Ludovico Ciarloni\Desktop\DIgimark\dm-19sup01-w\src\app\shared\models\db_tables" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Ludovico Ciarloni\Desktop\DIgimark\dm-19sup01-w\src\app\dashboard\ordini\Model" />
+      <recent name="C:\Users\Ludovico Ciarloni\Desktop\DIgimark\dm-19sup01-w\src\app\shared\models\db_tables" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="npm.Angular CLI Server">
+    <configuration name="Tests" type="JavaScriptTestRunnerKarma">
+      <config-file value="$PROJECT_DIR$/src/karma.conf.js" />
+      <karma-package-dir value="$PROJECT_DIR$/node_modules/@angular/cli" />
+      <working-directory value="$PROJECT_DIR$" />
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="E2E Tests" type="JavaScriptTestRunnerProtractor">
+      <config-file value="$PROJECT_DIR$/e2e/protractor.conf.js" />
+      <node-interpreter value="project" />
+      <protractor-package value="$PROJECT_DIR$/node_modules/protractor" />
+      <protractor-options value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Angular Application" type="JavascriptDebugType" uri="http://localhost:4200">
+      <method v="2" />
+    </configuration>
+    <configuration name="Angular CLI Server" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f304192e-5550-4b31-ab8a-cd9647b8734b" name="Default Changelist" comment="" />
+      <created>1560524311091</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1560524311091</updated>
+      <workItem from="1560524312481" duration="318000" />
+      <workItem from="1560524659295" duration="145000" />
+      <workItem from="1560775610105" duration="1062000" />
+      <workItem from="1560776703563" duration="1049000" />
+      <workItem from="1560778122826" duration="81000" />
+      <workItem from="1560778241070" duration="8000" />
+      <workItem from="1560778383749" duration="7417000" />
+      <workItem from="1560839819153" duration="241000" />
+      <workItem from="1560840088398" duration="23518000" />
+      <workItem from="1560926802838" duration="11845000" />
+      <workItem from="1560947428114" duration="6588000" />
+      <workItem from="1561013931702" duration="23881000" />
+      <workItem from="1561099428481" duration="21287000" />
+      <workItem from="1561358502040" duration="20045000" />
+      <workItem from="1561444450385" duration="27772000" />
+      <workItem from="1561531323521" duration="25536000" />
+      <workItem from="1561617387186" duration="25789000" />
+      <workItem from="1561704095903" duration="24442000" />
+      <workItem from="1561962610564" duration="27877000" />
+      <workItem from="1562049457637" duration="8879000" />
+      <workItem from="1562069364692" duration="11840000" />
+      <workItem from="1562135505664" duration="1337000" />
+      <workItem from="1562138054910" duration="23539000" />
+      <workItem from="1562222350558" duration="592000" />
+      <workItem from="1562247839989" duration="6340000" />
+      <workItem from="1562308456377" duration="23137000" />
+      <workItem from="1562567788413" duration="14792000" />
+      <workItem from="1562655015924" duration="23557000" />
+      <workItem from="1562761557651" duration="11964000" />
+      <workItem from="1562827488822" duration="19354000" />
+      <workItem from="1562855550253" duration="1582000" />
+      <workItem from="1562912983377" duration="23008000" />
+      <workItem from="1566812001298" duration="9000" />
+      <workItem from="1566812553031" duration="11000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="418842000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <layout>
+      <window_info id="npm" order="0" sideWeight="0.09457901" side_tool="true" weight="0.18387777" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.64214045" visible="true" weight="0.18377976" />
+      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="3" sideWeight="0.35785952" side_tool="true" weight="0.18387777" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.033444814" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.033444814" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32887402" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="GraphQL" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.5730212" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="TypeScript" order="12" weight="0.32991454" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="npm" order="0" sideWeight="0.09457901" side_tool="true" visible="true" weight="0.18387777" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.905421" visible="true" weight="0.18387777" />
+      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.033444814" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.033444814" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32887402" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="GraphQL" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.5730212" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="TypeScript" order="12" weight="0.32991454" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/app/shared/models/db_tables/listini-lista.model.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/shared/models/db_tables/.order.model.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/shared/models/db_tables/.rows.model.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/error-handler.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-10">
+          <folding>
+            <element signature="e#0#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/shared/models/db_tables/.suppliers-price-list.model.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="17" selection-start-column="17" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/shared/utility.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="662">
+          <caret line="114" column="2" selection-start-line="114" selection-start-column="2" selection-end-line="114" selection-end-column="2" />
+          <folding>
+            <element signature="e#143#184#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/shared/models/db_tables/prodotti-creazione.model.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/shared/models/db_tables/prodotti-lista.model.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="3" column="57" selection-start-line="3" selection-start-column="57" selection-end-line="3" selection-end-column="57" />
+          <folding>
+            <element signature="e#0#93#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@angular/core/src/event_emitter.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="78" column="4" selection-start-line="78" selection-start-column="4" selection-end-line="78" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@angular/core/src/linker/element_ref.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@angular/forms/src/model.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-660">
+          <caret line="779" column="21" selection-start-line="779" selection-start-column="21" selection-end-line="779" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/auth/reset_password/reset_password.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="46" column="63" lean-forward="true" selection-start-line="45" selection-start-column="11" selection-end-line="46" selection-end-column="63" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dashboard/listino/lista/lista.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-31">
+          <folding>
+            <element signature="e#0#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="42" column="21" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tslint.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1165" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsconfig.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tslint.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@angular/router/src/router_state.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="97" column="13" selection-start-line="97" selection-start-column="13" selection-end-line="97" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/app-routing.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="38" column="51" lean-forward="true" selection-start-line="38" selection-start-column="51" selection-end-line="38" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dashboard/ordini/form/form.directve.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dashboard/listino/form/form.component.spec.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#73#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/app.component.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/shared/tableRow/tablerow.component.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/shared/autocomplete/autocomplete.component.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/styles.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="398" column="1" selection-start-line="398" selection-start-column="1" selection-end-line="398" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/angular-ng-autocomplete/lib/autocomplete/autocomplete.component.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3216">
+          <caret line="136" column="16" selection-start-line="136" selection-start-column="16" selection-end-line="136" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/shared/directive/select.directive.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="28" column="42" selection-start-line="28" selection-start-column="42" selection-end-line="28" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/shared/directive/dropzone/dropzone.directive.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/environments/environment.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="7" column="39" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dashboard/ordini/ordini.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="21" column="80" selection-start-line="21" selection-start-column="80" selection-end-line="21" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dashboard/ordini/lista/lista.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="113" column="78" selection-start-line="113" selection-start-column="78" selection-end-line="113" selection-end-column="78" />
+          <folding>
+            <element signature="n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#3;n#div#0;n#!!top" />
+            <element signature="n#label#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#3;n#div#0;n#!!top" />
+            <element signature="n#td#0;n#tr#2;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#3;n#div#0;n#!!top" />
+            <element signature="n#td#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#3;n#div#0;n#!!top" />
+            <element signature="n#td#1;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#3;n#div#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dashboard/ordini/lista/lista.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2109">
+          <caret line="41" column="17" lean-forward="true" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/shared/models/db_tables/ordini-lista.model.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="18" column="50" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dashboard/listino/listino.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="401">
+          <caret line="78" column="2" selection-start-line="78" selection-start-column="2" selection-end-line="78" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dashboard/fornitori/lista/lista.component.spec.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#73#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dashboard/fornitori/lista/lista.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="930">
+          <caret line="62" column="71" lean-forward="true" selection-start-line="62" selection-start-column="71" selection-end-line="62" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dashboard/ordini/ordini.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="173" column="2" selection-start-line="173" selection-start-column="2" selection-end-line="173" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+            <element signature="n#!!block;n#getRows#0;n#OrdiniService#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/shared/autocomplete/autocomplete.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="15" column="56" selection-start-line="15" selection-start-column="56" selection-end-line="15" selection-end-column="56" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#ng-template#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/shared/autocomplete/autocomplete.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-778">
+          <caret line="33" column="83" selection-start-line="33" selection-start-column="83" selection-end-line="33" selection-end-column="83" />
+          <folding>
+            <element signature="e#0#146#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/shared/tableRow/tablerow.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="21" column="77" selection-start-line="21" selection-start-column="77" selection-end-line="21" selection-end-column="77" />
+          <folding>
+            <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#DM-autocomplete#0;n#td#0;n#tr#0;n#ng-container#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#td#3;n#tr#0;n#ng-container#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#td#4;n#tr#0;n#ng-container#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#select#0;n#td#5;n#tr#0;n#ng-container#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#td#7;n#tr#0;n#ng-container#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#2;n#tbody#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#2;n#tr#2;n#tbody#0;n#table#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/shared/tableRow/tablerow.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="518">
+          <caret line="214" column="16" lean-forward="true" selection-start-line="214" selection-start-column="16" selection-end-line="214" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dashboard/ordini/form/form.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3551">
+          <caret line="151" column="92" lean-forward="true" selection-start-line="151" selection-start-column="92" selection-end-line="151" selection-end-column="92" />
+          <folding>
+            <element signature="n#style#0;n#button#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dashboard/ordini/form/form.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="194" lean-forward="true" selection-start-line="194" selection-end-line="194" />
+          <folding>
+            <element signature="e#0#73#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dashboard/fornitori/fornitori.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="31" column="2" selection-start-line="31" selection-start-column="2" selection-end-line="31" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dashboard/fornitori/lista/lista.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="936">
+          <caret line="78" column="50" selection-start-line="78" selection-start-column="50" selection-end-line="78" selection-end-column="50" />
+          <folding>
+            <element signature="e#0#74#0" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#a#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dashboard/listino/form/form.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="310" column="2" selection-start-line="310" selection-start-column="2" selection-end-line="310" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#120#0" expanded="true" />
+            <element signature="n#!!block;n#SuppliersList#0;n#FormComponent#0" />
+            <element signature="n#!!block;n#initForms#0;n#FormComponent#0" />
+            <element signature="n#!!block;n#formControlName#0;n#FormComponent#0" />
+            <element signature="n#!!block;n#inputControlPrice#0;n#FormComponent#0" />
+            <element signature="n#!!block;n#inputControlQty#0;n#FormComponent#0" />
+            <element signature="n#!!block;n#inputControlSupp#0;n#FormComponent#0" />
+            <element signature="n#!!block;n#cambio#0;n#FormComponent#0" />
+            <element signature="n#!!block;n#buttonActivation#0;n#FormComponent#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dashboard/listino/form/form.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="147" column="86" selection-start-line="147" selection-start-column="86" selection-end-line="147" selection-end-column="86" />
+          <folding>
+            <element signature="n#style#0;n#button#1;n#div#4;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dashboard/ordini/dettaglio/dettaglio.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="105" column="50" selection-start-line="105" selection-start-column="50" selection-end-line="105" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dashboard/ordini/dettaglio/dettaglio.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="542">
+          <caret line="198" column="13" lean-forward="true" selection-start-line="198" selection-start-column="13" selection-end-line="198" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#86#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dashboard/fornitori/form/form.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7512">
+          <caret line="313" column="54" selection-start-line="313" selection-start-column="54" selection-end-line="313" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/dashboard/fornitori/form/form.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="444" column="10" selection-start-line="444" selection-start-column="10" selection-end-line="444" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#101#0" expanded="true" />
+            <element signature="n#!!block;n#ngOnInit#0;n#FormComponent#0" />
+            <element signature="n#!!block;n#validateFormControl#0;n#FormComponent#0" />
+            <element signature="n#!!block;n#ActivateLabel#0;n#FormComponent#0" />
+            <element signature="n#!!block;n#ngAfterViewInit#0;n#FormComponent#0" />
+            <element signature="n#!!block;n#initForms#0;n#FormComponent#0" />
+            <element signature="n#!!block;n#checklength#0;n#FormComponent#0" />
+            <element signature="n#!!block;n#AnnullaModifche#0;n#FormComponent#0" />
+            <element signature="n#!!block;n#clean#0;n#FormComponent#0" />
+            <element signature="n#!!block;n#addIndirizzo#0;n#FormComponent#0" />
+            <element signature="n#!!block;n#UpdateIndirizzo#0;n#FormComponent#0" />
+            <element signature="n#!!block;n#getListAddres#0;n#FormComponent#0" />
+            <element signature="n#!!block;n#addConto#0;n#FormComponent#0" />
+            <element signature="n#!!block;n#deleteConto#0;n#FormComponent#0" />
+            <element signature="n#!!block;n#UpdateConto#0;n#FormComponent#0" />
+            <element signature="n#!!block;n#getListBank#0;n#FormComponent#0" />
+            <element signature="n#!!block;n#Termini#0;n#FormComponent#0" />
+            <element signature="n#!!block;n#buttonActivation#0;n#FormComponent#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

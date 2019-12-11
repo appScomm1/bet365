@@ -1,0 +1,88 @@
+<div class="row">
+  <div class="content-wrapper-before gradient-45deg-indigo-purple"></div>
+  <div class="col s12">
+    <div class="container">
+      <div style="padding: 0 !important;" class="section section-data-tables">
+        <div class="card sticky">
+          <div class="card-content">
+            <div class="row">
+              <div class="left">
+                <div class="col " *ngIf="checkPermission('products:create')"> <a [routerLink]="['new']" class="btn-flat mb-1 waves-effect btn-color-crea" [translate]="'Common.Card_buttons.new'">Crea</a> </div>
+                <div class="col "> <a [routerLink]="['/dashboard/import']" class="btn-flat mb-1 waves-effect waves-light btn-color-import" [translate]="'Common.Card_buttons.import'">Import</a> </div>
+              </div>
+              <div class="right" style="width: 30%;">
+                <DM-multifilter  #autocomplete historyIdentifier="filtro" [CategoriesFilter]="categoriesFilter" [label]="'filtro'" (Valore)="emitfilter($event)" (EventKeyEnter)="Searchwithfilter($event)"></DM-multifilter>
+              </div>
+
+              <!--  <ul id='dropdown1' class='dropdown-content'>
+                <li class="valign-wrapper">Visualizza</li>
+                 <li class="divider"></li>
+                 <li><a href="#!"><i class="material-icons">list</i>Righe</a></li>
+                 <li><a href="#!"><i class="material-icons">filter_none</i>Ordini</a></li>
+               </ul -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col s12">
+    <div class="container">
+      <div class="section section-data-tables">
+        <!-- DataTables example -->
+        <div class="row">
+          <div class="col s12 m12 l12">
+            <div id="button-trigger" class="card card card-default scrollspy">
+              <div class="card-content">
+                <h4 class="card-title" [translate]="'catalog.list.title'">Prodotti</h4>
+                <div class="row">
+                  <div class="col s12 m12 l12">
+                    <table id="dataTables" *ngIf="prodotti && prodotti.length > 0" datatable [dtOptions]="dtOptions" class="row-border hover striped s12 m12 l12">
+                      <thead>
+                      <tr>
+                      </tr>
+                      <tr>
+                        <th>#</th>
+                        <th [translate]="'catalog.list.table.description'">Descrizione</th>
+                        <th [translate]="'catalog.list.table.type'">Tipo</th>
+                        <th>Sku</th>
+                        <th [translate]="'catalog.list.table.barcode'">Barcode</th>
+                        <th [translate]="'catalog.list.table.actions'">Azioni</th>
+                      </tr>
+                      </thead>
+                      <tbody style="height: 100%">
+                      <tr *ngFor="let p of prodotti" style="height: auto;">
+                        <td>{{ p.id }}</td>
+                        <td>{{ p.description }}</td>
+                        <td>{{ p.type }}</td>
+                        <td>{{ p.internal_sku}}</td>
+                        <td>{{ p.barcode}}</td>
+                        <td class="azioni center">
+                          <a [routerLink]="['/dashboard/list/', p.id]" >
+                            <i class="material-icons blue-text">find_in_page</i>
+                          </a>
+                          <a class="paginate_button" *ngIf="checkPermission('products:delete')" (click)="deleteProduct(p.id)" title="{{'Common.Tabletooltips.remove' | translate}}">
+                            <i class="material-icons red-text">delete</i>
+                          </a>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <div *ngIf="prodotti && prodotti.length <= 0" class="card-alert card purple lighten-5">
+                      <div class="card-content purple-text">
+                        <p>Nessun prodotto inserito</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<DM-btnAdd [titlecrea]="'new'" [titleimport]="'importa'" ></DM-btnAdd>

@@ -1,0 +1,392 @@
+<div class="row">
+    <div style="margin-bottom: 40px" class="content-wrapper-before gradient-45deg-indigo-purple" id="breadcrumbs-wrapper">
+      <div style="padding: 0px 1.5rem !important;" class="col s12 color-label">
+        <div class="card form-actions-header">
+          <div  class="card-content overflow">
+            <div  class="col actions s12 m5 l5">
+
+              <button *ngIf="titleButtonControl()" class="btn gradient-45deg-indigo-purple waves-effect waves-light tooltipped left" data-position="bottom" attr.data-tooltip="{{'Common.Card_buttons.save' | translate}}" type="submit"
+                      name="action" (click)="addFornitori('salva')">
+                <span class="hide-on-small-only">{{ titleButton }} </span>
+                <i class="material-icons right">save</i>
+              </button>
+
+              <button *ngIf="dettaglio && titleButton === 'Salva'" class="waves-effect btn-flat tooltipped left" data-position="bottom" type="submit" style="margin-left: 10px !important;"
+                      name="action" (click)="AnnullaModifche()">
+                <span class="hide-on-small-only" attr.data-tooltip="{{'Orders.New.cancel' | translate}}">Annulla</span>
+                <i class="material-icons right">undo</i>
+              </button>
+
+              <button *ngIf="!dettaglio" class="waves-effect btn-flat tooltipped left" data-position="bottom" attr.data-tooltip="{{'Common.Card_buttons.clean' | translate}}" type="submit"  style="margin-left: 10px !important;"
+                      name="action" (click)="clean()">
+                <span class="hide-on-small-only" [translate]="'Orders.New.cancel'">Pulisci </span>
+                <i class="material-icons right">undo</i>
+              </button>
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12">
+      <div class="container">
+        <div class="seaction">
+          <!--Basic Form-->
+
+          <!-- jQuery Plugin Initialization -->
+          <div class="row">
+            <div class="col s12 m12 l12">
+              <div class="card card card-default scrollspy" style="z-index: 4 !important;">
+                  <div class="card-content padding-card-content">
+                    <h4 class="card-title" [translate]="'Suppliers.New.title'">Informazioni fornitore</h4>
+                    <div id="infofornitore" class="active">
+                        <form [formGroup]="fornitoriform">
+                      <div class="row">
+                        <div class="input-field col s6">
+                          <input [ngClass]="validateFormControl(fornitoriform.get('r_sociale'), modificata)" id="fornitore" type="text" class="validate" formControlName="r_sociale">
+                          <label [ngClass]="ActivateLabel(dettaglio)" for="fornitore" [translate]="'Suppliers.New.Tabs.Suppliertab.supplier'">Nome attività</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                          <input [ngClass]="validateFormControl(fornitoriform.get('piva'), modificata)" id="piva" type="text" class="validate" formControlName="piva" minlength="11" maxlength="11">
+                          <label [ngClass]="ActivateLabel(dettaglio)" for="piva" [translate]="'Suppliers.New.Tabs.Suppliertab.piva'">P.IVA</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s6">
+                          <input [ngClass]="validateFormControl(fornitoriform.get('indirizzo_consegna'), modificata)" id="indirizzo_consegna" type="text" class="validate" formControlName="indirizzo_consegna">
+                          <label [ngClass]="ActivateLabel(dettaglio)" for="indirizzo_consegna" [translate]="'Suppliers.New.Tabs.Suppliertab.address'">Indirizzo Consegna</label>
+                        </div>
+                          <DM-autocomplete class="col s6" *ngIf="dettaglio && fornitore && currencies" [disable]="disableautocomplete" [value]="fornitore.price_list.currency" historyIdentifier="currency"  [data]="currencies" [link]="'/dashboard/suppliers/new'" [label]="'Valuta'" (Valore)="Termini($event, 'currency')"></DM-autocomplete>
+                          <DM-autocomplete class="col s6" *ngIf="!dettaglio" historyIdentifier="currency" [data]="currencies" [link]="'/dashboard/suppliers/new'" [label]="'Valuta'" (Valore)="Termini($event, 'currency')"></DM-autocomplete>
+
+                      </div>
+                      <h4 class="card-title" [translate]="'Suppliers.New.Tabs.Suppliertab.contacts'">Contatti</h4>
+                          <div class="row">
+                             <div class="input-field col s6">
+                               <i class="material-icons prefix">phone</i>
+                                 <input [ngClass]="validateFormControl(fornitoriform.get('tel'), modificata)" #tel id="telephone" minlength="10" maxlength="10" type="text" class="validate prova" formControlName="tel">
+                                 <label [ngClass]="ActivateLabel(dettaglio)" for="telephone" [translate]="'Suppliers.New.Tabs.Suppliertab.tel'">Telefono</label>
+                               </div>
+
+                               <div class="input-field col s6">
+                                 <i class="material-icons prefix">email</i>
+                                   <input [ngClass]="validateFormControl(fornitoriform.get('email'), modificata)" id="email" type="email" class="validate prova" formControlName="email">
+                                   <label [ngClass]="ActivateLabel(dettaglio)" for="email" data-error="wrong" data-success="right" [translate]="'Suppliers.New.Tabs.Suppliertab.email'">Email</label>
+                                 </div>
+                          </div>
+                          <div class="row">
+                             <div class="input-field col s6">
+                               <i class="material-icons prefix">public</i>
+                                 <input [ngClass]="validateFormControl(fornitoriform.get('website'), modificata)" id="website" type="text" class="validate prova" formControlName="website">
+                                 <label [ngClass]="ActivateLabel(dettaglio)" for="website" [translate]="'Suppliers.New.Tabs.Suppliertab.website'">Sito web</label>
+                               </div>
+                                <div class="input-field col s6">
+                                  <i class="material-icons prefix">local_printshop</i>
+                                    <input [ngClass]="validateFormControl(fornitoriform.get('fax'), modificata)" id="fax" minlength="10" maxlength="10" type="text" class="validate prova" formControlName="fax">
+                                    <label [ngClass]="ActivateLabel(dettaglio)" for="fax">Fax</label>
+                                  </div>
+                          </div>
+                          <div class="row">
+                          <h4 class="card-title col s6 l6 m6" [translate]="'Suppliers.New.orderTerms.title'">Termini ordine</h4>
+                            <a DmTooltip style="background-color: #9f9f9f" class="right btn-small btn-floating mb-1 waves-effect waves-light tooltipped" data-position="left" data-tooltip="Questi termini sono di default per quando si compila un ordine per il fornitore, ma possono essere personalizzati">
+                              <i style="color: #0b0b0b" >?</i>
+                            </a>
+                          </div>
+                          <div class="row">
+                            <div *ngIf="terminiresa" class="input-field col s6">
+                              <select DmSelect [ngClass]="validateFormControl(fornitoriform.get('delivery_term'), modificata)" formControlName="delivery_term">
+                                <option></option>
+                                <option *ngFor="let t of terminiresa" value="{{t.id}}" >{{t.value}}</option>
+                              </select>
+                              <label [translate]="'Suppliers.New.orderTerms.deliveryTerms'">Termini di consegna preferiti</label>
+                            </div>
+
+                            <div  *ngIf="terminipagamento" class="input-field col s6">
+                              <select DmSelect [ngClass]="validateFormControl(fornitoriform.get('payment_term'), modificata)"	 formControlName="payment_term">
+                                <option></option>
+                                <option *ngFor="let t of terminipagamento" value="{{t.id}}" >{{t.value}}</option>
+                              </select>
+                              <label [translate]="'Suppliers.New.orderTerms.paymentTerms'">Termini pagamento preferiti</label>
+                            </div>
+                          </div>
+                      </form>
+                      </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+
+
+          <div  class="row">
+            <div class="col s12 m12 l12">
+              <div class="card card card-default scrollspy">
+                <div class="card-content">
+                  <div class="card-tabs">
+                    <ul class="tabs tabs tabs-fixed-width">
+                      <li class="tab">
+                        <a href="#inforef" [translate]="'Suppliers.New.tabsTitles.referentInformation'">Informazioni referente</a>
+                      </li>
+                      <li  class="tab">
+                        <a href="#indirizziAgg"[translate]="'Suppliers.New.tabsTitles.additionalAddresses'">Indirizzi aggiuntivi</a>
+                      </li>
+                      <li  class="tab">
+                        <a href="#conti" [translate]="'Suppliers.New.tabsTitles.bankAccounts'">Conti bancari</a>
+                      </li>
+                      <li class="tab">
+                        <a href="#comunicazioni" [translate]="'Suppliers.New.tabsTitles.comunications'">Comunicazioni</a>
+                      </li>
+                      <li class="indicator"></li>
+                    </ul>
+                  </div>
+
+                  <div #divHeight DmheightTab class="card-content">
+
+                    <div (resized)="onResize($event)" id="inforef" class="active height-tab">
+                    <form [formGroup]="referenteform">
+                        <div class="row">
+                          <h4 class="card-title" [translate]="'Suppliers.New.Tabs.Tabinfo.handler'">Referente</h4>
+                          <div class="input-field col s6">
+                            <input [ngClass]="validateFormControl(referenteform.get('first_name'), modificata)" id="ref_nome" type="text" class="validate" formControlName="first_name">
+                            <label [ngClass]="ActivateLabel(dettaglio)" for="ref_nome" [translate]="'Suppliers.New.Tabs.Tabinfo.name'">Nome</label>
+                          </div>
+
+                          <div class="input-field col s6">
+                            <input [ngClass]="validateFormControl(referenteform.get('last_name'), modificata)" id="ref_cognome" type="text" class="validate" formControlName="last_name">
+                            <label [ngClass]="ActivateLabel(dettaglio)" for="ref_cognome" [translate]="'Suppliers.New.Tabs.Tabinfo.surname'">Cognome</label>
+                          </div>
+
+                          <div class="input-field col s6">
+                            <i class="material-icons prefix">email</i>
+                             <input [ngClass]="validateFormControl(referenteform.get('email'), modificata)" #tel id="tel_referente" type="text" class="validate prova" formControlName="email">
+                            <label [ngClass]="ActivateLabel(dettaglio)" for="tel_referente" >Email</label>
+                          </div>
+
+                          <div *ngIf="tagRef.length > 0" class="input-field col s6" style="margin-top: 8px;">
+                            <div #div [Disable]="Disable" [DMtag]="tagRef" class="chips chips-placeholder"></div>
+                          </div>
+                          <div *ngIf="tagRef.length === 0" class="input-field col s6" style="margin-top: 8px;">
+                            <div #div DMtag class="chips chips-placeholder"></div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+
+                    <div (resized)="onResize($event)" class="height-tab" id="indirizziAgg">
+                    <table id="indirizzi" class="highlight responsive-table ordine-table">
+                       <thead>
+                       <th data-field="numero">N.</th>
+                       <th data-field="descrizione" [translate]="'Suppliers.New.Address.description'">Descrizione</th>
+                       <th data-field="indirizzo" [translate]="'Suppliers.New.Address.address'">Indirizzo</th>
+                       <th data-field="citta" [translate]="'Suppliers.New.Address.city'">Città</th>
+                       <th data-field="provincia" [translate]="'Suppliers.New.Address.district'">Provincia</th>
+                       <th data-field="cap">Cap</th>
+                       <th data-field="paese" [translate]="'Suppliers.New.Address.country'">Paese</th>
+                     </thead>
+                     <tbody >
+                       <tr DMshowbutton class="row-edit" *ngFor="let indirizzi of listaindirizzi; let i=index;">
+                           <td>{{ i + 1  }}</td>
+                         <td class="input-field">
+                           <input  [disabled]="titleButton === 'Modifica'" type="text" [(ngModel)]="indirizzi.description">
+                         </td>
+                         <td class="input-field">
+                           <input [disabled]="titleButton === 'Modifica'" type="text" [(ngModel)]="indirizzi.via">
+                           </td>
+                           <td class="input-field">
+                             <input  [disabled]="titleButton === 'Modifica'" type="text" [(ngModel)]="indirizzi.citta">
+                           </td>
+                           <td class="input-field">
+                             <input [disabled]="titleButton === 'Modifica'" type="text" [(ngModel)]="indirizzi.provincia">
+                           </td>
+                           <td class="input-field">
+                             <input [disabled]="titleButton === 'Modifica'" #cap appFormDirective type="number" style="text-align: left !important" (ngModelChange)="checklength(5)" [(ngModel)]="indirizzi.cap">
+                           </td>
+                           <td class="input-field">
+                             <input  [disabled]="titleButton === 'Modifica'" type="text" [(ngModel)]="indirizzi.paese">
+                           </td>
+
+                           <td>
+                             <div class="row">
+                               <div class="col s6">
+                                 <a (click)="deleteIndirizzo(i, indirizzi.id)" [ngClass]="buttonActivation()" class="btn-floating mb-1 waves-effect waves-light white">
+                                   <i class="material-icons indigo-text darken-4-text">clear</i>
+                                 </a>
+                               </div>
+                               <div class="col s6">
+                                 <a (click)="UpdateIndirizzo(indirizzi)" class="btn-floating mb-1 waves-effect waves-light white btn-hide">
+                                   <i class="material-icons indigo-text darken-4-text">check</i>
+                                 </a>
+                               </div>
+                             </div>
+                           </td>
+                         </tr>
+
+                         <tr *ngIf="!dettaglio || dettaglio && titleButton === 'Salva'" class="row-edit">
+                             <td></td>
+                           <td class="input-field">
+                             <input id="paese-input" type="text" (ngModelChange)="viewAddIndirizzo=true" [(ngModel)]="indirizzo.description">
+                           </td>
+                             <td class="input-field">
+                                 <input  id="indirizzo-input" type="text" (ngModelChange)="viewAddIndirizzo=true" [(ngModel)]="indirizzo.via">
+                               </td>
+                             <td class="input-field">
+                               <input id="citta-input" type="text" (ngModelChange)="viewAddIndirizzo=true" [(ngModel)]="indirizzo.citta">
+                             </td>
+                             <td class="input-field">
+                               <input id="provincia-input" type="text" (ngModelChange)="viewAddIndirizzo=true" [(ngModel)]="indirizzo.provincia">
+                             </td>
+                             <td class="input-field">
+                               <input #cap id="cap-input" type="number" style="text-align: left !important" (ngModelChange)="checklength(5); viewAddIndirizzo=true" [(ngModel)]="indirizzo.cap">
+                             </td>
+                             <td class="input-field">
+                               <input id="paese-input" type="text" (ngModelChange)="viewAddIndirizzo=true" [(ngModel)]="indirizzo.paese">
+                             </td>
+
+                             <td>
+                                 <a (click)="addIndirizzo()" class="btn-floating mb-1 waves-effect waves-light white" *ngIf="viewAddIndirizzo">
+                                   <i class="material-icons indigo-text darken-4-text">add</i>
+                                 </a>
+                             </td>
+                           </tr>
+                       </tbody>
+                      </table>
+                    </div>
+
+                    <div (resized)="onResize($event)" class="height-tab" id="conti" >
+                      <table id="conti_bancari" class="highlight responsive-table ordine-table">
+                        <thead>
+                        <th data-field="numero">N.</th>
+                        <th data-field="banca" [translate]="'Suppliers.New.Bank.bank'">Banca</th>
+                        <th data-field="n_conto" [translate]="'Suppliers.New.Bank.n_account'">Numero Conto</th>
+                        </thead>
+                        <tbody>
+                        <tr DMshowbutton class="row-edit" *ngFor="let conti of listaconti; let i=index;">
+                          <td>{{ i + 1  }}</td>
+                          <td class="input-field">
+                            <input [disabled]="titleButton === 'Modifica'" id="banca" type="text" [(ngModel)]="conti.bank_name">
+                          </td>
+                          <td class="input-field">
+                            <input [disabled]="titleButton === 'Modifica'" id="conto" type="text" [(ngModel)]="conti.iban" >
+                          </td>
+                          <td>
+                            <div class="row">
+                              <div class="col s6">
+                                <a (click)="deleteConto(conti.id)" [ngClass]="buttonActivation()" class="btn-floating mb-1 waves-effect waves-light white">
+                                  <i class="material-icons indigo-text darken-4-text">clear</i>
+                                </a>
+                              </div>
+                              <div class="col s6">
+                                <a (click)="UpdateConto(conti)" class="btn-floating mb-1 waves-effect waves-light white btn-hide">
+                                  <i class="material-icons indigo-text darken-4-text">check</i>
+                                </a>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+
+                        <tr *ngIf="!dettaglio || dettaglio && titleButton === 'Salva'" class="row-edit">
+                          <td></td>
+                          <td class="input-field">
+                            <input id="banca-input" type="text" (ngModelChange)="viewAddConto=true" [(ngModel)]="conto.bank_name">
+                          </td>
+                          <td class="input-field">
+                            <input id="conto-input" type="text" (ngModelChange)="viewAddConto=true" [(ngModel)]="conto.iban" minlength="23" maxlength="23">
+                          </td>
+                          <td>
+                            <a (click)="addConto()" class="btn-floating mb-1 waves-effect waves-light white" *ngIf="viewAddConto">
+                              <i class="material-icons indigo-text darken-4-text">add</i>
+                            </a>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <div (resized)="onResize($event)" class="height-tab" id="comunicazioni">
+                      <form action="#">
+                        <p>
+                          <label>
+                            <input name="group1" class="with-gap" type="radio" [disabled]="radioButtonActivated" [checked]="check === 'none'" (change)="check = 'none'; comunication = 'none'; email2 = null; email2Changed = true;"/>
+                            <span [translate]="'Suppliers.New.comunications.noNotification'">Nessuna notifica</span>
+                          </label>
+                        </p>
+
+                        <p style="padding-top: 5px !important;">
+                          <label style="padding-right: 45px !important;">
+                            <input name="group1" class="with-gap" [disabled]="radioButtonActivated" [checked]="check === 'classic'" type="radio" (change)="check = 'classic'; comunication = 'none'; email2 = null; email2Changed = true;" />
+                            <span>Email</span>
+                          </label>
+                        </p>
+
+                        <form *ngIf="check === 'classic'">
+                          <p  style="padding-top: 5px !important; margin-left: 20px !important;">
+                            <label style="padding-right: 45px !important; ">
+                              <input name="group1" class="with-gap" type="radio" [disabled]="radioButtonActivated" [checked]="comunication === 'secondary_mail'" (change)="comunication = 'secondary_mail'" />
+                              <span [translate]="'Suppliers.New.comunications.specifiedEmailAddress'">Indirizzo email specificato</span>
+                            </label>
+                            <input #mail id="mail" size = "35" [(ngModel)]="email2" [ngModelOptions]="{standalone: true}" [disabled]="radioButtonActivated" type="email inline" class="validate" *ngIf="comunication === 'secondary_mail'">
+                          </p>
+                          <p  style="padding-top: 5px !important; margin-left: 20px !important;">
+                            <label style="padding-right: 45px !important;">
+                              <input name="group1" class="with-gap" type="radio" [disabled]="radioButtonActivated" [checked]="comunication === 'main_mail'" (change)=" comunication = 'main_mail'" />
+                              <span [translate]="'Suppliers.New.comunications.supplierMainAddress'">Indirizzo principale del fornitore</span>
+                            </label>
+                          </p>
+                          <p  style="padding-top: 5px !important; margin-left: 20px !important;">
+                            <label style="padding-right: 45px !important;">
+                              <input name="group1" class="with-gap" type="radio" [disabled]="radioButtonActivated" [checked]="comunication === 'referent_mail'" (change)=" comunication = 'referent_mail'" />
+                              <span  [translate]="'Suppliers.New.comunications.ContactAddress'">Indirizzo del referente</span>
+                            </label>
+                          </p>
+
+
+                        </form>
+
+                        <p style="padding-top: 5px !important;">
+                          <label style="padding-right: 45px !important;">
+                            <input name="group1" class="with-gap" type="radio" [disabled]="radioButtonActivated" [checked]="check === 'easymail'" (change)="check = 'easymail'; comunication = 'null'; email2 = null; email2Changed = true;" />
+                            <span>Easymail</span>
+                          </label>
+                        </p>
+
+
+                      </form>
+                      <form *ngIf="check === 'easymail'">
+                        <p  style="padding-top: 5px !important; margin-left: 20px !important;">
+                          <label style="padding-right: 45px !important; ">
+                            <input name="group1" class="with-gap" type="radio" [disabled]="radioButtonActivated" [checked]="comunication === 'secondary_mail' && check === 'easymail'"  (change)=" comunication = 'secondary_mail'" />
+                            <span [translate]="'Suppliers.New.comunications.specifiedEmailAddress'">Indirizzo email specificato</span>
+                          </label>
+                          <input size = "35" #mail id="mail" [(ngModel)]="email2" [ngModelOptions]="{standalone: true}" [disabled]="radioButtonActivated" type="email inline" class="validate" *ngIf="comunication === 'secondary_mail'">
+                        </p>
+                        <p  style="padding-top: 5px !important; margin-left: 20px !important;">
+                          <label style="padding-right: 45px !important;">
+                            <input name="group1" class="with-gap" type="radio" [disabled]="radioButtonActivated" [checked]="comunication === 'main_mail' && check === 'easymail'" (change)=" comunication = 'main_mail'" />
+                            <span [translate]="'Suppliers.New.comunications.supplierMainAddress'">Indirizzo principale del fornitore</span>
+                          </label>
+                        </p>
+                        <p  style="padding-top: 5px !important; margin-left: 20px !important;">
+                          <label style="padding-right: 45px !important;">
+                            <input name="group1" class="with-gap" type="radio" [disabled]="radioButtonActivated" [checked]="comunication === 'referent_mail' && check === 'easymail'" (change)=" comunication = 'referent_mail'"/>
+                            <span [translate]="'Suppliers.New.comunications.ContactAddress'">Indirizzo del referente</span>
+                          </label>
+                        </p>
+
+
+                      </form>
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

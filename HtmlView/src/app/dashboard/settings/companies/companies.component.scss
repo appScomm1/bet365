@@ -1,0 +1,36 @@
+.content-wrapper-before {
+  height: 86px !important;
+}
+
+.dropdown-content{
+  top: 0 !important;
+}
+
+#breadcrumbs-wrapper {
+  position: sticky !important;
+  top: 50px !important;
+  background: linear-gradient(45deg, #303f9f, #7b1fa2) !important;
+  z-index: 5;
+  height: 43px;
+  color: white;
+  padding: 0;
+}
+
+.autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
+.autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
+.autocomplete-selected { background: #F0F0F0; }
+.autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
+.autocomplete-group { padding: 2px 5px; }
+.autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
+
+[type='checkbox'] + span:not(.lever){
+  line-height: 25px !important;
+}
+
+[type='checkbox'] + span:not(.lever):before, [type='checkbox']:not(.filled-in) + span:not(.lever):after{
+  margin-top: 3px !important;
+}
+
+.autocomplete-container .suggestions-container{
+  z-index: 5 !important;
+}

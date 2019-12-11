@@ -1,0 +1,676 @@
+<div class="row">
+  <div class="content-wrapper-before gradient-45deg-indigo-purple"></div>
+  <div class="col s12">
+    <div class="container">
+      <div style="padding: 0 !important;" class="section section-data-tables">
+
+        <div class="card sticky">
+          <div class="card-content">
+            <div class="row">
+              <div *ngIf="!select" class="left">
+                <div class="col s6" *ngIf="checkPermission('order:create')"> <a [routerLink]="['new']" class="btn-flat mb-1 waves-effect btn-color-crea" [translate]="'Common.Card_buttons.new'">Crea</a> </div>
+                <div class="col s6"> <a [routerLink]="['/dashboard/import']" class="btn-flat mb-1 waves-effect waves-light btn-color-import" [translate]="'Common.Card_buttons.import'">Import</a> </div>
+              </div>
+
+              <div *ngIf="select" class="left" style="display: flex;">
+                <button (click)="updateStatusOrders('canceled')" class="btn-flat mb-1 ml-1 waves-effect btn-color-delete" style="margin-left: 25px !important; right: 25px !important;" >Cancella</button>
+                <button (click)="updateStatusOrders('proposed_buyer')" class="btn-flat mb-1 ml-1 waves-effect btn-color-crea" style="margin-left: 25px !important; right: 25px !important;">Invia</button>
+                <button (click)="updateStatusOrders('accepted')" class="btn-flat mb-1 waves-effect ml-1 btn-color-crea" style="margin-right: 25px !important;">Accetta</button>
+              </div>
+
+              <div class="right" style="width: 30%;">
+
+                <DM-multifilter *ngIf="rows" #autocomplete historyIdentifier="filtro" [CategoriesFilter]="categoriesFilter" [label]="'filtro'" (Valore)="emitfilter($event)" (EventKeyEnter)="Searchwithfilter($event)"></DM-multifilter>
+                <a class="waves-effect  right" (click)="visualizza = 'righe'; icontext = 'list';" [translate]="'Common.Card_buttons.View.rows'"><i class="material-icons tooltipped" data-tooltip="Righe" style="margin-top: 10px; font-size: 20px !important;">list</i></a>
+                <a class="waves-effect mr-5 right" (click)="visualizza = 'ordini'; icontext = 'filter_none';" [translate]="'Common.Card_buttons.View.orders'"><i class="material-icons tooltipped" data-tooltip="Ordini" style="margin-top: 10px; right: 15px; font-size: 20px !important;">filter_none</i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col s12 m12 l12">
+    <div class="container">
+      <div class="section section-data-tables display">
+        <!-- DataTables example -->
+        <div class="row">
+          <div class="col s12 m12 l12">
+            <div id="button-trigger" class="card card card-default scrollspy">
+              <div class="card-content">
+                <h4 class="card-title">Ordini</h4>
+                <div class="row">
+                  <div *ngIf="visualizza === 'ordini'" class="col s12 m12 l12">
+                    <table *ngIf="refresh === true"  datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover striped s12 m12 l12">
+                      <thead>
+                        <tr>
+                        </tr>
+                        <tr>
+                          <th [translate]="'Orders.List.TableOrders.state'">Stato</th>
+                          <th></th>
+                          <th [translate]="'Orders.List.TableOrders.delay'">Ritardo</th>
+                          <th [translate]="'Orders.List.TableOrders.order'">Ordine</th>
+                          <th [translate]="'Orders.List.TableOrders.type'">Tipo</th>
+                          <th [translate]="'Orders.List.TableOrders.issue'">Emissione</th>
+                          <th [translate]="'Orders.List.TableOrders.supplier'">Fornitore</th>
+                          <th [translate]="'Orders.List.TableOrders.handler'">Referente</th>
+                          <th [translate]="'Orders.List.TableOrders.update'">Log</th>
+                          <th [translate]="'Orders.List.TableOrders.Actions'">Azioni</th>
+                        </tr>
+                      </thead>
+                      <tbody style="height: 100%">
+                        <tr *ngFor="let o of ordini" style="height: 100%">
+                          <td class="no-padding" style="position: relative !important;">
+                            <div style="top: 0px !important; position: absolute !important; height: 100% !important;">
+                              <div *ngFor="let s of o.rows_statuses" style="display: inline-block !important;  height: 100% !important;" [ngClass]="ColorStatus(s)"></div>
+                            </div>
+                          </td>
+                          <td>
+                            <div class="col s4 no-padding no-margin">
+
+                              <a DmTooltip class="tooltipped left" attr.data-tooltip="{{tooltipView(o.createdAt, iconVisibility)}}" >
+                                <i class="material-icons" [ngStyle]="{color: controlloView( o.createdAt, o.viewed)}">{{iconVisibility}}</i>
+                              </a>
+                            </div>
+                          </td>
+                          <td>
+                            <div  class="col s12 no-padding no-margin center">
+                              <a  *ngIf="o.delivery_delay <= -1 && o.delivery_delay >= -5"  >
+                                <i class="material-icons yellow-text" >warning</i>
+                              </a>
+                              <a  *ngIf="o.delivery_delay < -5"  >
+                                <i class="material-icons red-text" >error</i>
+                              </a>
+
+                            </div>
+                            <div style="text-align: center !important;"  class="col s12 text-inline" >
+                              <small *ngIf="o.delivery_delay <= -1">{{- o.delivery_delay}} </small>
+                              <small *ngIf="o.delivery_delay <= -1" [translate]="'Orders.List.TableOrders.daysLate'"> giorni di ritardo</small>
+                            </div>
+                          </td>
+                          <td>{{ o.code }}</td>
+                          <td> {{o.orderType}} </td>
+                          <td>{{ o.emit_date  | date: 'dd-MM-yyyy'}}</td>
+                          <td>
+                            <!-- <i class="material-icons blue-text">insert_link</i> -->
+                            <a [routerLink]="['/dashboard/suppliers', o.suppliersId]">{{o.supplier.r_sociale}}</a>
+                          </td>
+                          <td>{{o.referent.last_name}} {{o.referent.first_name}}</td>
+                          <td>
+                            <a DmTooltip (click)="showStorico(o.id)" attr.data-tooltip="'Visualizza lo storico dell'ordine'" class="tooltipped col s12 center ">
+                              <i class="material-icons black-text" >restore</i>
+                            </a>
+                            <div  class="col s12 center" >
+                              <small>{{ o.updatedAt | date: 'dd-MM-yyyy' }}</small>
+                            </div>
+                          </td>
+                          <td class="azioni center">
+                            <a (click)="ShowModalOrder(o)">
+                              <i class="material-icons blue-text">find_in_page</i>
+                            </a>
+                            <a *ngIf="checkPermission('order:update')" [routerLink]="['/dashboard/orders/', o.id]" title="{{'Common.Tabletooltips.detail' | translate}}">
+                              <i class="material-icons blue-text">description</i>
+                            </a>
+                            <a *ngIf="checkPermission('order:update')" [routerLink]="['/dashboard/orders/', o.id]" title="{{'Common.Tabletooltips.detail' | translate}}">
+                              <i class="material-icons blue-text">edit</i>
+                            </a>
+                            <a *ngIf="checkPermission('order:delete')" (click)="deleteOrder(o.id)" title="{{'Common.Tabletooltips.remove' | translate}}">
+                              <i class="material-icons red-text">delete</i>
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div *ngIf="rows && rows.length > 0 && visualizza === 'righe'" class="col s12 m12 l12">
+                    <!-- div class="row">
+                       <input class="col s1 margin-left" mz-input type="text" placeholder="{{'Orders.List.TableRows.Placeholders.row' | translate}}" name="search-id"/>
+                       <input class="col s1 margin-left" mz-input type="text" placeholder="{{'Orders.List.TableRows.Placeholders.supplier' | translate}}" name="search-first-name"/>
+                       <input class="col s1 margin-left" mz-input type="text" placeholder="{{'Orders.List.TableRows.Placeholders.state' | translate}}" name="search-last-name"/>
+                    </div>
+                    <div class="input-field col s6">
+                      <DM-multifilter #autocomplete historyIdentifier="filtro" [CategoriesFilter]="categoriesFilter" [data]="listfilter" [label]="'filtro'" (Valore)="emitfilter($event)" (EventKeyEnter)="Searchwithfilter($event)"></DM-multifilter>
+                    </div>
+                    <ng-container *ngIf="filter && filter.length > 0">
+                      Filtra applicati:
+                      <div *ngFor="let f  of filter; let i=index;" class="chip costum-chip">
+                        <small style="font-size: 8px" >{{translateType(f.type) | async}}:</small>
+                        <br>
+                        {{f.value}}
+                        <i style="line-height: 5px !important;" (click)="filter.splice(i, 1)" class="close material-icons">close</i>
+                      </div>
+                    </ng-container-->
+                    <table  class="row-border hover s12 m12 l12"> <!-- ZAMBETABLE.JS -->
+                      <thead >
+                      <tr >
+                        <th>
+                          <label>
+                            <input (change)="changeAllCheckBox()" type="checkbox" />
+                            <span></span>
+                          </label>
+                        </th>
+                        <th style="width: 1px;" [translate]="'Orders.List.TableRows.Placeholders.state'">Stato</th>
+                        <th ></th>
+                        <th class="center" [translate]="'Orders.List.TableRows.Placeholders.delay'">Ritardo</th>
+                        <th [translate]="'Orders.List.TableRows.order'">Ordine</th>
+                        <th [translate]="'Orders.List.TableRows.Placeholders.row'">Riga</th>
+                        <th [translate]="'Orders.List.TableRows.description'">Descrizione</th>
+                        <th style="text-align: center; width: 4rem !important;" [translate]="'Orders.List.TableRows.number'">Qtà</th>
+                        <th style="text-align: center; width: 4.5rem !important;" [translate]="'Orders.List.TableRows.price'">Prezzo</th>
+                        <th style="width: 7rem !important;" [translate]="'Orders.List.TableRows.Placeholders.deliveryDate'">Data consegna</th>
+                        <th [translate]="'Orders.List.TableRows.Placeholders.notes'">Note</th>
+                        <th class="center" [translate]="'Orders.List.TableRows.Placeholders.attachments'"> Allegati</th>
+                        <th [translate]="'Orders.List.TableRows.supplier'">Fornitore</th>
+                        <th class="center">Log</th>
+                        <th [translate]="'Orders.List.TableRows.actions'">Azioni</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                     <!-- [DmRowStatusColor]="r.status" -->
+                      <tr  *ngFor="let r of rows; let i=index">
+                        <td style="width: 30px;">
+                          <label>
+                            <input type="checkbox" (change)="checkBoxChange($event, r.id)" [checked]="checkrow"/>
+                            <span></span>
+                          </label>
+                        </td>
+                        <td [ngClass]="ColorStatus(r.status)" > {{ r.status | status | translate}}</td>
+                        <td>
+                          <div class="col s4 no-padding no-margin">
+
+                            <a DmTooltip class="tooltipped left" attr.data-tooltip="{{tooltipView(r.createdAt, iconVisibility)}}" >
+                              <i class="material-icons" [ngStyle]="{color: controlloView( r.createdAt, r.viewed)}">{{iconVisibility}}</i>
+                            </a>
+
+                            <a DmTooltip class=" tooltipped" data-tooltip="L'invio non è andato a buon fine" *ngIf="r.order.email_send_status === 0">
+                              <i class="material-icons" style="color: #9e1010" >email</i>
+                            </a>
+                          </div>
+                        </td>
+                        <td>
+                          <div  class="col s12 no-padding no-margin center">
+                            <a  *ngIf="r.delivery_delay <= -1 && r.delivery_delay >= -5"  >
+                              <i class="material-icons yellow-text" >warning</i>
+                            </a>
+                            <a  *ngIf="r.delivery_delay < -5"  >
+                              <i class="material-icons red-text" >error</i>
+                            </a>
+
+                          </div>
+                          <div style="text-align: center !important;"  class="col s12 text-inline" >
+                            <small *ngIf="moment(r.delivery_date).diff(moment(), 'days') <= -1">{{- r.delivery_delay}} </small>
+                            <small *ngIf="moment(r.delivery_date).diff(moment(), 'days') <= -1" [translate]="'Orders.List.TableOrders.daysLate'">giorni di ritardo</small>
+                          </div>
+                        </td>
+                        <td>
+                          <a class="text-inline" [routerLink]="['/dashboard/orders', r.ordersId]">{{ r.order.code }}</a>
+                        </td>
+                        <td>{{ r.id | number: '3.0-0' }}</td>
+                        <td>{{ r.descr }}</td>
+
+
+                        <td *ngIf="r.status !== 'accepted' " class="no-padding" style="padding-right: 5px !important; border-radius: 0;">
+                          <ng-container *ngIf="r.oldFields.qty && r.status === 'proposed_supplier'; else standardRowEdit" >
+                            <tr style=" background-color: #f39696;">
+                              <td >
+                                <input class="border-none right"
+                                       (change)="r.qty = $event.target.value"
+                                       [ngModel]="r.qty"
+                                       [ngModelOptions]="{updateOn: 'blur'}"
+                                       (ngModelChange)="r.qty=$event; patchRow(r.id, r.ordersId, 'qty' ,$event, r.notes)"
+                                       type="number"
+                                       min="0" step=".01"
+                                       style="width: 65px !important; background-color: #f39696; margin: 0; height: 2rem !important; text-align: right; background-color: white;">
+                              </td>
+                            </tr>
+                            <tr class="border-none" style=" background-color: #f39696;">
+                              <td  style="padding: 4px 5px !important;" >
+                                <p style="text-align: right; color: #000;" min="0">{{r.oldFields.qty}}</p>
+                              </td>
+                            </tr>
+                          </ng-container>
+                          <ng-template #standardRowEdit>
+                            <input class="border-none right"
+                                   (change)="r.qty = $event.target.value"
+                                   [ngModel]="r.qty"
+                                   [ngModelOptions]="{updateOn: 'blur'}"
+                                   (ngModelChange)="r.qty=$event; patchRow(r.id, r.ordersId, 'qty' ,$event, r.notes)"
+                                   type="number"
+                                   style="margin: 0;  text-align: right;">
+                          </ng-template>
+                        </td>
+
+                        <td *ngIf="r.status !== 'accepted' " class="no-padding" style="padding-right: 5px !important; border-radius: 0;">
+                          <ng-container *ngIf="r.oldFields.price && r.status === 'proposed_supplier'; else standardRowEdit" >
+                            <tr style=" background-color: #f39696;">
+                              <td >
+                                <input class="border-none right"
+                                       (change)="r.price = $event.target.value"
+                                       [ngModel]="r.price | number: '.2-2'"
+                                       [ngModelOptions]="{updateOn: 'blur'}"
+                                       (ngModelChange)="r.price=$event; patchRow(r.id, r.ordersId, 'price' ,$event, r.notes)"
+                                       type="number" min="0" step=".01"
+                                       style="width: 65px !important; background-color: #f39696; margin: 0; height: 2rem !important; text-align: right; background-color: white;">
+                              </td>
+                            </tr>
+                            <tr class="border-none" style=" background-color: #f39696;">
+                              <td  style="padding: 4px 5px !important;" >
+                                <p style="text-align: right; color: #000;" min="0" step=".01">{{r.oldFields.price | number: '.2-2'}}</p>
+                              </td>
+                            </tr>
+                          </ng-container>
+                          <ng-template #standardRowEdit>
+                            <input class="border-none right"
+                                   (change)="r.price = $event.target.value"
+                                   [ngModel]="r.price | number: '.2-2'"
+                                   [ngModelOptions]="{updateOn: 'blur'}"
+                                   (ngModelChange)="r.price=$event; patchRow(r.id, r.ordersId, 'price' ,$event, r.notes)"
+                                   type="number" min="0" step=".01"
+                                   style="margin: 0;  text-align: right;">
+                          </ng-template>
+                        </td>
+
+                         <td *ngIf="r.status !== 'accepted' " class="no-padding" style="padding-right: 5px !important; border-radius: 0;">
+                          <ng-container *ngIf="r.oldFields.delivery_date && r.status === 'proposed_supplier'; else standardRowEdit" >
+                            <tr style=" background-color: #f39696;">
+                              <td >
+                                <input DmDataPicker
+                                       (change)="r.delivery_date = $event.target.value;  patchRow(r.id, r.ordersId, 'delivery_date' ,r.delivery_date, r.notes)"
+                                       [ngModel]="r.delivery_date | date: 'dd-MM-yyyy'"
+                                       (ngModelChange)="r.delivery_date=$event"
+                                       [ngModelOptions]="{updateOn: 'blur'}"
+                                       id="data_emissione"
+                                       type="text"
+                                       class="border-none datepicker validate"
+                                       style="margin: 0; height: 2rem !important; text-align: right; background-color: white;"
+                                       [ngStyle]="{color: moment(r.delivery_date).diff(moment(),'days') < 0 ? '#9e1010' : 'black' }" >
+                              </td>
+                            </tr>
+                            <tr class="border-none" style=" background-color: #f39696;">
+                              <td  style="padding: 4px 5px !important;" >
+                                <p class="text-inline" style="text-align: right; color: #000">{{r.oldFields.delivery_date | date: 'dd-MM-yyyy'}}</p>
+                              </td>
+                            </tr>
+                          </ng-container>
+                          <ng-template #standardRowEdit>
+                            <input DmDataPicker
+                                   (change)="r.delivery_date = $event.target.value;  patchRow(r.id, r.ordersId, 'delivery_date' ,r.delivery_date, r.notes)"
+                                   [ngModel]="r.delivery_date | date: 'dd-MM-yyyy'"
+                                   (ngModelChange)="r.delivery_date=$event;"
+                                   [ngModelOptions]="{updateOn: 'blur'}"
+                                   type="text"
+                                   class=" border-none datepicker validate"
+                                   style="margin: 0;"
+                                   [ngStyle]="{color: moment(r.delivery_date).diff(moment(),'days') < 0 ? '#9e1010' : 'black' }" >
+                          </ng-template>
+                         </td>
+
+                        <td *ngIf="r.status === 'accepted'" >{{r.qty}}</td>
+                        <td *ngIf="r.status === 'accepted'" min="0" step=".01" >{{r.price}}</td>
+                        <td *ngIf="r.status === 'accepted'" >{{r.delivery_date | date: 'dd-MM-yyyy'}}
+
+                      <td >
+                        <input style="margin: 0; text-overflow: ellipsis" (focus)="showNoteModal(r)" (ngModelChange)="patchRow(r.id, r.ordersId, 'notes' ,$event, r.notes)" [(ngModel)]="r.notes" [ngModelOptions]="{updateOn: 'blur'}">
+                      </td>
+                      <td class="center">
+                        <!--a *ngIf="r.attachment.length > 0" (click)="uploadModal.openModal()" class="col s12 center ">
+                          <i class="material-icons" >insert_drive_file</i>
+                        </a>
+                        <a *ngIf="r.attachment.length === 0" (click)="uploadModal.openModal()" class="col s12 center ">
+                          <i class="material-icons" >attach_file</i>
+                        </a>
+                        <div *ngIf="r.attachment.length > 0"   class="col s12 center" >
+                          <small >{{r.attachment.length}} files</small>
+                        </div-->
+                        <a  (click)="ShowAllegati('allegati', r.id)" class="col s12 center">
+                          <i class="material-icons" >attach_file</i>
+                        </a>
+                      </td>
+                      <td>
+                        <a [routerLink]="['/dashboard/suppliers', r.order.supplier.id]">{{r.order.supplier.r_sociale}}</a>
+                      </td>
+                      <td>
+                        <a DmTooltip (click)="showStorico(r.ordersId, r.id)" attr.data-tooltip="'Visualizza lo storico dell'ordine'" class="col s12 center tooltipped">
+                          <i class="material-icons black-text" >restore</i>
+                        </a>
+                        <div  class="col s12 center" >
+                          <small class="text-inline" >{{r.updatedAt | date: 'dd-MM-yyyy'}}</small>
+                        </div>
+                      </td>
+                        <td class="azioni center row">
+
+                          <a class="col s1" *ngIf="r.modificata" (click)="saveUpdate($event, r); r.modificata = false">
+                            <i class="material-icons blue-text">check</i>
+                          </a>
+
+                          <div class=" col s10 no-padding no-margin" *ngIf="r.status === 'edited_buyer'">
+                            <a class="icon-margin" (click)="updateStatusRow(r.id, 'proposed_buyer')">
+                              <i class="material-icons blue-text">send</i>
+                            </a>
+                            <a (click)="annullaModifiche()">
+                              <i class="material-icons" style="color: #9e1010">undo</i>
+                            </a>
+                          </div>
+
+                          <div class=" col s10 no-padding no-margin" *ngIf="r.status === 'edited_supplier'">
+                            <a class="icon-margin" (click)="updateStatusRow(r.id, 'accepted')">
+                              <i class="material-icons blue-text">check</i>
+                            </a>
+                            <a *ngIf="checkPermission('order:delete')" (click)="updateStatusRow(r.id, 'canceled')" >
+                              <i class="material-icons" style="color: #9e1010">delete</i>
+                            </a>
+                          </div>
+
+                          <div class=" col s10 no-padding no-margin" *ngIf="r.status === 'inserted'">
+                            <a class="icon-margin" (click)="updateStatusRow(r.id, 'proposed_buyer')">
+                              <i class="material-icons blue-text">send</i>
+                            </a>
+                            <a *ngIf="checkPermission('order:delete')" (click)="updateStatusRow(r.id, 'canceled')" >
+                              <i class="material-icons" style="color: #9e1010">delete</i>
+                            </a>
+                          </div>
+                          <div class=" col s10 no-padding no-margin" *ngIf="r.status === 'proposed_supplier'">
+                            <a class="icon-margin" (click)="updateStatusRow(r.id, 'accepted')">
+                              <i class="material-icons blue-text">check</i>
+                            </a>
+                            <a *ngIf="checkPermission('order:delete')" (click)="updateStatusRow(r.id, 'canceled')" >
+                              <i class="material-icons" style="color: #9e1010">delete</i>
+                            </a>
+                          </div>
+                          <div class=" col s10 no-padding no-margin" *ngIf="r.status === 'proposed_buyer'">
+                            <a (click)="updateStatusRow(r.id, 'canceled')" >
+                              <i class="material-icons" style="color: #9e1010">delete</i>
+                            </a>
+                          </div>
+
+                          <!--div *ngIf="r.status !== 'edited_buyer' && r.status !== 'edited_supplier'" class=" col s10 no-padding no-margin">
+                            <a  (click)="uploadModal.openModal()" attr.title="{{'Common.Tabletooltips.detail' | translate}}">
+                              <i class="material-icons blue-text">all_out</i>
+                            </a>
+
+                            <a  (click)="deleteRow(r.id, r.ordersId)" attr.title="{{'Common.Tabletooltips.remove' | translate}}">
+                              <i class="material-icons" style="color: #9e1010">clear</i>
+                            </a>
+
+                          </div-->
+
+                        </td>
+                        <td *ngIf="rowLoaders[r.id]">
+                          <div class="preloader-wrapper small active" style="max-width: 20px; max-height: 20px;">
+                            <div class="spinner-layer">
+                              <div class="circle-clipper left">
+                                <div class="circle"></div>
+                              </div><div class="gap-patch">
+                                <div class="circle"></div>
+                              </div><div class="circle-clipper right">
+                                <div class="circle"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div *ngIf="rows && rows.length <= 0 && visualizza === 'righe'" class="card-alert card purple lighten-5">
+                    <div class="card-content purple-text">
+                      <p>Nessuna righa inserita</p>
+                    </div>
+                  </div>
+                </div>
+                <!--  angolo tab
+                <DM-dropdown [classe]="'btn-floating btn-add'" [icon]="true" [iconText]="'add'" [dataTarget]="'drop-add'" >
+                   <ng-container list>
+                     <ul id='drop-add' class='dropdown-content'>
+                        <li><a href="#!"><i class="material-icons">list</i>Crea</a></li>
+                        <li><a href="#!"><i class="material-icons">filter_none</i>Importa</a></li>
+                     </ul>
+                   </ng-container>
+                </DM-dropdown>
+                -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<DM-btnAdd [titlecrea]= new [titleimport]= importa></DM-btnAdd>
+
+<div DMmodal id="AllegatiModal" class="modal  modal-fixed-footer">
+  <div class="modal-content">
+    <div class="row">
+      <h4 class="left">Allegati Riga</h4>
+      <button  (click)="ShowModalUpload()" class="right waves-effect btn-flat btn-color-crea">Aggiungi File</button>
+    </div>
+    <table *ngIf="file && file.length > 0" class="row-border hover striped s12 m12 l12">
+      <thead>
+      <tr>
+        <th style="max-width: 150px !important;">Nome File</th>
+        <th>Azioni</th>
+      </tr>
+
+      <tbody *ngFor="let f of file; let i=index">
+      <tr>
+        <td>{{f.name}}
+          <a (click)="f.ShowDescription = !f.ShowDescription; Showdescription()" class="actions" >
+            <i class="tiny material-icons blue-text">message</i>
+          </a>
+          <br>
+          <small>Creata da Francesco Zampetti il 19/08/2019</small>
+        </td>
+        <td>
+          <a DmTooltip class="mr-3 tooltiped"  data-tooltip="Anteprima" attr.title="{{'Common.Tabletooltips.remove' | translate}}" (click)="discardFile(i)">
+            <i class=" material-icons ">search</i>
+          </a>
+          <a DmTooltip class="mr-3 tooltiped" data-tooltip="Modifica" (click)="ShowModalUpload(f.name)">
+            <i class="material-icons blue-text">edit</i>
+          </a>
+          <a DmTooltip class="mr-3 tooltiped"  data-tooltip="Storico revisioni"  (click)="ShowAllegati('revisioni')" >
+            <i  class="material-icons blue-text">restore</i>
+          </a>
+          <a DmTooltip class="mr-3 tooltiped"  data-tooltip="Download file">
+            <i class="material-icons blue-text">cloud_download</i>
+          </a>
+          <a DmTooltip class="mr-3 tooltiped"  data-tooltip="Carica revisione" (click)="ShowModalUpload(f.name)" >
+            <i  class="material-icons blue-text">cloud_upload</i>
+          </a>
+          <a DmTooltip attr.title="{{'Common.Tabletooltips.remove' | translate}}"  data-tooltip="Elimina allegato" (click)="discardFile(i)">
+            <i class="material-icons red-text">delete</i>
+          </a>
+        </td>
+      </tr>
+      <tr *ngIf="f.ShowDescription === true">
+        <td colspan="2">
+          <div class="mt-5 input-field col s12">
+            <textarea disabled id="textareaDescription" [(ngModel)]="commentoRev" class="materialize-textarea"></textarea>
+            <label class="active" for="textareaDescription">Annotazione</label>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div *ngIf="file && file.length <= 0" class="card-alert card purple lighten-5">
+      <div class="card-content purple-text">
+        <p>Nessun allegato per questa righa</p>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="row">
+      <div class="right">
+        <button class="modal-close waves-effect waves-green btn-flat ">chiudi</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div DMmodal id="UploadModal" class="modal  modal-fixed-footer">
+  <div class="modal-content">
+    <h4 class="mb-4">Allega file</h4>
+    <div class="row">
+    <ngx-dropzone #dropzone id="input-file-now-custom-2 col s12" class="custom-dropzone"
+                  (change)="onFilesAdded($event, 'add')"
+                  >
+    </ngx-dropzone>
+      <div class="mt-5 input-field col s12">
+        <input *ngIf="filename.length > 0" disabled  id="filename" [(ngModel)]="filename" class="materialize-textarea">
+        <label  *ngIf="filename.length > 0" class="active" for="filename">Nome</label>
+      </div>
+      <div class="mt-5 input-field col s12">
+        <textarea [disabled]="file.length > 1" id="textarea2" [(ngModel)]="commentoRev" class="materialize-textarea"></textarea>
+        <label for="textarea2">Annotazione</label>
+      </div>
+      <label>
+        <input type="checkbox" (click)="checkRevisione = !checkRevisione" [checked]="checkRevisione"/>
+        <span style="line-height: 35px !important;">Se esiste già un file, usa automaticamente il controllo delle versioni</span>
+      </label>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="row">
+      <div class="right">
+        <button class="modal-close waves-effect waves-green btn-flat ">Chiudi</button>
+        <button (click)="SaveFile(); dropzone.reset()" class="modal-close waves-effect waves-green btn-flat ">Salva</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div DMmodal id="StoricoModal" class="modal  modal-fixed-footer">
+  <div class="modal-content">
+    <h4>Storico Riga</h4>
+    <div  *ngIf="refresh === true && reverseOrdersRow && reverseOrdersRow.length > 0" class="col s12">
+      <div class="container">
+        <div class="section section-data-tables">
+          <div class="row">
+            <table datatable [dtOptions]="dtOptionsLogTable" class="row-border hover striped s12 m12 l12">
+              <thead>
+              <tr></tr>
+                  <tr>
+                    <th [translate]="'Orders.Negotiation.History.date'">Data</th>
+                    <th [translate]="'Orders.Negotiation.History.status'">Stato</th>
+                    <th [translate]="'Orders.Negotiation.History.price'">Prezzo</th>
+                    <th [translate]="'Orders.Negotiation.History.quantity'">Qtà</th>
+                    <th [translate]="'Orders.Negotiation.History.deliveryDate'">Consegna</th>
+                    <th>UserName</th>
+                    <th [translate]="'Orders.Negotiation.History.notes'">Note</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let r of reverseOrdersRow">
+                  <td>{{ r.date | date: 'dd-MM-yyyy'}}</td>
+                  <td [ngClass]="RowColor(r.data.status)">{{ r.data.status | status |translate }}</td>
+
+                  <td *ngIf="!r.data.oldFields.price">{{ r.data.price | number: '1.2-2' }}</td>
+                  <td *ngIf="r.data.oldFields.price" [ngClass]="RowColor(r.data.status)">{{ r.data.price | number: '1.2-2' }}</td>
+                  <td *ngIf="!r.data.oldFields.price && r.data.status === 'Confirmed'" [ngClass]="RowColor(r.data.status)">{{ r.data.price | number: '1.2-2' }}</td>
+
+                  <td *ngIf="!r.data.oldFields.qty">{{ r.data.qty}}</td>
+                  <td *ngIf="r.data.oldFields.qty" [ngClass]="RowColor(r.data.status)">{{ r.data.qty}}</td>
+                  <td *ngIf="!r.data.oldFields.qty && r.data.status === 'Confirmed'" [ngClass]="RowColor(r.data.status)">{{ r.data.qty }}</td>
+
+                  <td *ngIf="!r.data.oldFields.delivery_date">{{ r.data.delivery_date | date: 'dd-MM-yyyy' }}</td>
+                  <td *ngIf="r.data.oldFields.delivery_date" [ngClass]="RowColor(r.data.status)">{{ r.data.delivery_date | date: 'dd-MM-yyyy' }}</td>
+                  <td *ngIf="!r.data.oldFields.delivery_date&& r.data.status === 'Confirmed'" [ngClass]="RowColor(r.data.status)">{{ r.data.delivery_date | date: 'dd-MM-yyyy' }}</td>
+
+                  <td>UserName</td>
+                  <td>{{ r.data.notes }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-close waves-effect waves-green btn-flat ">Chiudi</a>
+  </div>
+</div>
+
+
+<div DMmodal id="NoteModal" class="modal">
+  <div class="modal-content">
+    <i class="material-icons dp48 right" (click)="dismissNote()" >close</i>
+    <h4>Note</h4>
+    <p>Inserisci una nota per il fornitore</p>
+    <div class="col s12 mb-6">
+      <input class="right" [(ngModel)]="note" (keyup.enter)="saveNote()">
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a (click)='saveNote()' class="modal-close waves-effect waves-green btn-flat ">Salva</a>
+  </div>
+</div>
+
+
+<div DMmodal id="DetailOrderModal" class="modal  modal-fixed-footer">
+  <div class="modal-content">
+    <h4>{{CodeOrderDetail}}</h4>
+    <form [formGroup]="OrderForm">
+      <div class="row">
+      <div class="input-field col s6 l6 mb-6" >
+        <input id="fornitore" class="right" formControlName="fornitore">
+        <label for="fornitore" class="active">Fornitore</label>
+      </div>
+      <div class="input-field col s6 l6 mb-6" >
+        <input id="orderType" class="right" formControlName="orderType">
+        <label for="orderType" class="active">Tipo</label>
+      </div>
+      <div class="input-field col s6 l6 mb-6" >
+        <input id="delivery_address" class="right" formControlName="delivery_address">
+        <label for="delivery_address" class="active">Indirizzo di consegna</label>
+      </div>
+      <div class="input-field col s6 l6 mb-6" >
+        <input id="emit_date" class="right" formControlName="emit_date">
+        <label for="emit_date" class="active">Data Emissione</label>
+      </div>
+      <div *ngIf="terminiresa" class="input-field col l6 s6">
+        <select disabled DmSelect formControlName="delivery_term">
+          <option></option>
+          <option *ngFor="let t of terminiresa" value="{{t.id}}" >{{t.value}}</option>
+        </select>
+        <label>Termini di resa</label>
+      </div>
+      <div  *ngIf="terminipagamento" class="input-field col l6 s6">
+        <select disabled DmSelect formControlName="payment_term">
+          <option></option>
+          <option *ngFor="let t of terminipagamento" value="{{t.id}}" >{{t.value}}</option>
+        </select>
+        <label>Termini di pagamento</label>
+      </div>
+      <div class="input-field col s6 l6 mb-6" >
+        <input id="packaging" class="right" formControlName="packaging">
+        <label for="packaging" class="active">packaging</label>
+      </div>
+      <div class="input-field col s6 l6 mb-6" >
+        <input id="currency" class="right" formControlName="currency">
+        <label for="currency" class="active">Valuta</label>
+      </div>
+        <h5>Referenti</h5>
+        <div class="input-field col s6 l6 mb-6" >
+          <input id="referentname" class="right" formControlName="referent_name">
+          <label for="referentname" class="active">Nome</label>
+        </div>
+        <div class="input-field col s6 l6 mb-6" >
+          <input id="referent_surname" class="right" formControlName="referent_surname">
+          <label for="referent_surname" class="active">Cognome</label>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-close waves-effect waves-green btn-flat ">Chiudi</a>
+  </div>
+</div>
+
+
+
+
+
+

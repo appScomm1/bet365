@@ -1,0 +1,19 @@
+.content-wrapper-before {
+  height: 86px !important;
+}
+
+@media only screen and (min-width: 601px) {
+  .navbar-fixed {
+    height: 13px !important;
+  }
+}
+#breadcrumbs-wrapper {
+  position: sticky !important;
+  top: 50px !important;
+  background: linear-gradient(45deg, #303f9f, #7b1fa2) !important;
+  z-index: 5;
+  height: 43px;
+  color: white;
+  padding: 0;
+}
+

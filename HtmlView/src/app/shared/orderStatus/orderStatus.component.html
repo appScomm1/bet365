@@ -1,0 +1,44 @@
+
+<div *ngIf="status === 'Draft'" class="text-right col s5 m4 l4 right">
+  <span class="breadcrumb selected" [translate]="'breadcrumbs.orders.status.draft'">Bozza</span>
+  <span class="breadcrumb"[translate]="'breadcrumbs.orders.status.opened'">Aperto</span>
+  <span class="breadcrumb" [translate]="'breadcrumbs.orders.status.sent'">Inviato</span>
+  <span class="breadcrumb" [translate]="'breadcrumbs.orders.status.inNegotiation'">In Trattativa</span>
+  <span [translate]="'breadcrumbs.orders.status.confirmed'">Confermato</span>
+</div>
+
+
+<div *ngIf="status === 'Opened'" class="text-right col s5 m4 l4 right">
+  <span class="breadcrumb" [translate]="'breadcrumbs.orders.status.draft'">Bozza</span>
+  <span class="breadcrumb selected" [translate]="'breadcrumbs.orders.status.opened'">Aperto</span>
+  <span class="breadcrumb" [translate]="'breadcrumbs.orders.status.sent'">Inviato</span>
+  <span class="breadcrumb" [translate]="'breadcrumbs.orders.status.inNegotiation'">In Trattativa</span>
+  <span [translate]="'breadcrumbs.orders.status.confirmed'">Confermato</span>
+</div>
+
+
+<div *ngIf="status === 'Sent'" class="text-right col s5 m4 l4 right">
+  <span  class="breadcrumb" [translate]="'breadcrumbs.orders.status.draft'">Bozza</span>
+  <span  class="breadcrumb" [translate]="'breadcrumbs.orders.status.opened'">Aperto</span>
+  <span  class="breadcrumb selected" [translate]="'breadcrumbs.orders.status.sent'">Inviato</span>
+  <span  class="breadcrumb" [translate]="'breadcrumbs.orders.status.inNegotiation'">In Trattativa</span>
+  <span  [translate]="'breadcrumbs.orders.status.confirmed'">Confermato</span>
+</div>
+
+
+<div *ngIf="status === 'Negotiating'" class="text-right col s5 m4 l4 right">
+  <span class="breadcrumb" [translate]="'breadcrumbs.orders.status.draft'">Bozza</span>
+  <span class="breadcrumb" [translate]="'breadcrumbs.orders.status.opened'">Aperto</span>
+  <span class="breadcrumb" [translate]="'breadcrumbs.orders.status.sent'">Inviato</span>
+  <span class="breadcrumb selected" [translate]="'breadcrumbs.orders.status.inNegotiation'">In Trattativa</span>
+  <span [translate]="'breadcrumbs.orders.status.confirmed'">Confermato</span>
+</div>
+
+
+<div *ngIf="status === 'Confirmed'" class="text-right col s5 m4 l4 right">
+  <span class="breadcrumb" [translate]="'breadcrumbs.orders.status.draft'">Bozza</span>
+  <span class="breadcrumb" [translate]="'breadcrumbs.orders.status.opened'">Aperto</span>
+  <span class="breadcrumb" [translate]="'breadcrumbs.orders.status.sent'">Inviato</span>
+  <span class="breadcrumb" [translate]="'breadcrumbs.orders.status.inNegotiation'">In Trattativa</span>
+  <span class="selected" [translate]="'breadcrumbs.orders.status.confirmed'">Confermato</span>
+</div>

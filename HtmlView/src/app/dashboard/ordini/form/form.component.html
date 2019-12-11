@@ -1,0 +1,447 @@
+<div class="row">
+  <div class="content-wrapper-before gradient-45deg-indigo-purple" id="breadcrumbs-wrapper">
+    <div style="padding: 0px 1.5rem !important;" class="col s12">
+      <div class="card form-actions-header" style="margin-bottom: 10px;">
+        <div class="card-content overflow">
+          <div class="col s12 m5 l5">
+            <button class="btn gradient-45deg-indigo-purple waves-effect waves-light tooltipped left" type="submit"
+                    data-position="bottom" attr.data-tooltip="{{'Common.Card_buttons.save' | translate}}" name="action" (click)="SaveOrdine()">
+              <span class="hide-on-small-only" [translate]="'Common.Card_buttons.save'">Salva </span>
+              <i class="material-icons right">save</i>
+            </button>
+
+            <button class="waves-effect btn-flat tooltipped left" type="submit" style="margin-left: 10px !important;"
+                    data-position="bottom" attr.data-tooltip="{{'Annulla' | translate}}" name="action" (click)="clear()">
+              <span class="hide-on-small-only" [translate]="'Orders.Negotiation.Details.cancel'">Annulla </span>
+              <i class="material-icons right">undo</i>
+            </button>
+          </div>
+
+          <div class="col s12 m5 l5">
+            <a class='mb-1 mr-3 dropdown-trigger waves-effect' [translate] = "'Orders.Negotiation.Details.print'">Stampa<i class="material-icons right">expand_more</i></a>
+
+            <a class='mb-1 dropdown-trigger waves-effect' [translate]="'Orders.Negotiation.Details.actions'">Azioni<i class="material-icons right">expand_more</i></a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div style="padding: 0px 1.5rem !important;" class="col s12">
+      <div class="card form-actions-header" style="margin-top: 0; margin-bottom: 10px;">
+        <div class="card-content overflow" style="padding-top: 12px !important; padding-bottom: 12px !important;">
+          <div class="col s12 m12 l6">
+            <button [ngClass]="disableButtons(stato)" class="btn gradient-45deg-indigo-purple waves-effect waves-light tooltipped left bottoni" type="submit"
+                    data-position="bottom" attr.data-tooltip="{{'Invia' | translate}}" name="action" (click)="sendOrdine()">
+              <span class="hide-on-small-only" [translate]="'Orders.New.send'">Invia </span>
+              <i class="material-icons right">send</i>
+            </button>
+
+
+            <button [ngClass]="setPrint()" class="btn gradient-45deg-indigo-purple waves-effect waves-light tooltipped left stampa" type="submit" style="margin-left: 10px !important; margin-right: 10px !important;"
+                    data-position="bottom" attr.data-tooltip="{{'Stampa' | translate}}" name="action" (click)="printOrdine()">
+              <span class="hide-on-small-only " [translate]="'Orders.New.print'">Stampa </span>
+              <i class="material-icons right">print</i>
+            </button>
+
+            <button [ngClass]="disableButtons(stato)" class="btn gradient-45deg-indigo-purple waves-effect waves-light tooltipped left bottoni" type="submit" style="margin-right: 10px !important;"
+                    data-position="bottom" attr.data-tooltip="{{'Annulla' | translate}}" name="action" (click)="deleteOrder()">
+              <span class="hide-on-small-only" [translate]="'Orders.New.cancel'">Annulla </span>
+              <i class="material-icons right">delete</i>
+            </button>
+          </div>
+          <DM-orderstatus style="font-weight: bolder; line-height: 2;" [status]="stato"></DM-orderstatus>
+        </div>
+      </div>
+    </div>
+
+  <div class="col s12">
+    <div class="container">
+      <div class="seaction">
+
+
+        <!--Basic Form-->
+
+        <!-- jQuery Plugin Initialization -->
+        <form [formGroup]="ordiniform">
+        <div class="row">
+          <div class="col s12 m9 l12">
+            <div class="card card card-default scrollspy" style="margin-top: 0px;">
+              <div class="card-content padding-card-content" >
+                <h4 class="card-title" >{{intestazione}}</h4>
+                <div class="card-content padding-card-content">
+                  <div id="infordine" class="active">
+                    <div class="row">
+                      <div  class="input-field col s6" style="margin-bottom: 0; margin-top: 0;">
+                        <DM-autocomplete #autocomplete historyIdentifier="Fornitori" *ngIf="dettaglio && order && order.suppliersId && prova.length > 0" [value]="order.suppliersId" [data]="prova" [link]="'/dashboard/suppliers/new'"  [label]="translations.fornitore" (Valore)="Fornitore($event)" (Modal)="showModal($event)"></DM-autocomplete>
+                        <DM-autocomplete #supplier historyIdentifier="Fornitori" *ngIf="!dettaglio" [data]="prova" [link]="'/dashboard/suppliers/new'"  [label]="translations.fornitore" (Valore)="Fornitore($event)" (Modal)="showModal($event)"></DM-autocomplete>
+                      </div>
+
+                      <div class="input-field col s6">
+
+                          <input #date DmDataPicker  id="data_emissione" (change)="DataPicker()" type="text" class="datepicker validate" formControlName="emit_date">
+                          <!-- input #dataemissione id="data_emissione"type="text" class="datepicker validate" formControlName="data_emissione"-->
+
+
+                          <label class="active" [ngClass]="ActivateLabel(dettaglio)" for="data_emissione" style="top: 0px;" [translate]="'Orders.New.Tabs.Ordertab.issue_date'">Data emissione ordine</label>
+
+                      </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6">
+                          <select DmSelect formControlName="delivery_address">
+                            <option></option>
+                            <option *ngFor="let indirizzo of addresses" value="{{indirizzo.via}},  {{indirizzo.cap}} {{indirizzo.citta}} {{indirizzo.provincia}},  {{indirizzo.paese}}">{{indirizzo.description}}: {{indirizzo.via}},  {{indirizzo.cap}} {{indirizzo.citta}} {{indirizzo.provincia}},  {{indirizzo.paese}}</option>
+                            <!--option *ngFor="let t of addresses" value="{{t.id}}" >{{t.value}}</option-->
+                          </select>
+                          <label  [translate]="'Orders.New.Tabs.Ordertab.address'">Indirizzo consegna</label>
+                        </div>
+
+                      <div *ngIf="type" class="input-field col s6">
+                        <select DmSelect formControlName="orderType">
+                          <option></option>
+                          <option *ngFor="let t of type" value="{{t.value}}" >{{t.value}}</option>
+                        </select>
+                        <label>Tipo</label>
+                      </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div *ngIf="terminiConsegna" class="input-field col s6">
+                          <select DmSelect formControlName="delivery_term">
+                            <option></option>
+                            <option *ngFor="let t of terminiConsegna" value="{{t.id}}" >{{t.value}}</option>
+                          </select>
+                          <label [translate]="'Orders.New.common.deliveryTerms'">Termini di consegna</label>
+                        </div>
+
+                        <div  *ngIf="terminiPagamento" class="input-field col s6">
+                          <select DmSelect formControlName="payment_term">
+                            <option></option>
+                            <option *ngFor="let t of terminiPagamento" value="{{t.id}}" >{{t.value}}</option>
+                          </select>
+                          <label [translate]="'Orders.New.common.paymentTerms'">Termini pagamento</label>
+                        </div>
+                      </div>
+                    <div class="row">
+                    <DM-autocomplete #Currency class="col s6" *ngIf="dettaglio" [value]="order.currency" historyIdentifier="currency"  [value]="currency" [data]="currencies" [link]="'/dashboard/suppliers/new'" [label]="translations.valuta" (Valore)="Termini($event, 'currency')"></DM-autocomplete>
+                    <DM-autocomplete  #Currency class="col s6" *ngIf="!dettaglio" historyIdentifier="currency"  [value]="currency" [data]="currencies" [link]="'/dashboard/suppliers/new'" [label]="translations.valuta" (Valore)="Termini($event, 'currency')"></DM-autocomplete>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+        <div class="row">
+          <div class="col s12 m9 l12">
+            <div class="card card card-default scrollspy">
+              <div class="card-content" [DmheightTab]="50">
+                <div class="card-tabs">
+                  <ul class="tabs tabs tabs-fixed-width">
+                    <li class="tab">
+                      <a href="#tabrighe" [translate]="'Orders.New.Tabs.orderRows.title'">Righe Ordine</a>
+                    </li>
+                    <li class="tab">
+                        <a href="#tabAllegati" [translate]="'Orders.New.Tabs.attachedDocuments.title'">Documenti Allegati</a>
+                      </li>
+                    <li class="tab">
+                      <a href="#altreinfo" [translate]="'Orders.New.Tabs.Tabinfo.title'">Altre informazioni</a>
+                    </li>
+                    <li class="indicator"></li>
+                  </ul>
+                </div>
+
+
+                  <div (resized)="onResize($event)" class="height-tab" id="tabrighe">
+                    <div class="card-content">
+                      <ng-container *ngIf="!dettaglio; else TableDetail">
+                        <DM-tablerow [idFornitore]="fornitoreId"
+                                     (DeleteOrdine)="deleteOrdine($event)"
+                                     [ordineId]="1"
+                                     [data]="data"
+                                     [addordine]="addordine"
+                                     (FunzioneDiPut)="AddOrdine()"
+                                     (AddOrdine)="AddOrdine()"></DM-tablerow>
+                      </ng-container>
+                      <ng-template #TableDetail>
+                        <DM-tablerow
+                          [disable]="false"
+                          (DeleteOrdine)="deleteOrdine($event)"
+                          (AddOrdine)="AddOrdine()"
+                          [addordine]="addordine"
+                          [data]="rows"
+                          (PatchRaw)="patchRow($event)"
+                          (GetNewData)="getRowsData()"></DM-tablerow>
+                      </ng-template>
+
+                  </div>
+                </div>
+
+
+                <div (resized)="onResize($event)" class="height-tab" id="tabAllegati">
+                    <div class="card-content">
+                        <div class="row">
+                            <h4 class="left" [translate]="'Orders.New.Tabs.attachedDocuments.tabtitle'">Allegati Riga</h4>
+                            <button  (click)="ShowModalUpload()" class="right waves-effect btn-flat btn-color-crea" [translate]="'Orders.New.Tabs.attachedDocuments.addFile'">Aggiungi File</button>
+                          </div>
+                          <table *ngIf="file && file.length > 0" class="row-border mt-2 hover striped s12 m12 l12">
+                            <thead>
+                            <tr>
+                              <th style="max-width: 150px !important;" [translate]="'Orders.New.Tabs.attachedDocuments.fileName'">Nome File</th>
+                              <th [translate]="'Orders.New.Tabs.attachedDocuments.actions'">Azioni</th>
+                            </tr>
+
+                            <tbody *ngFor="let f of file; let i=index">
+                            <tr>
+                              <td>{{f.name}}
+                                <a (click)="f.ShowDescription = !f.ShowDescription; Showdescription()" class="actions" >
+                                  <i class="tiny material-icons blue-text">message</i>
+                                </a>
+                                <br>
+                                <small>Creata da Francesco Zampetti il 19/08/2019</small>
+                              </td>
+                              <td>
+                                <a DmTooltip class="mr-3 tooltiped"  data-tooltip="Anteprima" attr.title="{{'Common.Tabletooltips.remove' | translate}}" (click)="discardFile(i)">
+                                  <i class=" material-icons ">search</i>
+                                </a>
+                                <a DmTooltip class="mr-3 tooltiped" data-tooltip="Modifica" (click)="ShowModalUpload(f.name)">
+                                  <i class="material-icons blue-text">edit</i>
+                                </a>
+                                <a DmTooltip class="mr-3 tooltiped"  data-tooltip="Storico revisioni"  (click)="ShowAllegati('revisioni')" >
+                                  <i  class="material-icons blue-text">restore</i>
+                                </a>
+                                <a DmTooltip class="mr-3 tooltiped"  data-tooltip="Download file">
+                                  <i class="material-icons blue-text">cloud_download</i>
+                                </a>
+                                <a DmTooltip class="mr-3 tooltiped"  data-tooltip="Carica revisione" (click)="ShowModalUpload(f.name)" >
+                                  <i  class="material-icons blue-text">cloud_upload</i>
+                                </a>
+                                <a DmTooltip attr.title="{{'Common.Tabletooltips.remove' | translate}}"  data-tooltip="Elimina allegato" (click)="discardFile(i)">
+                                  <i class="material-icons red-text">delete</i>
+                                </a>
+                              </td>
+                            </tr>
+                            <tr *ngIf="f.ShowDescription === true">
+                              <td colspan="2">
+                                <div class="mt-5 input-field col s12">
+                                  <textarea disabled id="textareaDescription" [(ngModel)]="commentoRev" class="materialize-textarea"></textarea>
+                                  <label class="active" for="textareaDescription">Annotazione</label>
+                                </div>
+                              </td>
+                            </tr>
+                            </tbody>
+                          </table>
+                          <div *ngIf="file && file.length <= 0" class="card-alert card purple lighten-5">
+                              <div class="card-content purple-text">
+                                <p [translate]="'Orders.New.Tabs.attachedDocuments.Noattachments'">Nessun allegato per questa righa</p>
+                              </div>
+                            </div>
+                  </div>
+                </div>
+
+
+                  <div (resized)="onResize($event)" class="height-tab" id="altreinfo">
+                    <div class="card-content">
+                    <div class="row">
+                      <form [formGroup]="ordiniform">
+                        <div class="input-field col s6">
+
+                          <select class="referenti" DmSelect formControlName="referentsId" disabled>
+                            <option value="" disabled selected [translate]="'Orders.New.common.referent'">Referente</option>
+                            <ng-container *ngIf="referenti[supplierId]">
+                              <option *ngFor="let referente of referenti[supplierId].referents" [value]="referente.id">{{referente.last_name}} {{referente.first_name}}</option>
+                            </ng-container>
+                          </select>
+                        </div>
+                        <div class="input-field col s6">
+                          <input id="imballo" type="text" class="validate" formControlName="packaging">
+                          <label for="imballo" [translate]="'Orders.New.Tabs.Tabinfo.packaging'" style="top: 0px;"> Imballaggio</label>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="dettaglio" style="padding: 0px 1.5rem !important;" class="col s12">
+  <div *ngIf="dettaglio" id="basic-tabss" class="card card card-default scrollspy">
+    <div class="card-content pt-5 pr-5 pb-5 pl-5">
+      <div class="invoce-no">
+        <p><span class="text-uppercase strong" [translate]="'Orders.Negotiation.History.order'">Ordine No.</span> {{orderid}}/{{ordiniform.controls.emit_date.value.substring(0, 4)}}</p>
+        <p><span class="text-uppercase strong" [translate]="'Orders.Negotiation.History.date'">Data ordine</span> {{ordiniform.controls.emit_date.value | date: 'dd-MM-yyyy' }}</p>
+      </div>
+      <h4 class="card-title" [translate]="'Orders.Negotiation.History.title'">Storico</h4>
+      <div class="timeline">
+        <div *ngFor="let r of reverseOrders" class="timeline-event">
+          <div class="timeline-content">
+            <p>{{r.message}}</p>
+          </div>
+          <div *ngIf="r.messagekey === 'row.created' || r.messagekey === 'orders.created' " class="timeline-badge light-blue lighten-2 white-text"><i class="material-icons">add</i></div>
+          <div *ngIf="r.messagekey === 'row.statusChanged' || r.messagekey === 'row.updated' || r.messagekey === 'orders.updated'" class="timeline-badge light-blue lighten-2 white-text"><i class="material-icons">edit</i></div>
+          <div *ngIf="r.messagekey === 'order.sent'" class="timeline-badge green white-text"><i class="material-icons">add_shopping_cart</i></div>
+          <div *ngIf="r.messagekey === 'row.deleted' || r.messagekey === 'orders.deleted'" class="timeline-badge light-blue lighten-2 white-text"><i class="material-icons">delete</i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<div DMmodal id="modalFornitore" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4>Inserimento fornitore</h4>
+    <div id="infofornitore" class="active">
+      <form [formGroup]="fornitoriform">
+        <div class="row">
+          <div class="input-field col s6" *ngIf="!fornitoriform.controls.r_sociale.value">
+            <input [ngClass]="validateFormControl(fornitoriform.get('r_sociale'), modificata)" id="fornitore" type="text" class="validate" formControlName="r_sociale">
+            <label  for="fornitore" [translate]="'Suppliers.New.Tabs.Suppliertab.supplier'" style="top: 0;">Nome attività</label>
+          </div>
+          <div class="input-field col s6" *ngIf="fornitoriform.controls.r_sociale.value">
+            <input [ngClass]="validateFormControl(fornitoriform.get('r_sociale'), modificata)" id="fornitore" type="text" class="validate" formControlName="r_sociale">
+            <label  for="fornitore" [ngClass]="'active'" [translate]="'Suppliers.New.Tabs.Suppliertab.supplier'" style="top: 0;">Nome attività</label>
+          </div>
+          <div class="input-field col s6">
+            <input [ngClass]="validateFormControl(fornitoriform.get('piva'), modificata)" id="piva" type="text" class="validate" formControlName="piva" minlength="11" maxlength="11">
+            <label  for="piva" [translate]="'Suppliers.New.Tabs.Suppliertab.piva'" style="top: 0;">P.IVA</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <input [ngClass]="validateFormControl(fornitoriform.get('indirizzo_consegna'), modificata)" id="indirizzo_consegna" type="text" class="validate" formControlName="indirizzo_consegna">
+            <label  for="indirizzo_consegna" [translate]="'Suppliers.New.Tabs.Suppliertab.address'" style="top: 0;">Indirizzo Consegna</label>
+          </div>
+          <div class="input-field col s6" style="margin-top: 2px;">
+            <DM-autocomplete historyIdentifier="currency"  [data]="currencies" [link]="'/dashboard/suppliers/new'" [label]="'Valuta'" (Valore)="Termini($event, 'currency supplier')"></DM-autocomplete>
+          </div>
+        </div>
+        <h6 [translate]="'Suppliers.New.Tabs.Suppliertab.contacts'">Contatti</h6>
+        <div class="row">
+          <div class="input-field col s6">
+            <i class="material-icons prefix">phone</i>
+            <input [ngClass]="validateFormControl(fornitoriform.get('tel'), modificata)" #tel id="telephone" type="text" class="validate" formControlName="tel">
+            <label  for="telephone" [translate]="'Suppliers.New.Tabs.Suppliertab.tel'" style="top: 0;">Telefono</label>
+          </div>
+
+          <div class="input-field col s6">
+            <i class="material-icons prefix">email</i>
+            <input [ngClass]="validateFormControl(fornitoriform.get('email'), modificata)" id="email" type="email" class="validate" formControlName="email">
+            <label  for="email" data-error="wrong" data-success="right" [translate]="'Suppliers.New.Tabs.Suppliertab.email'" style="top: 0;">Email</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <i class="material-icons prefix">public</i>
+            <input [ngClass]="validateFormControl(fornitoriform.get('website'), modificata)" id="website" type="text" class="validate" formControlName="website">
+            <label  for="website"  style="top: 0;">Sito web</label>
+          </div>
+        </div>
+        <h6 [translate]="''">Termini ordine</h6>
+        <div class="row">
+          <div *ngIf="terminiresa" class="input-field col s6">
+            <select DmSelect [ngClass]="validateFormControl(fornitoriform.get('delivery_term'), modificata)" formControlName="delivery_term">
+              <option></option>
+              <option *ngFor="let t of terminiresa" value="{{t.id}}" >{{t.value}}</option>
+            </select>
+            <label>Termini di consegna</label>
+          </div>
+
+          <div  *ngIf="terminipagamento" class="input-field col s6">
+            <select DmSelect [ngClass]="validateFormControl(fornitoriform.get('payment_term'), modificata)" formControlName="payment_term">
+              <option></option>
+              <option *ngFor="let t of terminipagamento" value="{{t.id}}" >{{t.value}}</option>
+            </select>
+            <label>Termini pagamento</label>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a (click)="SaveFornitore()" class="modal-action waves-effect waves-green btn-flat ">Salva</a>
+  </div>
+</div>
+
+<div DMmodal id="fornitoriModal" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4>Lista dei fornitori</h4>
+    <div *ngIf="refresh === true && listafornitori && listafornitori.length > 0" class="col s12">
+      <div class="container">
+        <div class="section section-data-tables">
+          <div class="row">
+            <table datatable [dtOptions]="dtOptions" id="tableProdotti" class="row-border hover striped s12 m12 l12">
+              <thead>
+              <tr>
+              </tr>
+              <tr>
+                <th >Nome fornitore</th>
+                <th >P.IVA</th>
+                <th >Telefono</th>
+                <th >Email</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let f of listafornitori">
+                <td>{{ f.r_sociale}}</td>
+                <td>{{ f.piva }}</td>
+                <td>{{ f.tel }}</td>
+                <td>{{ f.email }}</td>
+              </tr>
+              </tbody>
+            </table>
+            <div *ngIf="listafornitori && listafornitori.length <= 0" class="card-alert card purple lighten-5">
+              <div class="card-content purple-text">
+                <p>Nessun fornitore inserito</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div DMmodal id="ModalUpAllegati" class="modal  modal-fixed-footer">
+  <div class="modal-content">
+    <h4 class="mb-4">Allega file</h4>
+    <div class="row">
+      <ngx-dropzone #dropzone id="input-file-now-custom-2 col s12" class="custom-dropzone"
+                    (filesAdded)="onFilesAdded($event, 'add')"
+                    >
+      </ngx-dropzone>
+      <div class="mt-5 input-field col s12">
+        <input *ngIf="filename.length > 0" disabled  id="filename" [(ngModel)]="filename" class="materialize-textarea">
+        <label  *ngIf="filename.length > 0" class="active" for="filename">Nome</label>
+      </div>
+      <div class="mt-5 input-field col s12">
+        <textarea [disabled]="file.length > 1" id="textarea2" [(ngModel)]="commentoRev" class="materialize-textarea"></textarea>
+        <label for="textarea2" style="top: 0px;">Annotazione</label>
+      </div>
+      <label>
+        <input type="checkbox" (click)="checkRevisione = !checkRevisione" [checked]="checkRevisione"/>
+        <span style="line-height: 35px !important;">Se esiste già un file, usa automaticamente il controllo delle versioni</span>
+      </label>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="row">
+      <div class="right">
+        <button class="modal-close waves-effect waves-green btn-flat ">Chiudi</button>
+        <button (click)="SaveFile(); dropzone.reset()" class="modal-close waves-effect waves-green btn-flat ">Salva</button>
+      </div>
+    </div>
+  </div>
+</div>
+

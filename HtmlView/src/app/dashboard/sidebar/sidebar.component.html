@@ -1,0 +1,58 @@
+<aside class="sidenav-main nav-expanded nav-collapsible sidenav-light sidenav-active-rounded nav-collapsed">
+  <div class="brand-sidebar" style="overflow: hidden">
+    <h1 class="logo-wrapper"><a class="brand-logo darken-1" href="index.html"><img
+          src="assets/images/logo/materialize-logo-color.png" alt="materialize logo"><span
+          class="logo-text hide-on-med-and-down">Materialize</span></a>
+          <a class="menu-title navbar-toggler">
+            <i style="cursor: pointer;" class="material-icons">radio_button_unchecked</i></a></h1>
+  </div>
+  <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow ps ps--active-y"
+    id="slide-out" data-menu="menu-navigation" data-collapsible="menu-accordion" style="transform: translateX(0px);">
+    <li class="navigation-header"><a class="navigation-header-text" [translate]="'Sidebar.Menu.title'">Menu principale</a><i
+        class="navigation-header-icon material-icons">more_horiz</i>
+    </li>
+    <li class="bold " *ngIf="user && checkPermission('statistics')"><a class="waves-effect waves-cyan" routerLink="/dashboard/statistics" routerLinkActive="active"><i
+          class="material-icons">graphic_eq</i><span class="menu-title" [translate]="'Sidebar.Menu.statistics'">Statistiche</span></a>
+    </li>
+    <li class="bold " *ngIf="user && checkPermission('suppliers:read')"><a class="waves-effect waves-cyan" routerLink="/dashboard/suppliers" routerLinkActive="active"><i
+          class="material-icons">local_shipping</i><span class="menu-title" [translate]="'Sidebar.Menu.suppliers'">Fornitori</span></a>
+    </li>
+    <li class="bold "*ngIf="user && checkPermission('products:read')">
+      <a class="waves-effect waves-cyan" routerLink="/dashboard/list" routerLinkActive="active">
+        <i class="material-icons">inbox</i>
+        <span class="menu-title" [translate]="'Sidebar.Menu.catalog'">Listino</span>
+      </a>
+    </li>
+    <li class="bold " *ngIf="user && checkPermission('order:read')"><a class="waves-effect waves-cyan" routerLink="/dashboard/orders" routerLinkActive="active"><i
+          class="material-icons">mail_outline</i><span class="menu-title" [translate]="'Sidebar.Menu.orders'">Ordini</span> <span
+          class="badge badge pill pink float-right mr-10">10</span></a>
+    </li>
+    <li class="bold " *ngIf="user && checkPermission('users:read')"><a class="waves-effect waves-cyan" routerLink="/dashboard/users" routerLinkActive="active"><i
+      class="material-icons">person_outline</i><span class="menu-title" [translate]="'Sidebar.Menu.users'">Utenti</span>
+    </a>
+</li>
+    <li class="navigation-header"><a class="navigation-header-text" [translate]="'Sidebar.Actions.title'">Azioni rapide</a><i
+        class="navigation-header-icon material-icons">more_horiz</i>
+    </li>
+    <li class="bold">
+      <a class="collapsible-header waves-effect waves-cyan" tabindex="0"><i class="material-icons">add</i><span
+          class="menu-title" [translate]="'Sidebar.Actions.add'">Aggiungi...</span></a>
+      <div class="collapsible-body">
+        <ul class="collapsible collapsible-sub" id="shortcuts" data-collapsible="accordion">
+          <li *ngIf="user && checkPermission('suppliers:create')">
+            <a class="collapsible-body" routerLink="/dashboard/suppliers/new"><span [translate]="'Sidebar.Actions.supplier'">Fornitore</span></a>
+          </li>
+          <li *ngIf="user && checkPermission('products:create')">
+            <a class="collapsible-body" routerLink="/dashboard/list/new"><span [translate]="'Sidebar.Actions.product'">Prodotto</span></a>
+          </li>
+          <li *ngIf="user && checkPermission('order:create')">
+            <a class="collapsible-body" routerLink="/dashboard/orders/new"><span [translate]="'Sidebar.Actions.order'">Ordine di acquisto</span></a>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+  <div class="navigation-background"></div><a
+    class="sidenav-trigger btn-sidenav-toggle btn-floating btn-medium waves-effect waves-light hide-on-large-only"
+    href="#" data-target="slide-out"><i class="material-icons">menu</i></a>
+</aside>

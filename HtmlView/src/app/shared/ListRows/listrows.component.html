@@ -1,0 +1,80 @@
+<table class="row-border hover s12 m12 l12">
+  <thead>
+  <tr>
+    <th>
+      <label>
+        <input (change)="changeAllCheckBox()" type="checkbox" />
+        <span></span>
+      </label>
+    </th>
+    <th [translate]="'Orders.List.TableRows.supplier'">Fornitore</th>
+    <th >Tipo</th>
+    <th [translate]="'Orders.List.TableRows.order'">Ordine</th>
+    <th >Riga</th>
+    <th [translate]="'Orders.List.TableRows.description'">Descrizione</th>
+    <th style="text-align: center;" [translate]="'Orders.List.TableRows.number'">Qtà</th>
+    <th style="text-align: center;" [translate]="'Orders.List.TableRows.price'">Prezzo</th>
+    <th >Data consegna</th>
+    <th [translate]="'Orders.List.TableRows.supplier_description'">Stato</th>
+    <th [translate]="'Orders.List.TableRows.actions'">Azioni</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr  DmRowStatusColor *ngFor="let r of rows; let i=index">
+    <td>
+      <label>
+        <input type="checkbox" (change)="checkBoxChange($event)" [checked]="checkrow"/>
+        <span></span>
+      </label>
+    </td>
+    <td>{{ r.fornitore }}</td>
+    <td>{{ r.tipo }}</td>
+    <td>{{ r.codordine }}</td>
+    <td>{{ r.id }}</td>
+    <td>{{ r.descr }}</td>
+    <td style="width: 5rem;">
+      <input [disabled]="r.stato === 'confermato'" (change)="r.modificata = true" [(ngModel)]="r.qta" type="number" style="text-align: right;">
+    </td>
+    <td style="width: 5rem;">
+      <input [disabled]="r.stato === 'confermato'" (change)="r.modificata = true" [(ngModel)]="r.prezzo" type="number" style="text-align: right;">
+    </td>
+    <td>
+      <input DmDataPicker
+             [disabled]="r.stato === 'confermato'"
+             (change)="r.modificata = true; r.data_consegna = $event.target.value"
+             [(ngModel)]="r.data_consegna"
+             id="data_emissione"
+             type="text"
+             class="datepicker validate"
+             style="text-align: right;"
+             [ngStyle]="{color: moment(r.data_consegna).diff(moment(),'days') < 0 ? '#9e1010' : 'black' }" >
+    </td>
+    <td>{{ r.stato }}</td>
+
+    <td class="azioni center row">
+      <a  *ngIf="r.modificata" (click)="saveUpdate($event); r.modificata = false">
+        <i class="material-icons blue-text">check</i>
+      </a>
+      <a  (click)="uploadModal.openModal()" attr.title="{{'Common.Tabletooltips.detail' | translate}}">
+        <i class="material-icons blue-text">all_out</i>
+      </a>
+      <a  (click)="uploadModal.openModal()" attr.title="{{'Common.Tabletooltips.detail' | translate}}">
+        <i class="material-icons blue-text">attach_file</i>
+      </a>
+
+      <a  (click)="ciao()" attr.title="{{'Common.Tabletooltips.remove' | translate}}">
+
+        <i class="material-icons" style="color: #9e1010">clear</i>
+      </a>
+      <a class=" tooltipped" data-tooltip="il Fornitore non ha visualizzato la riga" *ngIf="!r.visualizzata">
+        <i class="material-icons " style="color: #9e1010" >visibility_off</i>
+      </a>
+      <a class=" tooltipped" data-tooltip="L'invio non è andato a buon fine" *ngIf="!r.email_send_status">
+        <i class="material-icons" style="color: #9e1010" >email</i>
+      </a>
+
+    </td>
+  </tr>
+  </tbody>
+</table>

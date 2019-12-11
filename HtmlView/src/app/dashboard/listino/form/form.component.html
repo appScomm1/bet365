@@ -1,0 +1,189 @@
+<div class="row">
+  <div style="margin-bottom: 30px" class="content-wrapper-before gradient-45deg-indigo-purple" id="breadcrumbs-wrapper">
+    <div style="padding: 0px 1.5rem !important;" class="col s12">
+      <div class="card form-actions-header sticky">
+        <div class="card-content overflow">
+          <div class="left" *ngIf="!modifica">
+
+            <div *ngIf="!dettaglio">
+              <button class="btn gradient-45deg-indigo-purple waves-effect waves-light tooltipped left" data-position="bottom" attr.data-tooltip="{{'Common.Card_buttons.save' | translate}}" type="submit"
+                      name="action" (click)="invio()">
+                <span class="hide-on-small-only" [translate]="'Common.Card_buttons.save'">Salva </span>
+                <i class="material-icons right">save</i>
+              </button>
+
+              <button class="waves-effect btn-flat tooltipped left" type="submit" style="margin-left: 10px !important;"
+                    name="action" (click)="clear()">
+                <span class="hide-on-small-only" [translate]="'Orders.Negotiation.Details.cancel'">Annulla </span>
+                <i class="material-icons right">undo</i>
+              </button>
+            </div>
+
+            <div *ngIf="dettaglio && checkPermission('products:update')">
+              <button (click)="modificaProdotto()" class="btn gradient-45deg-indigo-purple waves-effect waves-light tooltipped left" data-position="bottom" attr.data-tooltip="{{'Common.Card_buttons.save' | translate}}" type="submit"
+                    name="action">
+                <span class="hide-on-small-only" [translate]="'catalog.form.detail.modify'">Modifica </span>
+                <i class="material-icons right">create</i>
+              </button>
+            </div>
+          </div>
+
+          <div *ngIf="modifica">
+            <button class="btn gradient-45deg-indigo-purple waves-effect waves-light tooltipped left" data-position="bottom" attr.data-tooltip="{{'Common.Card_buttons.save' | translate}}" type="submit"
+                    name="action" (click)="patchSend()">
+              <span class="hide-on-small-only" [translate]="'Common.Card_buttons.save'"> Salva </span>
+              <i class="material-icons right">save</i>
+            </button>
+
+            <button class="waves-effect btn-flat tooltipped left" type="submit" style="margin-left: 10px !important;"
+                    name="action" (click)="cancel()">
+              <span class="hide-on-small-only" [translate]="'Orders.Negotiation.Details.cancel'">Annulla </span>
+              <i class="material-icons right">undo</i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="col s12">
+      <div class="container">
+        <div class="section">
+
+          <div class="row">
+            <div class="col s12 m12 l12">
+              <div class="card card card-default scrollspy">
+                <div class="card-content padding-card-content">
+                  <h4 *ngIf="!dettaglio" [translate]="'catalog.form.new.newProduct'" class="card-title">Nuovo prodotto</h4>
+                  <h4 *ngIf="dettaglio" [translate]="'catalog.form.detail.productDetail'" class="card-title">Dettagli prodotto</h4>
+                  <form [formGroup]="prodottoForm">
+                    <div class="row">
+                      <div class="input-field col m6 s12">
+                        <input id="internal_sku" [ngClass]="formControlName(prodottoForm.get('internal_sku'), modificata)" type="text" formControlName="internal_sku">
+                        <label for="internal_sku" [translate]="'catalog.common.productCode'" [ngClass]="activateLabel()">Codice prodotto</label>
+                      </div>
+                      <div class="input-field col m6 s12">
+                        <input id="description" [ngClass]="formControlName(prodottoForm.get('description'), modificata)" type="text" formControlName="description">
+                        <label for="description" [translate]="'catalog.common.description'" [ngClass]="activateLabel()">Descrizione</label>
+                      </div>
+                      <div class="input-field col m6 s12">
+                        <input id="barcode"  [ngClass]="formControlName(prodottoForm.get('barcode'), modificata)" type="text" formControlName="barcode">
+                        <label for="barcode" [translate]="'catalog.common.barcode'" [ngClass]="activateLabel()">Codice a barre</label>
+                      </div>
+
+                      <div class="input-field col m6 s12">
+                        <div class="select-wrapper">
+                          <select id="prova" DmSelect formControlName="type" >
+                            <option [translate]="'catalog.common.selectType'" value="" disabled selected>Seleziona tipo</option>
+                            <option value="consumable">Consumable</option>
+                            <option value="service">Service</option>
+                            <option value="warehouse">Warehouse</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="row">
+                      <div *ngIf="categories.length > 0 " class="input-field col s6" style="margin-top: 8px;">
+                        <div #chip [DMtag]="categories" [Disable]="Disable" class="chips chips-placeholder"></div>
+                      </div>
+                      <div *ngIf="categories.length === 0 " class="input-field col s6" style="margin-top: 8px;">
+                        <div #chip DMtag class="chips chips-placeholder"></div>
+                      </div>
+                      <div class="input-field col s6">
+                        <label for="costo" [translate]="'catalog.common.price'" [ngClass]="activateLabel()">Costo</label>
+                        <input id="costo"  type="number" min="0" step=".01" [ngClass]="formControlName(prodottoForm.get('price'), modificata)" formControlName="price">
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col s12 m12 l12">
+              <div class="card card card-default scrollspy">
+                <div class="card-content">
+                  <h4 class="card-title" [translate]="'catalog.common.list'">Listino</h4>
+                  <table class="highlight responsive-table ordine-table">
+                    <thead>
+                    <th data-field="numero">#</th>
+                    <th data-field="SuppliersId" [translate]="'catalog.common.supplier'">Azienda</th>
+                    <th data-field="banca" [translate]="'catalog.common.price'">Prezzo</th>
+                    <th data-field="n_conto" [translate]="'catalog.common.minimumOrderQuantity'">Qtá minima ordine</th>
+                    <th data-field="n_conto" [translate]="'catalog.common.leadTime'">Lead time</th>
+                    </thead>
+                    <tbody>
+                      <tr class="row-edit" *ngFor="let listini of listaListino; let i=index;">
+                        <td>{{ i + 1  }}</td>
+                        <td class="input-field">
+                          <div class="input-field col s12">
+                            <select  *ngIf="aziende" DmSelect [(ngModel)]="listini.PriceList.suppliersId">
+                              <option value="" disabled selected>Seleziona azienda</option>
+                              <option *ngFor="let supplier of aziende" [value]="parseValue(supplier.id)">{{supplier.r_sociale}}</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td class="input-field">
+                          <input id="price" type="number" [disabled]="!modifica&&dettaglio" oninput="this.value = Math.abs(this.value)" min="0,01" [(ngModel)]="listini.price">
+                        </td>
+                        <td class="input-field">
+                          <input id="min_qty" type="number" [disabled]="!modifica&&dettaglio" oninput="this.value = Math.abs(this.value)" min="1" [(ngModel)]="listini.min_qty">
+                        </td>
+                        <td class="input-field">
+                          <input id="lead-time" type="number" [disabled]="!modifica&&dettaglio" oninput="this.value = Math.abs(this.value)" min="1" [(ngModel)]="listini.lead_time">
+                        </td>
+                        <td>
+                          <a id="delete_button" *ngIf="!dettaglio" (click)="deleteListino(i)" [ngClass]="buttonActivation()" class="btn-floating mb-1 waves-effect waves-light white right">
+                            <i class="material-icons indigo-text darken-4-text">clear</i>
+                          </a>
+                          <a id="delete_button2" *ngIf="dettaglio" (click)="callDeleteListino(i)" data-target="modal1" [ngClass]="buttonActivation()" class="modal-trigger right btn btn-floating mb-1 waves-effect waves-light white">
+                            <i class="material-icons indigo-text darken-4-text">clear</i>
+                          </a>
+                          <a id="confirmButton" *ngIf="dettaglio" (click)="listinoPatch(i)" data-target="modal1" [ngClass]="buttonActivation()" class="modal-trigger left-align btn btn-floating mb-1 waves-effect waves-light white">
+                            <i class="material-icons indigo-text darken-4-text">done</i>
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr class="row-edit" *ngIf="!dettaglio||(dettaglio && modifica)">
+                        <td></td>
+                        <td class="input-field">
+                          <div class="input-field col s12" (click)="cambio('supplier')" [ngClass]="inputControlSupp(listino.suppliersId, modListino)">
+
+                            <select id="prova21" #select *ngIf="aziende" DmSelect [(ngModel)]="listino.suppliersId" (change)="onChange($event)">
+                              <option value="0" disabled selected>Seleziona azienda</option>
+                              <option *ngFor="let supplier of aziende" [value]="supplier.id">{{supplier.r_sociale}}</option>
+                            </select>
+
+                          </div>
+                        </td>
+                        <td class="input-field">
+                          <input id="price2" type="number" (click)="cambio('price')" [ngClass]="inputControlPrice(listino.price, modListino)" oninput="this.value = Math.abs(this.value)" min="0,01" [(ngModel)]="listino.price">
+                        </td>
+                        <td class="input-field">
+                          <input id="min_qty2" [ngClass]="inputControlQty(listino.min_qty, modListino)" (click)="cambio('quantity')" type="number" oninput="this.value = Math.abs(this.value)" min="1" [(ngModel)]="listino.min_qty">
+                        </td>
+                        <td class="input-field">
+                          <input id="lead_time2" [ngClass]="inputControlLead(listino.lead_time, modListino)" (click)="cambio('lead_time')" type="number" oninput="this.value = Math.abs(this.value)" min="1" [(ngModel)]="listino.lead_time">
+                        </td>
+                        <td>
+                          <a *ngIf="!modifica" (click)="addListino()" class="btn-floating mb-1 waves-effect waves-light white right">
+                            <i class="material-icons indigo-text darken-4-text">add</i>
+                          </a>
+                          <a *ngIf="modifica" (click)="callAddListino()" class="btn-floating mb-1 waves-effect waves-light white right">
+                            <i class="material-icons indigo-text darken-4-text">add</i>
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</div>

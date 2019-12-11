@@ -1,0 +1,229 @@
+<div class="row">
+  <div style="margin-bottom: 40px" class="content-wrapper-before gradient-45deg-indigo-purple" id="breadcrumbs-wrapper">
+    <div style="padding: 0px 1.5rem !important;" class="col s12 color-label">
+      <div class="card form-actions-header">
+        <div  class="card-content overflow">
+          <div  class="col actions s12 m5 l5">
+
+            <button class="btn gradient-45deg-indigo-purple waves-effect waves-light tooltipped left" data-position="bottom" attr.data-tooltip="{{'Common.Card_buttons.save' | translate}}" type="submit"
+                    name="action" (click)="saveSettings()">
+              <span class="hide-on-small-only" attr.data-tooltip="{{'Common.Card_buttons.save' | translate}}"> {{'Common.Card_buttons.save' | translate}} </span>
+              <i class="material-icons right">save</i>
+            </button>
+
+            <button class="waves-effect btn-flat tooltipped left" data-position="bottom" attr.data-tooltip="{{'Common.ImportCSV.Header.cancel' | translate}}" type="submit" style="margin-left: 20px !important; right: 10px !important;"
+                    name="action" (click)="cancel()">
+              <span class="hide-on-small-only" attr.data-tooltip="{{'Common.ImportCSV.Header.cancel' | translate}}">{{'Common.ImportCSV.Header.cancel' | translate}}</span>
+              <i class="material-icons right">undo</i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+          <div class="col s12">
+            <div class="container">
+              <div class="seaction">
+
+          <div  class="row">
+            <div class="col s12 m12 l12">
+              <div class="card card card-default scrollspy">
+                <div class="card-content">
+                  <div class="card-tabs">
+                    <ul class="tabs tabs tabs-fixed-width">
+                      <li class="tab">
+                        <a href="#DatiGen">Dati Generali</a>
+                      </li>
+                      <li  class="tab">
+                        <a href="#indirizzo">Indirizzi di spedizione</a>
+                      </li>
+                      <li  class="tab">
+                        <a href="#valute"> Valute</a>
+                      </li>
+                      <li class="indicator"></li>
+                    </ul>
+                  </div>
+
+                  <div #divHeight DmheightTab class="card-content">
+
+                    <div (resized)="onResize($event)" id="DatiGen" class="active height-tab">
+                      <form [formGroup]="companiesform">
+                        <div class="row">
+                          <div class="input-field col s6">
+                            <input id="vat" [ngClass]="validateFormControl(companiesform.get('vat'), modificata)" type="text" class="validate" formControlName="vat" minlength="11" maxlength="11">
+                            <label [ngClass]="ActivateLabel()" for="vat" >Partita IVA</label>
+                          </div>
+
+                          <div class="input-field col s6">
+                            <i class="material-icons prefix">phone</i>
+                            <input id="tel" [ngClass]="validateFormControl(companiesform.get('tel'), modificata)" type="text" class="validate" formControlName="tel" minlength="10" maxlength="10">
+                            <label [ngClass]="ActivateLabel()" for="tel">Telefono</label>
+                          </div>
+
+                          <div class="input-field col s6">
+                            <i class="material-icons prefix">email</i>
+                            <input id="email" [ngClass]="validateFormControl(companiesform.get('email'), modificata)" type="text" class="validate prova" formControlName="email">
+                            <label [ngClass]="ActivateLabel()" for="email" >Email</label>
+                          </div>
+
+                          <div class="input-field col s6">
+                            <i class="material-icons prefix">print</i>
+                            <input id="fax" [ngClass]="validateFormControl(companiesform.get('fax'), modificata)" type="text" class="validate prova" formControlName="fax" minlength="10" maxlength="10">
+                            <label [ngClass]="ActivateLabel()" for="fax" >Fax</label>
+                          </div>
+
+                          <div class="input-field col s6">
+                            <i class="material-icons prefix">public</i>
+                            <input id="website" [ngClass]="validateFormControl(companiesform.get('url'), modificata)" type="text" class="validate prova" formControlName="url">
+                            <label [ngClass]="ActivateLabel()" for="website" >Sito Web</label>
+                          </div>
+
+                          <div *ngIf="tag.length > 0" class="input-field col s6" style="margin-top: -8px;">
+                            <div #div [Disable]="Disable" [DMtag]="tag"  class="chips chips-placeholder"></div>
+                          </div>
+                          <div *ngIf="tag.length === 0" class="input-field col s6" style="margin-top: -8px;">
+                            <div #div DMtag class="chips chips-placeholder"></div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+
+                    <div (resized)="onResize($event)" class="height-tab" id="indirizzo">
+                      <table id="indirizzi" class="highlight responsive-table ordine-table">
+                        <thead>
+                        <th data-field="numero">N.</th>
+                        <th data-field="descrizione" [translate]="'Suppliers.New.Address.description'">Descrizione</th>
+                        <th data-field="indirizzo" [translate]="'Suppliers.New.Address.address'">Indirizzo</th>
+                        <th data-field="citta" [translate]="'Suppliers.New.Address.city'">Città</th>
+                        <th data-field="provincia" [translate]="'Suppliers.New.Address.district'">Provincia</th>
+                        <th data-field="cap">Cap</th>
+                        <th data-field="paese" [translate]="'Suppliers.New.Address.country'">Paese</th>
+                        </thead>
+                        <tbody >
+                        <tr class="row-edit" *ngFor="let indirizzi of listaindirizzi; let i=index;">
+                          <td>{{ i + 1  }}</td>
+                          <td class="input-field">
+                            <input type="text" [(ngModel)]="indirizzi.description">
+                          </td>
+                          <td class="input-field">
+                            <input type="text" [(ngModel)]="indirizzi.via">
+                          </td>
+                          <td class="input-field">
+                            <input  type="text" [(ngModel)]="indirizzi.citta">
+                          </td>
+                          <td class="input-field">
+                            <input type="text" [(ngModel)]="indirizzi.provincia">
+                          </td>
+                          <td class="input-field">
+                            <input #cap appFormDirective type="number" style="text-align: left !important" (ngModelChange)="checklength(5)" [(ngModel)]="indirizzi.cap">
+                          </td>
+                          <td class="input-field">
+                            <input  type="text" [(ngModel)]="indirizzi.paese">
+                          </td>
+                          <td>
+                            <div class="row">
+                              <div class="col s6">
+                                <a (click)="deleteIndirizzo(i, indirizzi.id)" class="btn-floating mb-1 waves-effect waves-light white">
+                                  <i class="material-icons indigo-text darken-4-text">clear</i>
+                                </a>
+                              </div>
+                              <div class="col s6">
+                                <a (click)="UpdateIndirizzo(indirizzi)" class="btn-floating mb-1 waves-effect waves-light white btn-hide">
+                                  <i class="material-icons indigo-text darken-4-text">check</i>
+                                </a>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+
+                        <tr class="row-edit">
+                          <td></td>
+                          <td class="input-field">
+                            <input id="paese-input" type="text" [(ngModel)]="indirizzo.description">
+                          </td>
+                          <td class="input-field">
+                            <input  id="indirizzo-input" type="text" [(ngModel)]="indirizzo.via">
+                          </td>
+                          <td class="input-field">
+                            <input id="citta-input" type="text" [(ngModel)]="indirizzo.citta">
+                          </td>
+                          <td class="input-field">
+                            <input id="provincia-input" type="text" [(ngModel)]="indirizzo.provincia">
+                          </td>
+                          <td class="input-field">
+                            <input #cap id="cap-input" type="number" style="text-align: left !important" (ngModelChange)="checklength(5)" [(ngModel)]="indirizzo.cap">
+                          </td>
+                          <td class="input-field">
+                            <input id="paese-input" type="text" [(ngModel)]="indirizzo.paese">
+                          </td>
+
+                          <td>
+                            <a (click)="addIndirizzo()" class="btn-floating mb-1 waves-effect waves-light white">
+                              <i class="material-icons indigo-text darken-4-text">add</i>
+                            </a>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <div (resized)="onResize($event)" class="height-tab" id="valute">
+                      <table  class="highlight responsive-table ordine-table">
+                        <thead>
+                        <th data-field="numero">N.</th>
+                        <th data-field="descrizione">Nome</th>
+                        <th data-field="simbolo">Simbolo</th>
+                        </thead>
+                        <tbody>
+                        <tr class="row-edit" *ngFor="let currency of currencies; let i=index;">
+                          <td>{{ i + 1  }}</td>
+                          <td class="input-field">
+                            <input [disabled]="currency.default" type="text" [(ngModel)]="currency.label">
+                          </td>
+                          <td class="input-field">
+                            <input [disabled]="currency.default" type="text" [(ngModel)]="currency.value">
+                          </td>
+                          <td>
+                            <div class="row">
+                              <div class="col s6">
+                                <a [ngClass]="getCurrencyType(currency.default)" class="btn-floating mb-1 waves-effect waves-light white" (click)="deleteValuta(currency.value)">
+                                  <i class="material-icons indigo-text darken-4-text">clear</i>
+                                </a>
+                              </div>
+                              <div class="col s6">
+                                <a [ngClass]="getCurrencyType(currency.default)" class="btn-floating mb-1 waves-effect waves-light white btn-hide" (click)="updateValuta(currency.value, currency)">
+                                  <i class="material-icons indigo-text darken-4-text">check</i>
+                                </a>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+
+                        <tr class="row-edit">
+                          <td></td>
+                          <td class="input-field">
+                            <input type="text" [(ngModel)]="currency.label">
+                          </td>
+                          <td class="input-field">
+                            <input type="text" [(ngModel)]="currency.value">
+                          </td>
+                          <td>
+                            <a (click)="addValuta()" class="btn-floating mb-1 waves-effect waves-light white">
+                              <i class="material-icons indigo-text darken-4-text">add</i>
+                            </a>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>

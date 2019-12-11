@@ -1,0 +1,213 @@
+<div class="row" style="margin-bottom: 10px;">
+  <div style="margin-bottom: 20px" class="content-wrapper-before gradient-45deg-indigo-purple" id="breadcrumbs-wrapper">
+    <div style="padding: 0px 1.5rem !important;" class="col s12">
+      <div class="card form-actions-header sticky" style="margin-bottom: 0;">
+        <div class="card-content overflow">
+
+          <div *ngIf="!dettaglio">
+              <button class="btn gradient-45deg-indigo-purple waves-effect waves-light tooltipped left" data-position="bottom" attr.data-tooltip="{{'Common.Card_buttons.save' | translate}}" type="submit"
+              name="action" (click)="invio()">
+                <span class="hide-on-small-only" [translate]="'Common.Card_buttons.save'">Salva </span>
+                <i class="material-icons right">save</i>
+              </button>
+
+              <button class="waves-effect btn-flat tooltipped left" type="submit" style="margin-left: 10px !important;"
+                    name="action" (click)="clear()">
+              <span class="hide-on-small-only" [translate]="'Orders.Negotiation.Details.cancel'">Annulla </span>
+              <i class="material-icons right">undo</i>
+            </button>
+          </div>
+
+          <div *ngIf="dettaglio">
+
+            <div *ngIf="modifica">
+                <button class="btn gradient-45deg-indigo-purple waves-effect waves-light tooltipped left" style="right: 15px" data-position="bottom" attr.data-tooltip="{{'Common.Card_buttons.save' | translate}}" type="submit"
+                name="action" (click)="patchSend()">
+                  <span class="hide-on-small-only"> Salva </span>
+                  <i class="material-icons right">save</i>
+                </button>
+
+                <button  class="btn gradient-45deg-indigo-purple waves-effect waves-light tooltipped left" (click)="cancel()" style="margin-left: 10px !important;" data-position="bottom" attr.data-tooltip="{{'Common.Card_buttons.save' | translate}}" type="submit"
+                name="action">
+                  <span [translate]="'Orders.Negotiation.Details.cancel'" class="hide-on-small-only">Annulla </span>
+                  <i class="material-icons right">undo</i>
+                </button>
+            </div>
+
+            <div *ngIf="!modifica && checkPermission('users:update')">
+                <button (click)="modificaUtente()" class="btn gradient-45deg-indigo-purple waves-effect waves-light tooltipped left" data-position="bottom" attr.data-tooltip="{{'Common.Card_buttons.save' | translate}}" type="submit"
+                name="action">
+                  <span class="hide-on-small-only">Modifica </span>
+                  <i class="material-icons right">create</i>
+                </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col s12">
+    <div class="container">
+      <div class="section">
+        <div class="row">
+          <div class="col s12 m12 l12">
+            <div class="card card card-default scrollspy" style="margin-top: 0;">
+              <div class="card-content padding-card-content">
+                <div class="row">
+                  <div *ngIf="dettaglio && checkPermission('users:update')">
+                  <button class="btn gradient-45deg-indigo-purple waves-effect waves-light tooltipped left"  type="submit" [disabled]="!modifica"
+                          name="action" (click)="ShowModalUpload()">
+                    <span class="hide-on-small-only"> Cambia password </span>
+                  </button>
+                  <button class="btn gradient-45deg-indigo-purple waves-effect waves-light tooltipped left" style="margin-left: 10px !important;" type="submit" [disabled]="!modifica"
+                           name="action">
+                    <span> Reset Password </span>
+                  </button>
+                </div>
+                    <button class="btn waves-effect waves-light gradient-45deg-indigo-purple" (click)="ShowModalPerm()" style="margin-left: 10px !important;" type="submit" name="action">Permessi
+                        <i class="material-icons right">security</i>
+                      </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="col s12">
+      <div class="container">
+        <div class="section">
+          <div class="row">
+            <div class="col s12 m12 l12">
+              <div class="card card card-default scrollspy">
+                <div class="card-content padding-card-content">
+                  <h4 *ngIf="!dettaglio" class="card-title" [translate]="'users.form.generality'">Generalità</h4>
+                  <h4 *ngIf="dettaglio" class="card-title">Dettagli utente</h4>
+                  <form [formGroup]="utenteForm">
+                    <div class="row">
+                      <div class="input-field col s6 m2 l2">
+                        <ngx-dropzone class="custom-dropzone" (change)="onSelect($event)" [multiple]="false">
+                          <ngx-dropzone-label>Inserisci o trascina qui i file per caricarli</ngx-dropzone-label>
+                          <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of img" [file]="f"
+                                               [removable]="true"
+                                               (removed)="onRemove(f)">
+                          </ngx-dropzone-image-preview>
+                        </ngx-dropzone>
+                      </div>
+                      <div class="input-field col m6 s6 l5">
+                        <input id="first_name" [ngClass]="formDataControl(utenteForm.get('first_name'), modificata)" type="text" formControlName="first_name">
+                        <label for="first_name" [ngClass]="activateLabel()" [translate]="'users.form.name'">Nome</label>
+                      </div>
+                      <div class="input-field col m6 s6 l5">
+                        <input id="last_name" [ngClass]="formDataControl(utenteForm.get('last_name'), modificata)" type="text" formControlName="last_name">
+                        <label for="last_name" [ngClass]="activateLabel()" [translate]="'users.form.surname'">Cognome</label>
+                      </div>
+                      <div class="input-field col m6 s12 l5">
+                        <select DmSelect formControlName="group" [ngClass]="formDataControl(utenteForm.get('group'), modificata)">
+                          <option value="" disabled selected></option>
+                          <option value="supplier" [translate]="'users.form.supplier'">supplier</option>
+                          <option value="administrator" [translate]="'users.form.administrator'">administrator</option>
+                        </select>
+                        <label style="top: 0" [ngClass]="'active'" [translate]="'users.form.group'">Gruppo</label>
+                      </div>
+                      <div *ngIf="languages" class="input-field col s6 m6 l5">
+                        <select DmSelect formControlName="lang" [ngClass]="formDataControl(utenteForm.get('lang'), modificata)">
+                          <option value="" disabled selected></option>
+                          <option *ngFor="let l of languages" value="{{l.value}}">{{l.label}}</option>
+                        </select>
+                        <label style="top: 0" [ngClass]="'active'">Lingue</label>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                        <h6 class="card-title" [translate]="'users.form.logInData'">Dati di accesso</h6>
+                        <div class="input-field col m6 s12">
+                            <input id="email" [ngClass]="formDataControl(utenteForm.get('email'), modificata)" type="text" formControlName="email">
+                            <label for="email" [ngClass]="activateLabel()">Email</label>
+                        </div>
+                      </div>
+                      <div class="row" *ngIf="!dettaglio">
+                        <div class="input-field col m6 s12">
+                          <input id="password" type="password" minlength="8" [ngClass]="formDataControl(utenteForm.get('password'), modificata)" formControlName="password">
+                          <label for="password">Nuova Password</label>
+                        </div>
+                        <div class="input-field col m6 s12">
+                          <input id="confPass" type="password" minlength="8" [ngClass]="PassControl(utenteForm.get('password'), utenteForm.get('confPass'))" formControlName="confPass">
+                          <label for="confPass">RIpeti Password</label>
+                        </div>
+                      </div>
+                  </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div DMmodal id="PassModal" [options]="options" class="modal  modal-fixed-footer" *ngIf="modifica" >
+  <div class="modal-content">
+    <h4 class="mb-4">Modifica Password</h4>
+    <form [formGroup]="passForm">
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="oldPass" type="password" [ngClass]="PassControl(passForm.get('oldPass'), utente.password)" formControlName="oldPass">
+          <label for="oldPass">Inserisci la vecchia password</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col m6 s12">
+          <input id="password" type="password" minlength="8"  [ngClass]="formDataControl(passForm.get('pass'), modificata)" formControlName="pass">
+          <label for="password">Nuova Password</label>
+        </div>
+        <div class="input-field col m6 s12">
+          <input id="confPass" type="password" minlength="8" [ngClass]="PassControl(passForm.get('confPass'), passForm.get('pass'))" formControlName="confPass">
+          <label for="confPass">RIpeti Password</label>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div DMmodal id="permissionModal" class="modal">
+  <div class="modal-content">
+    <i class="material-icons dp48 right" (click)="DismissPerm()" >close</i>
+
+    <h4>Permessi</h4>
+    <p>Seleziona le azioni consentite all'utente</p>
+
+    <div class="col s12 mb-6">
+      <div *ngFor="let section of permissionGroup" class="row">
+        <div class="row">{{section.name}}</div>
+
+        <div *ngFor="let permission of section.permissions" class="col s3">
+            <label>
+                <input type="checkbox" [disabled] = "dettaglio && !modifica"  [(checklist)]="userPermission" (click)="addDependencies(permission)" checklistValue="{{permission.value}}"/>
+                <span>{{permission.label}}</span>
+              </label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="right">
+         <button class="btn gradient-45deg-indigo-purple waves-effect waves-light"  [ngClass]="dettaglio && !modifica ? 'disabled' : ''" type="submit" (click)="selectAll()" name="action">Select All
+        <i class="material-icons right">select_all</i>
+      </button>
+      <button class="btn gradient-45deg-indigo-purple waves-effect waves-light"  [ngClass]="dettaglio && !modifica ? 'disabled' : ''" style="margin-left: 10px !important;" type="submit" (click)="unselectAll()" name="action">Unselect All
+          <i class="material-icons right">clear_all</i>
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="modal-footer">
+
+  </div>
+</div>

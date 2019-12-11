@@ -1,0 +1,441 @@
+<table class="highlight responsive-table ordine-table">
+  <thead>
+  <tr>
+    <th style="width: 12rem !important" [translate]="'Common.tableRow.code'" >Cod</th>
+    <th style="width: 14rem !important" [translate]="'Common.tableRow.description'">Descrizione</th>
+    <th class="center"  [translate]="'Common.tableRow.attachments'">Allegati</th>
+    <th class="center" [translate]="'Common.tableRow.quantity'">Qta.</th>
+    <th class="center" [translate]="'Common.tableRow.unitPrice'">Prz. Unitario</th>
+    <th class="center" [translate]="'Common.tableRow.deliveryDate'">Data Consegna</th>
+    <!--th style="width: 4rem !important;" >Imposte</th-->
+    <th [translate]="'Common.tableRow.total'">Totale</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngIf="data">
+    <tr class="row-edit" *ngFor="let r of data.righe; index as i">
+      <td class="input-field">
+        <DM-autocomplete ngDefaultControl style="background-color: transparent" (click)="changed(i)" [data]="prodotti" [disable]="disable" [value]="r.sku" (change)="OnChange()" (Valore)="Prodotto($event, 'patch')" (Modal)="showModalProdotto($event)" (ngModelChange)="patchOrdine(r.id, 'sku' ,$event, i)" [ngModelOptions]="{updateOn: 'blur'}" (keypress)="focusNewRow()" required [(ngModel)]="r.sku" type="text"></DM-autocomplete>
+      </td>
+      <td class="input-field">
+        <input [disabled]="disable" mz-input (keypress)="OnChange()" (click)="changed(i)" (ngModelChange)="patchOrdine(r.id, 'descr' ,$event, i)" [validate]="false" required [(ngModel)]="r.descr" [ngModelOptions]="{updateOn: 'blur'}"
+               type="text"></td>
+
+      <!--td class="input-field">
+        <input [disabled]="disable" mz-input (focus)="OnChange()" (click)="changed(i)" (ngModelChange)="patchOrdine(r.id, 'qty' ,$event, i)" [validate]="false" required [(ngModel)]="r.qty" [ngModelOptions]="{updateOn: 'blur'}"
+               type="number" style="text-align: right;"></td-->
+      <td>
+        <a  (click)="ShowAllegati()" class="col s12 center">
+          <i style="cursor: pointer" class="material-icons" >insert_drive_file</i>
+        </a>
+        <div  class="col s12 center" >
+          <small class="text-inline" >3 files</small>
+        </div>
+      </td>
+
+      <td *ngIf="r.status !== 'accepted' " class="no-padding" style="padding-right: 5px !important; border-radius: 0;">
+          <div  style="width: auto; text-align: center !important; background-color: rgba(255,160,160,0.48); margin: 0;" *ngIf="r.oldFields && r.oldFields.qty && r.status === 'proposed_supplier'; else standardRowEdit" >
+            <span style="min-width: 40px; padding: 5px 0px 0px 10px !important; color: #000;" min="0">{{r.oldFields.qty}} <span class="red-text">=> </span></span>
+            <input class="border-none "
+                   [disabled]="disable"
+                   (focus)="OnChange()"
+                   (click)="changed(i)"
+                   (change)="r.qty = $event.target.value"
+                   [ngModel]="r.qty"
+                   [ngModelOptions]="{updateOn: 'blur'}"
+                   (ngModelChange)="r.qty=$event; patchOrdine(r.id, 'qty' ,$event, i)"
+                   type="number"
+                   style="width: 40px; color: red; margin: 0; height: 2rem !important;">
+          </div>
+        <ng-template #standardRowEdit>
+          <div  *ngIf="r.oldFields && r.oldFields.qty; else normalqty"  [ngStyle]="{background: colorStatus(r.status, r.oldFields.qty), overflow: 'auto'}" class="container-multiinput">
+          <input class="border-none center"
+                 [disabled]="disable"
+                 (focus)="OnChange()"
+                 (click)="changed(i)"
+                 (change)="r.qty = $event.target.value"
+                 [ngModel]="r.qty"
+                 [ngModelOptions]="{updateOn: 'blur'}"
+                 (ngModelChange)="r.qty=$event; patchOrdine(r.id, 'qty' ,$event, i)"
+                 [style]=""
+                 type="number"
+                 style="width: 40px; margin: 0;  text-align: right;">
+          </div>
+        </ng-template>
+        <ng-template #normalqty>
+          <input class="border-none center"
+                 [disabled]="disable"
+                 (focus)="OnChange()"
+                 (click)="changed(i)"
+                 (change)="r.qty = $event.target.value"
+                 [ngModel]="r.qty"
+                 [ngModelOptions]="{updateOn: 'blur'}"
+                 (ngModelChange)="r.qty=$event; patchOrdine(r.id, 'qty' ,$event, i)"
+                 [style]=""
+                 type="number"
+                 style="width: 40px; margin: 0;  text-align: right;">
+        </ng-template>
+      </td>
+
+      <td *ngIf="r.status !== 'accepted' " class="no-padding" style="padding-right: 5px !important; border-radius: 0;">
+          <div style="background-color: rgba(255,160,160,0.48);" class="container-multiinput" *ngIf="r.oldFields && r.oldFields.price && r.status === 'proposed_supplier'; else standardRowEditprice" >
+            <span style="min-width: 40px; padding: 5px 0px 0px 10px !important; color: #000;" min="0">{{r.oldFields.price}} <span class="red-text">=> </span> </span>
+            <input class="border-none "
+                   [disabled]="disable"
+                   (focus)="OnChange()"
+                   (click)="changed(i)"
+                   (change)="r.price = $event.target.value"
+                   [ngModel]="r.price"
+                   [ngModelOptions]="{updateOn: 'blur'}"
+                   (ngModelChange)="r.price=$event; patchOrdine(r.id, 'price' ,$event, i)"
+                   type="number"
+                   min="0.01"
+                   ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
+                   step=".2-2"
+                   style="width: 70px; color: red; margin: 0; height: 2rem !important;">
+          </div>
+
+        <ng-template  #standardRowEditprice>
+          <div  *ngIf="r.oldFields && r.oldFields.price; else normalprice"  [ngStyle]="{background: colorStatus(r.status, r.oldFields.price), overflow: 'auto'}" class="container-multiinput">
+          <input class="border-none center"
+                 [disabled]="disable"
+                 (focus)="OnChange()"
+                 (click)="changed(i)"
+                 (change)="r.price = $event.target.value"
+                 [ngModel]="r.price"
+                 [ngModelOptions]="{updateOn: 'blur'}"
+                 (ngModelChange)="r.price=$event; patchOrdine(r.id, 'price' ,$event, i)"
+                 type="number"
+                 min="0.01"
+                 ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
+                 step=".2-2"
+                 style="width: 70px; margin: 0;  text-align: right;">
+            </div>
+        </ng-template>
+        <ng-template #normalprice>
+          <input class="border-none center"
+                 [disabled]="disable"
+                 (focus)="OnChange()"
+                 (click)="changed(i)"
+                 (change)="r.price = $event.target.value"
+                 [ngModel]="r.price"
+                 [ngModelOptions]="{updateOn: 'blur'}"
+                 (ngModelChange)="r.price=$event; patchOrdine(r.id, 'price' ,$event, i)"
+                 type="number"
+                 min="0.01"
+                 ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
+                 step=".2-2"
+                 style="width: 70px; margin: 0;  text-align: right;">
+        </ng-template>
+      </td>
+
+      <td *ngIf="r.status !== 'accepted' " class="no-padding" style="padding-right: 5px !important; border-radius: 0;">
+          <div style="width: auto; text-align: center !important; background-color: rgba(255,160,160,0.48); margin: 0;" *ngIf="r.oldFields && r.oldFields.delivery_date && r.status === 'proposed_supplier'; else standardRowEditprice" >
+            <span style="min-width: 40px; padding: 5px 0px 0px 10px !important; color: #000;" min="0">{{r.oldFields.delivery_date | date: 'dd-MM-yyyy'}} <span class="red-text">=> </span> </span>
+            <input DmDataPicker
+                   [disabled]="disable"
+                   (focus)="OnChange()"
+                   (click)="changed(i)"
+                   (change)="DataPicker(); r.delivery_date = $event.target.value"
+                   [ngModel]="r.delivery_date | date: 'dd-MM-yyyy'"
+                   [ngModelOptions]="{updateOn: 'blur'}"
+                   (ngModelChange)="patchOrdine(r.id, 'delivery_date' ,$event, i); r.delivery_date=$event"
+                   type="text"
+                   id="data_consegna"
+                   class="datepicker validate"
+                   style=" width: 100px; color: red; margin: 0; height: 2rem !important;">
+          </div>
+
+        <ng-template #standardRowEditprice>
+          <div *ngIf="r.oldFields && r.oldFields.delivery_date; else normaldate" [ngStyle]="{background: colorStatus(r.status, r.oldFields.delivery_date), overflow: 'auto'}" class="container-multiinput">
+          <input DmDataPicker
+                 [disabled]="disable"
+                 (focus)="OnChange()"
+                 (click)="changed(i)"
+                 (change)="DataPicker(); r.delivery_date = $event.target.value"
+                 [ngModel]="r.delivery_date | date: 'dd-MM-yyyy'"
+                 [ngModelOptions]="{updateOn: 'blur'}"
+                 (ngModelChange)="patchOrdine(r.id, 'delivery_date' ,$event, i); r.delivery_date=$event"
+                 type="text"
+                 id="data_consegna"
+                 class="datepicker validate"
+                 style=" margin: 0;  text-align: center;">
+          </div>
+          <ng-template #normaldate>
+            <input DmDataPicker
+                   [disabled]="disable"
+                   (focus)="OnChange()"
+                   (click)="changed(i)"
+                   (change)="DataPicker(); r.delivery_date = $event.target.value"
+                   [ngModel]="r.delivery_date | date: 'dd-MM-yyyy'"
+                   [ngModelOptions]="{updateOn: 'blur'}"
+                   (ngModelChange)="patchOrdine(r.id, 'delivery_date' ,$event, i); r.delivery_date=$event"
+                   type="text"
+                   id="data_consegna"
+                   class="datepicker validate"
+                   style=" margin: 0;  text-align: center;">
+          </ng-template>
+        </ng-template>
+      </td>
+
+      <!--td class="input-field">
+      <select style=" text-align: right;" DmSelect (change)="OnChange()" (click)="changed(i)" (ngModelChange)="funzioneDiPut()" [(ngModel)]="r.vat" [ngModelOptions]="{updateOn: 'blur'}">
+        <option *ngFor="let imposte of listaIva" [value]="imposte.value">{{imposte.label}}</option>
+      </select>
+    </td-->
+      <td class="calc" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step=".2-2">{{autoIns(i) | number: '.2-2'}}€</td>
+      <td>
+        <div style="padding: 0px 2px !important;">
+          <a *ngIf="!disable" (click)="deleteOrdine(r.id, i)" data-tooltip="Elimina ordine" data-position="top" class="right tooltipped">
+            <i style="cursor: pointer;" class="material-icons indigo-text darken-4-text">delete</i>
+          </a>
+        </div>
+      </td>
+    </tr>
+  </ng-container>
+  <tr *ngIf="!disable">
+    <ng-container *ngIf="nuovo">
+    <td class="input-field">
+      <DM-autocomplete ngDefaultControl [data]="prodotti" (blur)="blurInserimento()" [disable]="disable" [link]="'/dashboard/list/new'"  (keypress)="focusNewRow()" required (Modal)="showModalProdotto($event)" (Valore)="Prodotto($event, 'add')" id="collo" type="text"></DM-autocomplete>
+      </td>
+    <td class="input-field">
+      <input [disabled]="disable" mz-input (blur)="blurInserimento()" (keypress)="focusNewRow()" [validate]="false" required [(ngModel)]="addordine.descr" id="descrizione"
+             type="text"></td>
+      <td>
+        <a  (click)="ShowAllegati()" class="col s12 center">
+          <i style="cursor: pointer" class="material-icons" >attach_file</i>
+        </a>
+      </td>
+    <td class="input-field">
+      <input [disabled]="disable" mz-input (blur)="blurInserimento()" (keypress)="focusNewRow()" oninput="this.value = Math.abs(this.value)" min="1" [validate]="false" required [(ngModel)]="addordine.qty" id="quantita"
+             type="number" style="text-align: center;">
+    </td>
+    <td class="input-field">
+      <input [disabled]="disable" mz-input (blur)="blurInserimento()" (keypress)="focusNewRow()" oninput="this.value = Math.abs(this.value)" min="0,01" [validate]="false" required [(ngModel)]="addordine.price" id="prezzo-unitario"
+             type="number" style=" text-align: center;"></td>
+    <td class="input-field">
+      <input #date DmDataPicker id="data_cons" (blur)="blurInserimento()" type="text" class="datepicker validate" (change)="DataPicker()" [(ngModel)]="addordine.delivery_date" [ngModelOptions]="{updateOn: 'blur'}">
+    </td>
+    <!-- td class="input-field">
+      <select DmSelect (change)="focusNewRow()" [(ngModel)]="addordine.vat" *ngIf="listaIva">
+        <option value="" disabled selected></option>
+        <option *ngFor="let imposte of listaIva" [value]="imposte.value">{{imposte.label}}</option>
+      </select>
+    </td-->
+    <td>{{Ins() | number: '1.2-2'}}€</td>
+    </ng-container>
+    <td *ngIf="!nuovo">
+      <a (click)="ViewAddORdine()" class="left mb-1 waves-effect waves-light ">
+        <i style=" color: #303f9f;" class=" small darken-4-text material-icons">add</i><span style="font-size: 13px; color: #303f9f" > Aggiungi un'altra riga </span>
+      </a>
+    </td>
+  </tr>
+
+  <tr class="border-none">
+    <td colspan="5"></td>
+    <td colspan="2" [translate]="'Common.tableRow.netTotal'">Tot. Netto:</td>
+    <td colspan="2">{{totaleNetto()}}€</td>
+  </tr>
+  <tr class="border-none">
+    <td colspan="5"></td>
+    <td colspan="2" style="border-radius: unset"  class="indigo darken-2 white-text pl-1" [translate]="'Common.tableRow.total'">Totale</td>
+    <td colspan="2" *ngIf="data.righe" style="border-radius: unset" class="indigo darken-2 strong white-text">{{totaleLordo()}}€</td>
+  </tr>
+  </tbody>
+</table>
+
+
+<div DMmodal id="modalProdotto" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4>Inserimento prodotto</h4>
+    <form [formGroup]="prodottoForm">
+      <div class="row">
+        <div class="input-field col m6 s12" *ngIf="!prodottoForm.controls.internal_sku.value">
+          <input id="internal_sku" [ngClass]="formControlName(prodottoForm.get('internal_sku'), modificata)" type="text" formControlName="internal_sku">
+          <label for="internal_sku" >Codice prodotto</label>
+        </div>
+        <div class="input-field col m6 s12" *ngIf="prodottoForm.controls.internal_sku.value">
+          <input id="internal_sku" [ngClass]="formControlName(prodottoForm.get('internal_sku'), modificata)" type="text" formControlName="internal_sku">
+          <label for="internal_sku" [ngClass]="'active'">Codice prodotto</label>
+        </div>
+        <div class="input-field col m6 s12">
+          <input id="description" [ngClass]="formControlName(prodottoForm.get('description'), modificata)" type="text" formControlName="description">
+          <label for="description" >Descrizione</label>
+        </div>
+        <div class="input-field col m6 s12">
+          <input id="barcode"  [ngClass]="formControlName(prodottoForm.get('barcode'), modificata)" type="text" formControlName="barcode">
+          <label for="barcode" >Codice a barre</label>
+        </div>
+
+        <div class="input-field col m6 s12">
+          <div class="select-wrapper">
+            <select DmSelect formControlName="type" >
+              <option value="" disabled selected>Seleziona tipo</option>
+              <option value="consumable">Consumable</option>
+              <option value="service">Service</option>
+              <option value="warehouse">Warehouse</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <div #chip DMtag class="chips chips-placeholder"></div>
+        </div>
+        <div class="input-field col s6">
+          <label for="costo" >Costo</label>
+          <textarea id="costo" class="materialize-textarea"  [ngClass]="formControlName(prodottoForm.get('price'), modificata)" formControlName="price"></textarea>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <a (click)="addProdotto()" class="modal-action waves-effect waves-green btn-flat ">Salva</a>
+  </div>
+</div>
+
+<div DMmodal id="prodottiModal" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4>Lista dei prodotti</h4>
+    <div *ngIf="refresh === true && listaprodotti && listaprodotti.length > 0" class="col s12">
+      <div class="container">
+        <div class="section section-data-tables">
+          <div class="row">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover striped s12 m12 l12">
+              <thead>
+              <tr>
+              </tr>
+              <tr>
+                <th >Codice</th>
+                <th >Descrizione</th>
+                <th >Prezzo</th>
+                <th >Barcode</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let p of listaprodotti" style="height: 100%">
+                <td>{{ p.internal_sku}}</td>
+                <td>{{ p.description }}</td>
+                <td>{{p.price | number: '.2-2'}}</td>
+                <td>{{ p.barcode }}</td>
+              </tr>
+              </tbody>
+            </table>
+            <div *ngIf="listaprodotti && listaprodotti.length <= 0" class="card-alert card purple lighten-5">
+              <div class="card-content purple-text">
+                <p>Nessun prodotto inserito</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="modal-action waves-effect waves-green btn-flat" data-position="bottom" type="submit"
+            name="action" (click)="closeModal()" style="margin-left: 25px; right: 25px;">Annulla </button>
+    <button class="modal-action waves-effect waves-green btn-flat" data-position="bottom" type="submit"
+            name="action" (click)="showModalProdotto('')" style="margin-left: 25px; right: 35px;">Crea </button>
+  </div>
+</div>
+
+<div DMmodal id="AllegatiModal" class="modal  modal-fixed-footer">
+  <div class="modal-content">
+    <div class="row">
+      <h4 class="left">Allegati Riga</h4>
+      <button (click)="ShowModalUpload()"  class="right waves-effect btn-flat btn-color-crea">Aggiungi File</button>
+    </div>
+    <table class="row-border hover striped s12 m12 l12">
+      <thead>
+      <tr>
+        <th style="max-width: 150px !important;">Nome File</th>
+        <th>Azioni</th>
+      </tr>
+
+      <tbody *ngFor="let f of file; let i=index">
+      <tr>
+        <td>{{f.name}}
+          <a (click)="f.ShowDescription = !f.ShowDescription; Showdescription()" class="actions" >
+            <i class="tiny material-icons blue-text">message</i>
+          </a>
+          <br>
+          <small>Creata da Francesco Zampetti il 19/08/2019</small>
+        </td>
+        <td>
+          <a DmTooltip class="mr-3 tooltiped"  data-tooltip="Anteprima" attr.title="{{'Common.Tabletooltips.remove' | translate}}" (click)="discardFile(i)">
+            <i class=" material-icons ">search</i>
+          </a>
+          <a DmTooltip class="mr-3 tooltiped" data-tooltip="Modifica" (click)="ShowModalUpload(f.name)">
+            <i class="material-icons blue-text">edit</i>
+          </a>
+          <a DmTooltip class="mr-3 tooltiped"  data-tooltip="Storico revisioni"  (click)="ShowAllegati('revisioni')" >
+            <i  class="material-icons blue-text">restore</i>
+          </a>
+          <a DmTooltip class="mr-3 tooltiped"  data-tooltip="Download file">
+            <i class="material-icons blue-text">cloud_download</i>
+          </a>
+          <a DmTooltip class="mr-3 tooltiped"  data-tooltip="Carica revisione" (click)="ShowModalUpload(f.name)" >
+            <i  class="material-icons blue-text">cloud_upload</i>
+          </a>
+          <a DmTooltip attr.title="{{'Common.Tabletooltips.remove' | translate}}"  data-tooltip="Elimina allegato" (click)="discardFile(i)">
+            <i class="material-icons red-text">delete</i>
+          </a>
+        </td>
+      </tr>
+      <tr *ngIf="f.ShowDescription === true">
+        <td colspan="2">
+          <div class="mt-5 input-field col s12">
+            <textarea disabled id="textareaDescription" [(ngModel)]="commentoRev" class="materialize-textarea"></textarea>
+            <label class="active" for="textareaDescription">Annotazione</label>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <div class="row">
+      <div class="right">
+        <button class="modal-close waves-effect waves-green btn-flat ">chiudi</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div DMmodal id="UploadModal" class="modal  modal-fixed-footer">
+  <div class="modal-content">
+    <h4 class="mb-4">Allega file</h4>
+    <div class="row">
+      <ngx-dropzone #dropzone id="input-file-now-custom-2 col s12" class="custom-dropzone"
+                    (change)="onFilesAdded($event, 'add')">
+        <ngx-dropzone-preview *ngFor="let f of file" [file]="f"
+                              [removable]="true"
+                              (removed)="onRemove(f)">
+          <ngx-dropzone-label>{{f.name}}({{f.type}})</ngx-dropzone-label>
+        </ngx-dropzone-preview>
+      </ngx-dropzone>
+      <div class="mt-5 input-field col s12">
+        <input *ngIf="filename.length > 0" disabled  id="filename" [(ngModel)]="filename" class="materialize-textarea">
+        <label  *ngIf="filename.length > 0" class="active" for="filename">Nome</label>
+      </div>
+      <div class="mt-5 input-field col s12">
+        <textarea [disabled]="file.length > 1" id="textarea2" [(ngModel)]="commentoRev" class="materialize-textarea"></textarea>
+        <label for="textarea2">Annotazione</label>
+      </div>
+      <label>
+        <input type="checkbox" />
+        <span style="line-height: 35px !important;">Se esiste già un file, usa automaticamente il controllo delle versioni</span>
+      </label>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="row">
+      <div class="right">
+        <button class="modal-close waves-effect waves-green btn-flat ">Chiudi</button>
+        <button (click)="SaveFile(); dropzone.reset()" class="modal-close waves-effect waves-green btn-flat ">Salva</button>
+      </div>
+    </div>
+  </div>
+</div>
