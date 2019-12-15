@@ -5,10 +5,10 @@
 export const environment = {
   production: false,
 
-   apiUrl: 'http://api.easysupp.it/api',
+   apiUrl: 'ciao', //'http://api.easysupp.it/api',
    // apiUrl: 'http://192.168.0.123/api',
 
-   baseUrl: 'http://api.easysupp.it',
+   baseUrl: 'ciao' // 'http://api.easysupp.it',
    // baseUrl: 'http://192.168.0.123',
 };
 /*
