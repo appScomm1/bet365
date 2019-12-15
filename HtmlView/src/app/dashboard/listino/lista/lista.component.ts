@@ -9,6 +9,7 @@ import { any } from 'codelyzer/util/function';
 import { LanguageVariant } from 'typescript';
 import { async } from 'q';
 import {map} from 'rxjs/operators';
+import { Http, Response } from '@angular/http';
 
 declare const $: any;
 
@@ -44,7 +45,8 @@ user;
 constructor(
     private listinoService: ListinoService,
     private translate: TranslateService,
-    private utilityService: UtilityService
+    private utilityService: UtilityService,
+    private http: Http,
   ) {
     this.translate.onLangChange
       .subscribe((event: LangChangeEvent) => {
@@ -68,24 +70,17 @@ constructor(
     table.ajax.reload();
   }
 
-ngOnInit() {
-    this.user =  this.utilityService.user;
-    this.utilityService.Navigation = [];
-    this.getListProducts();
+  ngOnInit() {
+    const app = this.getPartite();
+    console.log("viva la vida: ", app);
+    }
 
-    this.translate.get('breadcrumbs.catalog.list').subscribe((app: string) => {
-      this.posBreadcrumbs = this.utilityService.Navigation.length;
-      this.utilityService.Navigation.push({title: app, path: '/list'});
-    });
-
-    this.translate.onLangChange
-    .subscribe((event: LangChangeEvent) => {
-      this.translate.get('datatables', {value: 'world'}).subscribe((x: any) => {
-        this.dtOptions.language = x;
-        console.log(x);
-      });
-    });
-  }
+    getPartite() {
+      return this.http.get('testappscomm.000webhostapp.com/Query.php?Query=Select * From Partita')
+      .pipe(map((response : Response) => {
+          return response.json();
+      }));
+    }
 
 deleteProduct(id) {
     Swal.fire({
