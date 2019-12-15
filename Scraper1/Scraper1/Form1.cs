@@ -27,6 +27,7 @@ namespace Scraper1
 
             IWebDriver driver;
 
+            int i;
             driver = new ChromeDriver("C:\\Users\\PCLavoro\\source\\repos\\Scraper1\\Scraper1\\Resources\\");
             driver.Url = "https://www.eurobet.it/it/scommesse/#!/calcio/?temporalFilter=TEMPORAL_FILTER_OGGI";
             driver.Navigate();
