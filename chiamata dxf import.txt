@@ -1,0 +1,25 @@
+///  prova dxf inport
+        ///
+        //
+
+       
+        File root_dxf = android.os.Environment.getExternalStorageDirectory();
+        String path_dxf = root_dxf.getAbsolutePath() + "/ricette/591_curva.dxf";
+
+
+        String contents = Dxf_import.getDxfFile(path_dxf);
+
+        ArrayList<Dxf_import.entità> entity;
+        entity = Dxf_import.ReadDxfFile(contents, getApplicationContext());
+
+        if (entity.size() > 0 || entity.size() <= 6)
+                    {
+                        ArrayList<String> valori_pts = Dxf_import.getPtsValue(entity,getApplicationContext());
+                        if (valori_pts.size() > 0)
+                        {
+                          //  SalvaFilePts(valori_pts,path);
+                        }
+                    }
+
+        ///
+        ///
